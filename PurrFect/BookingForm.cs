@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PurrFect
 {
-    public partial class Form1 : Form
+    public partial class BookingForm : Form
     {
-        public Form1()
+        public BookingForm()
         {
             InitializeComponent();
         }
