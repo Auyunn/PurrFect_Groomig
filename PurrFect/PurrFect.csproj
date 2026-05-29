@@ -87,6 +87,9 @@
     <Compile Include="PaymentForm.Designer.cs">
       <DependentUpon>PaymentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PurrFect.cs">
+      <DependentUpon>PurrFect.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ReceiptForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +121,9 @@
     <Compile Include="RegisterPetForm.Designer.cs">
       <DependentUpon>RegisterPetForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BookingForm.resx">
+      <DependentUpon>BookingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -126,6 +132,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -164,6 +171,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="image\Basic.png" />
+    <None Include="image\Silver.png" />
+    <None Include="image\Premium.png" />
     <Content Include="PurrFect.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

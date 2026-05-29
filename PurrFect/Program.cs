@@ -16,7 +16,7 @@ namespace PurrFect
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new RegisterForm());
+            Application.Run(new BookingForm());
         }
     }
 }
