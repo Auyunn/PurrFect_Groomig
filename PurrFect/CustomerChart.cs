@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace PurrFect
 {
-    public partial class AdminDashboard : Form
+    public partial class CustomerChart : Form
     {
-        public AdminDashboard()
+        public CustomerChart()
         {
             InitializeComponent();
-        }
-
-        private void SalesLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void customerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

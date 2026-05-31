@@ -68,10 +68,14 @@ namespace PurrFect
 
             while (dr.Read())
             {
-                if (i == 0) Groomer1RB.Text = dr["GroomerName"].ToString();
-                else if (i == 1) Groomer2RB.Text = dr["GroomerName"].ToString();
-                else if (i == 2) Groomer3RB.Text = dr["GroomerName"].ToString();
-                else if (i == 3) Groomer4RB.Text = dr["GroomerName"].ToString();
+                if (i == 0)
+                { Groomer1RB.Text = dr["GroomerName"].ToString(); }
+                else if (i == 1)
+                { Groomer2RB.Text = dr["GroomerName"].ToString(); }
+                else if (i == 2)
+                { Groomer3RB.Text = dr["GroomerName"].ToString(); }
+                else if (i == 3)
+                 { Groomer4RB.Text = dr["GroomerName"].ToString(); }
 
                 i++;
             }

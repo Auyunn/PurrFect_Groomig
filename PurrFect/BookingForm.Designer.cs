@@ -29,6 +29,15 @@ namespace PurrFect
         private void InitializeComponent()
         {
             this.ServicePackageGB = new System.Windows.Forms.GroupBox();
+            this.PremiumPackageLabel = new System.Windows.Forms.Label();
+            this.SilverPriceLabel = new System.Windows.Forms.Label();
+            this.BasicPriceLabel = new System.Windows.Forms.Label();
+            this.labelRM3 = new System.Windows.Forms.Label();
+            this.labelRM2 = new System.Windows.Forms.Label();
+            this.labelRM = new System.Windows.Forms.Label();
+            this.Package3RTB = new System.Windows.Forms.RichTextBox();
+            this.Package2RTB = new System.Windows.Forms.RichTextBox();
+            this.Package1RTB = new System.Windows.Forms.RichTextBox();
             this.Package3RB = new System.Windows.Forms.RadioButton();
             this.Package2RB = new System.Windows.Forms.RadioButton();
             this.Package1RB = new System.Windows.Forms.RadioButton();
@@ -44,18 +53,9 @@ namespace PurrFect
             this.DateLabel = new System.Windows.Forms.Label();
             this.TimeSlotLabel = new System.Windows.Forms.Label();
             this.GroomerLabel = new System.Windows.Forms.Label();
-            this.Package1RTB = new System.Windows.Forms.RichTextBox();
-            this.Package2RTB = new System.Windows.Forms.RichTextBox();
-            this.Package3RTB = new System.Windows.Forms.RichTextBox();
-            this.labelRM = new System.Windows.Forms.Label();
-            this.labelRM2 = new System.Windows.Forms.Label();
-            this.labelRM3 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.BasicPriceLabel = new System.Windows.Forms.Label();
-            this.SilverPriceLabel = new System.Windows.Forms.Label();
-            this.PremiumPackageLabel = new System.Windows.Forms.Label();
             this.ServicePackageGB.SuspendLayout();
             this.GroomerGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -88,6 +88,88 @@ namespace PurrFect
             this.ServicePackageGB.TabStop = false;
             this.ServicePackageGB.Text = "Service Package";
             this.ServicePackageGB.Enter += new System.EventHandler(this.ServicePackageGB_Enter);
+            // 
+            // PremiumPackageLabel
+            // 
+            this.PremiumPackageLabel.AutoSize = true;
+            this.PremiumPackageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PremiumPackageLabel.Location = new System.Drawing.Point(316, 584);
+            this.PremiumPackageLabel.Name = "PremiumPackageLabel";
+            this.PremiumPackageLabel.Size = new System.Drawing.Size(0, 26);
+            this.PremiumPackageLabel.TabIndex = 18;
+            // 
+            // SilverPriceLabel
+            // 
+            this.SilverPriceLabel.AutoSize = true;
+            this.SilverPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SilverPriceLabel.Location = new System.Drawing.Point(316, 363);
+            this.SilverPriceLabel.Name = "SilverPriceLabel";
+            this.SilverPriceLabel.Size = new System.Drawing.Size(0, 26);
+            this.SilverPriceLabel.TabIndex = 17;
+            // 
+            // BasicPriceLabel
+            // 
+            this.BasicPriceLabel.AutoSize = true;
+            this.BasicPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BasicPriceLabel.Location = new System.Drawing.Point(316, 166);
+            this.BasicPriceLabel.Name = "BasicPriceLabel";
+            this.BasicPriceLabel.Size = new System.Drawing.Size(0, 26);
+            this.BasicPriceLabel.TabIndex = 16;
+            // 
+            // labelRM3
+            // 
+            this.labelRM3.AutoSize = true;
+            this.labelRM3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRM3.Location = new System.Drawing.Point(255, 584);
+            this.labelRM3.Name = "labelRM3";
+            this.labelRM3.Size = new System.Drawing.Size(48, 26);
+            this.labelRM3.TabIndex = 13;
+            this.labelRM3.Text = "RM";
+            // 
+            // labelRM2
+            // 
+            this.labelRM2.AutoSize = true;
+            this.labelRM2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRM2.Location = new System.Drawing.Point(246, 363);
+            this.labelRM2.Name = "labelRM2";
+            this.labelRM2.Size = new System.Drawing.Size(48, 26);
+            this.labelRM2.TabIndex = 12;
+            this.labelRM2.Text = "RM";
+            // 
+            // labelRM
+            // 
+            this.labelRM.AutoSize = true;
+            this.labelRM.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRM.Location = new System.Drawing.Point(246, 166);
+            this.labelRM.Name = "labelRM";
+            this.labelRM.Size = new System.Drawing.Size(48, 26);
+            this.labelRM.TabIndex = 11;
+            this.labelRM.Text = "RM";
+            // 
+            // Package3RTB
+            // 
+            this.Package3RTB.Location = new System.Drawing.Point(251, 465);
+            this.Package3RTB.Name = "Package3RTB";
+            this.Package3RTB.Size = new System.Drawing.Size(201, 51);
+            this.Package3RTB.TabIndex = 9;
+            this.Package3RTB.Text = "";
+            this.Package3RTB.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
+            // 
+            // Package2RTB
+            // 
+            this.Package2RTB.Location = new System.Drawing.Point(242, 267);
+            this.Package2RTB.Name = "Package2RTB";
+            this.Package2RTB.Size = new System.Drawing.Size(210, 60);
+            this.Package2RTB.TabIndex = 8;
+            this.Package2RTB.Text = "";
+            // 
+            // Package1RTB
+            // 
+            this.Package1RTB.Location = new System.Drawing.Point(242, 69);
+            this.Package1RTB.Name = "Package1RTB";
+            this.Package1RTB.Size = new System.Drawing.Size(210, 61);
+            this.Package1RTB.TabIndex = 7;
+            this.Package1RTB.Text = "";
             // 
             // Package3RB
             // 
@@ -255,61 +337,6 @@ namespace PurrFect
             this.GroomerLabel.TabIndex = 9;
             this.GroomerLabel.Click += new System.EventHandler(this.GroomerLabel_Click);
             // 
-            // Package1RTB
-            // 
-            this.Package1RTB.Location = new System.Drawing.Point(242, 69);
-            this.Package1RTB.Name = "Package1RTB";
-            this.Package1RTB.Size = new System.Drawing.Size(210, 61);
-            this.Package1RTB.TabIndex = 7;
-            this.Package1RTB.Text = "";
-            // 
-            // Package2RTB
-            // 
-            this.Package2RTB.Location = new System.Drawing.Point(242, 267);
-            this.Package2RTB.Name = "Package2RTB";
-            this.Package2RTB.Size = new System.Drawing.Size(210, 60);
-            this.Package2RTB.TabIndex = 8;
-            this.Package2RTB.Text = "";
-            // 
-            // Package3RTB
-            // 
-            this.Package3RTB.Location = new System.Drawing.Point(251, 465);
-            this.Package3RTB.Name = "Package3RTB";
-            this.Package3RTB.Size = new System.Drawing.Size(201, 51);
-            this.Package3RTB.TabIndex = 9;
-            this.Package3RTB.Text = "";
-            this.Package3RTB.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
-            // 
-            // labelRM
-            // 
-            this.labelRM.AutoSize = true;
-            this.labelRM.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRM.Location = new System.Drawing.Point(246, 166);
-            this.labelRM.Name = "labelRM";
-            this.labelRM.Size = new System.Drawing.Size(48, 26);
-            this.labelRM.TabIndex = 11;
-            this.labelRM.Text = "RM";
-            // 
-            // labelRM2
-            // 
-            this.labelRM2.AutoSize = true;
-            this.labelRM2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRM2.Location = new System.Drawing.Point(246, 363);
-            this.labelRM2.Name = "labelRM2";
-            this.labelRM2.Size = new System.Drawing.Size(48, 26);
-            this.labelRM2.TabIndex = 12;
-            this.labelRM2.Text = "RM";
-            // 
-            // labelRM3
-            // 
-            this.labelRM3.AutoSize = true;
-            this.labelRM3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRM3.Location = new System.Drawing.Point(255, 584);
-            this.labelRM3.Name = "labelRM3";
-            this.labelRM3.Size = new System.Drawing.Size(48, 26);
-            this.labelRM3.TabIndex = 13;
-            this.labelRM3.Text = "RM";
-            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::PurrFect.Properties.Resources.Premium;
@@ -340,33 +367,6 @@ namespace PurrFect
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // BasicPriceLabel
-            // 
-            this.BasicPriceLabel.AutoSize = true;
-            this.BasicPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BasicPriceLabel.Location = new System.Drawing.Point(316, 166);
-            this.BasicPriceLabel.Name = "BasicPriceLabel";
-            this.BasicPriceLabel.Size = new System.Drawing.Size(0, 26);
-            this.BasicPriceLabel.TabIndex = 16;
-            // 
-            // SilverPriceLabel
-            // 
-            this.SilverPriceLabel.AutoSize = true;
-            this.SilverPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SilverPriceLabel.Location = new System.Drawing.Point(316, 363);
-            this.SilverPriceLabel.Name = "SilverPriceLabel";
-            this.SilverPriceLabel.Size = new System.Drawing.Size(0, 26);
-            this.SilverPriceLabel.TabIndex = 17;
-            // 
-            // PremiumPackageLabel
-            // 
-            this.PremiumPackageLabel.AutoSize = true;
-            this.PremiumPackageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PremiumPackageLabel.Location = new System.Drawing.Point(316, 584);
-            this.PremiumPackageLabel.Name = "PremiumPackageLabel";
-            this.PremiumPackageLabel.Size = new System.Drawing.Size(0, 26);
-            this.PremiumPackageLabel.TabIndex = 18;
             // 
             // BookingForm
             // 
