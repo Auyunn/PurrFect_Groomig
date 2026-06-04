@@ -67,6 +67,7 @@ namespace PurrFect
             this.IDTagLabel.Size = new System.Drawing.Size(75, 22);
             this.IDTagLabel.TabIndex = 2;
             this.IDTagLabel.Text = "Your ID:";
+            this.IDTagLabel.Click += new System.EventHandler(this.IDTagLabel_Click);
             // 
             // ReminderLabel
             // 
@@ -77,29 +78,32 @@ namespace PurrFect
             this.ReminderLabel.Size = new System.Drawing.Size(92, 22);
             this.ReminderLabel.TabIndex = 3;
             this.ReminderLabel.Text = "Reminder:";
+            this.ReminderLabel.Click += new System.EventHandler(this.ReminderLabel_Click);
             // 
             // IDlabel
             // 
             this.IDlabel.AutoSize = true;
-            this.IDlabel.Location = new System.Drawing.Point(476, 386);
+            this.IDlabel.Location = new System.Drawing.Point(485, 386);
             this.IDlabel.Name = "IDlabel";
             this.IDlabel.Size = new System.Drawing.Size(0, 20);
             this.IDlabel.TabIndex = 4;
+            this.IDlabel.Click += new System.EventHandler(this.IDlabel_Click);
             // 
             // ReminderTagLabel
             // 
             this.ReminderTagLabel.AutoSize = true;
-            this.ReminderTagLabel.Location = new System.Drawing.Point(476, 417);
+            this.ReminderTagLabel.Location = new System.Drawing.Point(485, 417);
             this.ReminderTagLabel.Name = "ReminderTagLabel";
             this.ReminderTagLabel.Size = new System.Drawing.Size(0, 20);
             this.ReminderTagLabel.TabIndex = 5;
+            this.ReminderTagLabel.Click += new System.EventHandler(this.ReminderTagLabel_Click);
             // 
             // ThankYouForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(950, 699);
+            this.ClientSize = new System.Drawing.Size(953, 692);
             this.Controls.Add(this.ReminderTagLabel);
             this.Controls.Add(this.IDlabel);
             this.Controls.Add(this.ReminderLabel);
@@ -108,6 +112,7 @@ namespace PurrFect
             this.Controls.Add(this.label1);
             this.Name = "ThankYouForm";
             this.Text = "ThankYouForm";
+            this.Load += new System.EventHandler(this.ThankYouForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

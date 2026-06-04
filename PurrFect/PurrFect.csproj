@@ -76,17 +76,17 @@
     <Compile Include="AdminDashboard.Designer.cs">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Best_Selling_Service.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Best_Selling_Service.Designer.cs">
+      <DependentUpon>Best_Selling_Service.cs</DependentUpon>
+    </Compile>
     <Compile Include="BookingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BookingForm.Designer.cs">
       <DependentUpon>BookingForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerChart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CustomerChart.Designer.cs">
-      <DependentUpon>CustomerChart.cs</DependentUpon>
     </Compile>
     <Compile Include="PaymentForm.cs">
       <SubType>Form</SubType>
@@ -146,11 +146,11 @@
     <EmbeddedResource Include="AdminDashboard.resx">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Best_Selling_Service.resx">
+      <DependentUpon>Best_Selling_Service.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BookingForm.resx">
       <DependentUpon>BookingForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CustomerChart.resx">
-      <DependentUpon>CustomerChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PaymentForm.resx">
       <DependentUpon>PaymentForm.cs</DependentUpon>

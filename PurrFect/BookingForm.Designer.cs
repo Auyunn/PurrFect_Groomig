@@ -32,9 +32,12 @@ namespace PurrFect
             this.PremiumPackageLabel = new System.Windows.Forms.Label();
             this.SilverPriceLabel = new System.Windows.Forms.Label();
             this.BasicPriceLabel = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.labelRM3 = new System.Windows.Forms.Label();
             this.labelRM2 = new System.Windows.Forms.Label();
             this.labelRM = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Package3RTB = new System.Windows.Forms.RichTextBox();
             this.Package2RTB = new System.Windows.Forms.RichTextBox();
             this.Package1RTB = new System.Windows.Forms.RichTextBox();
@@ -53,14 +56,11 @@ namespace PurrFect
             this.DateLabel = new System.Windows.Forms.Label();
             this.TimeSlotLabel = new System.Windows.Forms.Label();
             this.GroomerLabel = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ServicePackageGB.SuspendLayout();
-            this.GroomerGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.GroomerGB.SuspendLayout();
             this.SuspendLayout();
             // 
             // ServicePackageGB
@@ -116,6 +116,27 @@ namespace PurrFect
             this.BasicPriceLabel.Size = new System.Drawing.Size(0, 26);
             this.BasicPriceLabel.TabIndex = 16;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::PurrFect.Properties.Resources.Premium;
+            this.pictureBox3.Location = new System.Drawing.Point(22, 465);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(214, 145);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 15;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::PurrFect.Properties.Resources.Silver;
+            this.pictureBox2.Location = new System.Drawing.Point(22, 267);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(192, 125);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 14;
+            this.pictureBox2.TabStop = false;
+            // 
             // labelRM3
             // 
             this.labelRM3.AutoSize = true;
@@ -145,6 +166,17 @@ namespace PurrFect
             this.labelRM.Size = new System.Drawing.Size(48, 26);
             this.labelRM.TabIndex = 11;
             this.labelRM.Text = "RM";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::PurrFect.Properties.Resources.Basic;
+            this.pictureBox1.Location = new System.Drawing.Point(18, 69);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(196, 126);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Package3RTB
             // 
@@ -337,37 +369,6 @@ namespace PurrFect
             this.GroomerLabel.TabIndex = 9;
             this.GroomerLabel.Click += new System.EventHandler(this.GroomerLabel_Click);
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::PurrFect.Properties.Resources.Premium;
-            this.pictureBox3.Location = new System.Drawing.Point(22, 465);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(214, 145);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 15;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::PurrFect.Properties.Resources.Silver;
-            this.pictureBox2.Location = new System.Drawing.Point(22, 267);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(192, 125);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 14;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::PurrFect.Properties.Resources.Basic;
-            this.pictureBox1.Location = new System.Drawing.Point(18, 69);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(196, 126);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // BookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -386,13 +387,14 @@ namespace PurrFect
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "BookingForm";
             this.Text = "BookingForm";
+            this.Load += new System.EventHandler(this.BookingForm_Load_1);
             this.ServicePackageGB.ResumeLayout(false);
             this.ServicePackageGB.PerformLayout();
-            this.GroomerGB.ResumeLayout(false);
-            this.GroomerGB.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.GroomerGB.ResumeLayout(false);
+            this.GroomerGB.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

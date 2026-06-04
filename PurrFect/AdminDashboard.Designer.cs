@@ -39,7 +39,7 @@ namespace PurrFect
             this.paymentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.petToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +52,7 @@ namespace PurrFect
             this.managementToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(965, 36);
+            this.menuStrip1.Size = new System.Drawing.Size(965, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -62,7 +62,7 @@ namespace PurrFect
             this.salesToolStripMenuItem,
             this.customerToolStripMenuItem});
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            this.homeToolStripMenuItem.Size = new System.Drawing.Size(77, 30);
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(77, 29);
             this.homeToolStripMenuItem.Text = "Home";
             // 
             // salesToolStripMenuItem
@@ -70,12 +70,13 @@ namespace PurrFect
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
             this.salesToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.salesToolStripMenuItem.Text = "Sales";
+            this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
             // 
             // customerToolStripMenuItem
             // 
             this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
             this.customerToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.customerToolStripMenuItem.Text = "Customer";
+            this.customerToolStripMenuItem.Text = "Best-Selling Service";
             this.customerToolStripMenuItem.Click += new System.EventHandler(this.customerToolStripMenuItem_Click);
             // 
             // managementToolStripMenuItem
@@ -86,31 +87,31 @@ namespace PurrFect
             this.paymentToolStripMenuItem,
             this.petToolStripMenuItem});
             this.managementToolStripMenuItem.Name = "managementToolStripMenuItem";
-            this.managementToolStripMenuItem.Size = new System.Drawing.Size(133, 30);
+            this.managementToolStripMenuItem.Size = new System.Drawing.Size(133, 29);
             this.managementToolStripMenuItem.Text = "Management";
             // 
             // bookingToolStripMenuItem
             // 
             this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
-            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
             this.bookingToolStripMenuItem.Text = "Booking";
             // 
             // groomerToolStripMenuItem
             // 
             this.groomerToolStripMenuItem.Name = "groomerToolStripMenuItem";
-            this.groomerToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.groomerToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
             this.groomerToolStripMenuItem.Text = "Groomer";
             // 
             // paymentToolStripMenuItem
             // 
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
-            this.paymentToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.paymentToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
             this.paymentToolStripMenuItem.Text = "Payment";
             // 
             // petToolStripMenuItem
             // 
             this.petToolStripMenuItem.Name = "petToolStripMenuItem";
-            this.petToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.petToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
             this.petToolStripMenuItem.Text = "Pet";
             // 
             // contextMenuStrip1
@@ -119,13 +120,13 @@ namespace PurrFect
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // flowLayoutPanel1
+            // Panel
             // 
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 36);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(965, 661);
-            this.flowLayoutPanel1.TabIndex = 2;
+            this.Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Panel.Location = new System.Drawing.Point(0, 33);
+            this.Panel.Name = "Panel";
+            this.Panel.Size = new System.Drawing.Size(965, 664);
+            this.Panel.TabIndex = 2;
             // 
             // AdminDashboard
             // 
@@ -133,7 +134,7 @@ namespace PurrFect
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(965, 697);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.Panel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "AdminDashboard";
@@ -157,6 +158,6 @@ namespace PurrFect
         private System.Windows.Forms.ToolStripMenuItem paymentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem petToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel Panel;
     }
 }

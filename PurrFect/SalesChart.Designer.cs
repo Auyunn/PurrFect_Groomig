@@ -28,28 +28,28 @@ namespace PurrFect
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.sales_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.SalesLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sales_chart)).BeginInit();
             this.SuspendLayout();
             // 
-            // chart1
+            // sales_chart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(247, 196);
-            this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(465, 421);
-            this.chart1.TabIndex = 5;
+            chartArea1.Name = "ChartArea1";
+            this.sales_chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.sales_chart.Legends.Add(legend1);
+            this.sales_chart.Location = new System.Drawing.Point(247, 196);
+            this.sales_chart.Name = "sales_chart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.sales_chart.Series.Add(series1);
+            this.sales_chart.Size = new System.Drawing.Size(465, 421);
+            this.sales_chart.TabIndex = 5;
             // 
             // SalesLabel
             // 
@@ -67,11 +67,12 @@ namespace PurrFect
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(961, 701);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.sales_chart);
             this.Controls.Add(this.SalesLabel);
             this.Name = "SalesChart";
             this.Text = "SalesChart";
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.Load += new System.EventHandler(this.SalesChart_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.sales_chart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -79,7 +80,7 @@ namespace PurrFect
 
         #endregion
 
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart sales_chart;
         private System.Windows.Forms.Label SalesLabel;
     }
 }

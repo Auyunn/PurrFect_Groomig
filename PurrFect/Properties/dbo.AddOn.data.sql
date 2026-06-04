@@ -1,0 +1,15 @@
+SET IDENTITY_INSERT [dbo].[AddOn] ON
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (37, N'Korean Haircut', CAST(20.00 AS Decimal(10, 2)))
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (38, N'Aloe Vera Shampoo', CAST(15.00 AS Decimal(10, 2)))
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (39, N'Nail Clipping', CAST(10.00 AS Decimal(10, 2)))
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (40, N'Flea Treatment', CAST(30.00 AS Decimal(10, 2)))
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (41, N'Teeth Cleaning', CAST(25.00 AS Decimal(10, 2)))
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (42, N'Anti Tick Shampoo', CAST(22.00 AS Decimal(10, 2)))
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (43, N'Dinasour Cut', CAST(23.00 AS Decimal(10, 2)))
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (44, N'Belly Cut', CAST(24.00 AS Decimal(10, 2)))
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (45, N'Lion Cut', CAST(25.00 AS Decimal(10, 2)))
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (46, N'Vegan Shampoo', CAST(22.00 AS Decimal(10, 2)))
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (47, N'Topical Spot-Ons', CAST(24.00 AS Decimal(10, 2)))
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (48, N'Oral Medications', CAST(26.00 AS Decimal(10, 2)))
+INSERT INTO [dbo].[AddOn] ([AddOnID], [AddOnName], [Price]) VALUES (49, N'Collars and Ticks', CAST(21.00 AS Decimal(10, 2)))
+SET IDENTITY_INSERT [dbo].[AddOn] OFF

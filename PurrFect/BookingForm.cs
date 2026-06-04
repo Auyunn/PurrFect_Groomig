@@ -31,6 +31,28 @@ namespace PurrFect
             TimeLB.Items.Add("12:00 PM");
             TimeLB.Items.Add("2:00 PM");
             TimeLB.Items.Add("4:00 PM");
+
+            if (Booking.Package == "Basic") Package1RB.Checked = true;
+            else if (Booking.Package == "Silver") Package2RB.Checked = true;
+            else if (Booking.Package == "Premium") Package3RB.Checked = true;
+
+            if (!string.IsNullOrEmpty(Booking.TimeSlot))
+            {
+                TimeLB.SelectedItem = Booking.TimeSlot;
+            }
+
+            if (!string.IsNullOrEmpty(Booking.groomer))
+            {
+                if (Groomer1RB.Text == Booking.groomer) Groomer1RB.Checked = true;
+                else if (Groomer2RB.Text == Booking.groomer) Groomer2RB.Checked = true;
+                else if (Groomer3RB.Text == Booking.groomer) Groomer3RB.Checked = true;
+                else if (Groomer4RB.Text == Booking.groomer) Groomer4RB.Checked = true;
+            }
+
+            if (Booking.BookingDate >= DateMC.MinDate)
+            {
+                DateMC.SetDate(Booking.BookingDate);
+            }
         }
 
         void LoadPackage()
@@ -117,26 +139,27 @@ namespace PurrFect
         private void BackBTN_Click(object sender, EventArgs e)
         {
             string package = "";
-            string timeSlot = "";
             string groomer = "";
-            DateTime bookingDate;
-            bookingDate = DateMC.SelectionStart;
+            string timeSlot = "";
+            DateTime bookingDate = DateMC.SelectionStart;
 
-            //get package
+            // package
             if (Package1RB.Checked)
                 package = "Basic";
+
             else if (Package2RB.Checked)
                 package = "Silver";
+
             else if (Package3RB.Checked)
                 package = "Premium";
 
-            //get time slot
+            // time
             if (TimeLB.SelectedItem != null)
             {
                 timeSlot = TimeLB.SelectedItem.ToString();
             }
 
-            //get groomer
+            // groomer
             if (Groomer1RB.Checked)
             {
                 groomer = Groomer1RB.Text;
@@ -154,7 +177,7 @@ namespace PurrFect
                 groomer = Groomer4RB.Text;
             }
 
-            //check
+            // validation
             if (package == "")
             {
                 MessageBox.Show("Please select package.");
@@ -179,20 +202,14 @@ namespace PurrFect
                 return;
             }
 
-            MessageBox.Show(
-                "Package: " + package +
-                "\nGroomer: " + groomer +
-                "\nTime: " + timeSlot +
-                "\nDate: " + bookingDate.ToShortDateString()
-                );
-
             Booking.Package = package;
             Booking.groomer = groomer;
             Booking.TimeSlot = timeSlot;
             Booking.BookingDate = bookingDate;
 
-            RegisterPetForm RegPet = new RegisterPetForm();
-            RegPet.Show();
+
+            RegisterPetForm reg = new RegisterPetForm();
+            reg.Show();
             this.Hide();
         }
 
@@ -203,60 +220,27 @@ namespace PurrFect
             string timeSlot = "";
             DateTime bookingDate = DateMC.SelectionStart;
 
-            // package
             if (Package1RB.Checked) package = "Basic";
             else if (Package2RB.Checked) package = "Silver";
             else if (Package3RB.Checked) package = "Premium";
 
-            // time
             if (TimeLB.SelectedItem != null)
                 timeSlot = TimeLB.SelectedItem.ToString();
 
-            // groomer
             if (Groomer1RB.Checked) groomer = Groomer1RB.Text;
             else if (Groomer2RB.Checked) groomer = Groomer2RB.Text;
             else if (Groomer3RB.Checked) groomer = Groomer3RB.Text;
             else if (Groomer4RB.Checked) groomer = Groomer4RB.Text;
 
-            // VALIDATION (FIXED)
-            if (string.IsNullOrEmpty(package))
-            {
-                MessageBox.Show("Please select package.");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(groomer))
-            {
-                MessageBox.Show("Please select groomer.");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(timeSlot))
-            {
-                MessageBox.Show("Please select time slot.");
-                return;
-            }
-
-            if (bookingDate < DateTime.Today)
-            {
-                MessageBox.Show("Please select valid date.");
-                return;
-            }
-
-            MessageBox.Show(
-                $"Package: {package}\nGroomer: {groomer}\nTime: {timeSlot}\nDate: {bookingDate.ToShortDateString()}"
-            );
-
-            // optional pass data
             Booking.Package = package;
             Booking.groomer = groomer;
             Booking.TimeSlot = timeSlot;
             Booking.BookingDate = bookingDate;
 
+           
             AddOnForm addon = new AddOnForm();
             addon.Show();
             this.Hide();
-
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -381,5 +365,14 @@ namespace PurrFect
         
         }
 
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BookingForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
