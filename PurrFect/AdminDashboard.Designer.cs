@@ -32,7 +32,7 @@ namespace PurrFect
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BestSellingMS = new System.Windows.Forms.ToolStripMenuItem();
             this.managementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bookingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +40,7 @@ namespace PurrFect
             this.petToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Panel = new System.Windows.Forms.FlowLayoutPanel();
+            this.WelcomeLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +61,7 @@ namespace PurrFect
             // 
             this.homeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.salesToolStripMenuItem,
-            this.customerToolStripMenuItem});
+            this.BestSellingMS});
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
             this.homeToolStripMenuItem.Size = new System.Drawing.Size(77, 29);
             this.homeToolStripMenuItem.Text = "Home";
@@ -68,16 +69,16 @@ namespace PurrFect
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(333, 34);
             this.salesToolStripMenuItem.Text = "Sales";
             this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
             // 
-            // customerToolStripMenuItem
+            // BestSellingMS
             // 
-            this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
-            this.customerToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.customerToolStripMenuItem.Text = "Best-Selling Service";
-            this.customerToolStripMenuItem.Click += new System.EventHandler(this.customerToolStripMenuItem_Click);
+            this.BestSellingMS.Name = "BestSellingMS";
+            this.BestSellingMS.Size = new System.Drawing.Size(333, 34);
+            this.BestSellingMS.Text = "Best Selling Service Package";
+            this.BestSellingMS.Click += new System.EventHandler(this.BestSellingMS_Click);
             // 
             // managementToolStripMenuItem
             // 
@@ -127,6 +128,20 @@ namespace PurrFect
             this.Panel.Name = "Panel";
             this.Panel.Size = new System.Drawing.Size(965, 664);
             this.Panel.TabIndex = 2;
+            this.Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Paint);
+            // 
+            // WelcomeLabel
+            // 
+            this.WelcomeLabel.AutoSize = true;
+            this.WelcomeLabel.Font = new System.Drawing.Font("Bookman Old Style", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WelcomeLabel.ForeColor = System.Drawing.Color.HotPink;
+            this.WelcomeLabel.Location = new System.Drawing.Point(150, 327);
+            this.WelcomeLabel.Name = "WelcomeLabel";
+            this.WelcomeLabel.Size = new System.Drawing.Size(665, 42);
+            this.WelcomeLabel.TabIndex = 4;
+            this.WelcomeLabel.Text = "WELCOME TO ADMIN DASHBOARD";
+            this.WelcomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.WelcomeLabel.Click += new System.EventHandler(this.WelcomeLabel_Click);
             // 
             // AdminDashboard
             // 
@@ -134,8 +149,10 @@ namespace PurrFect
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(965, 697);
+            this.Controls.Add(this.WelcomeLabel);
             this.Controls.Add(this.Panel);
             this.Controls.Add(this.menuStrip1);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "AdminDashboard";
             this.Text = "AdminDashboard";
@@ -151,7 +168,6 @@ namespace PurrFect
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem customerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem managementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bookingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem groomerToolStripMenuItem;
@@ -159,5 +175,7 @@ namespace PurrFect
         private System.Windows.Forms.ToolStripMenuItem petToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.FlowLayoutPanel Panel;
+        private System.Windows.Forms.ToolStripMenuItem BestSellingMS;
+        private System.Windows.Forms.Label WelcomeLabel;
     }
 }

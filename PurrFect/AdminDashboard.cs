@@ -34,24 +34,48 @@ namespace PurrFect
 
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            con.Open();
-
-            SqlDataAdapter adt = new SqlDataAdapter(
-                "SELECT MONTH(PaymentDate) AS Month, SUM(Amount) AS TotalSales " +
-                "FROM Payment " +
-                "GROUP BY MONTH(PaymentDate)" +
-                "ORDER BY MONTH(PaymentDate) ASC", con
-                );
-
-            adt.Fill(dt);
-
-            con.Close();
+            SalesChart sc = new SalesChart();
+            Panel.Visible = false;
+            WelcomeLabel.Visible = false;
+            sc.MdiParent = this;
+            sc.FormClosed += (s, args) =>
+            {
+                Panel.Visible = true;
+                WelcomeLabel.Visible = true;
+            };
+            sc.WindowState = FormWindowState.Maximized;
+            sc.Show();
 
 
 
 
+        }
 
+        private void BestSellingMS_Click(object sender, EventArgs e)
+        {
+            Best_Selling_Service bss = new Best_Selling_Service();
+            Panel.Visible = false;
+            WelcomeLabel.Visible = false;
+            bss.MdiParent = this; //put form in dashboard
+
+            bss.FormClosed += (s, args) =>
+            {
+                Panel.Visible = true;
+                WelcomeLabel.Visible = true;
+            };
+
+            bss.WindowState = FormWindowState.Maximized;
+            bss.Show();
+
+        }
+
+        private void Panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void WelcomeLabel_Click(object sender, EventArgs e)
+        {
 
         }
     }
