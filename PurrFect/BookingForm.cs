@@ -220,24 +220,76 @@ namespace PurrFect
             string timeSlot = "";
             DateTime bookingDate = DateMC.SelectionStart;
 
-            if (Package1RB.Checked) package = "Basic";
-            else if (Package2RB.Checked) package = "Silver";
-            else if (Package3RB.Checked) package = "Premium";
+            // package
+            if (Package1RB.Checked)
+                package = "Basic";
 
+            else if (Package2RB.Checked)
+                package = "Silver";
+
+            else if (Package3RB.Checked)
+                package = "Premium";
+
+            // time
             if (TimeLB.SelectedItem != null)
+            {
                 timeSlot = TimeLB.SelectedItem.ToString();
+            }
 
-            if (Groomer1RB.Checked) groomer = Groomer1RB.Text;
-            else if (Groomer2RB.Checked) groomer = Groomer2RB.Text;
-            else if (Groomer3RB.Checked) groomer = Groomer3RB.Text;
-            else if (Groomer4RB.Checked) groomer = Groomer4RB.Text;
+            // groomer
+            if (Groomer1RB.Checked)
+            {
+                groomer = Groomer1RB.Text;
+            }
+            else if (Groomer2RB.Checked)
+            {
+                groomer = Groomer2RB.Text;
+            }
+            else if (Groomer3RB.Checked)
+            {
+                groomer = Groomer3RB.Text;
+            }
+            else if (Groomer4RB.Checked)
+            {
+                groomer = Groomer4RB.Text;
+            }
+
+            // validation
+            if (package == "")
+            {
+                MessageBox.Show("Please select package.");
+                return;
+            }
+
+            if (groomer == "")
+            {
+                MessageBox.Show("Please select groomer.");
+                return;
+            }
+
+            if (timeSlot == "")
+            {
+                MessageBox.Show("Please select time slot.");
+                return;
+            }
+
+            if (bookingDate < DateTime.Today)
+            {
+                MessageBox.Show("Please select valid date.");
+                return;
+            }
 
             Booking.Package = package;
             Booking.groomer = groomer;
             Booking.TimeSlot = timeSlot;
             Booking.BookingDate = bookingDate;
 
-           
+            MessageBox.Show("Package: " + package +
+                            "\nGroomer: " + groomer +
+                            "\nTime Slot: " + timeSlot +
+                            "\nDate: " + bookingDate.ToShortDateString());
+
+
             AddOnForm addon = new AddOnForm();
             addon.Show();
             this.Hide();
@@ -329,40 +381,6 @@ namespace PurrFect
 
             con.Close();
 
-        }
-
-        void LoadDescription(string packageName)
-        {
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand(
-                "SELECT * FROM ServicePackage WHERE ServiceName=@name",
-                con);
-
-            cmd.Parameters.AddWithValue("@name", packageName);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            if (dr.Read())
-            {
-                if (packageName == "Basic")
-                {
-                    Package1RTB.Text = dr["Description"].ToString();
-                }
-
-                else if (packageName == "Silver")
-                {
-                    Package2RTB.Text = dr["Description"].ToString();
-                }
-
-                else if (packageName == "Premium")
-                {
-                    Package3RTB.Text = dr["Description"].ToString();
-                }
-            }
-
-            con.Close();
-        
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)

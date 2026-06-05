@@ -166,10 +166,9 @@ namespace PurrFect
 
         private void PaymentForm_Load(object sender, EventArgs e)
         {
-            // Letak dummy ID sementara untuk tujuan testing run berasingan
             if (Booking.BookingID == 0)
             {
-                Booking.BookingID = 1; // Pastikan ID 1 ini wujud dalam table Booking kau
+                Booking.BookingID = 1;
             }
             GenerateReceipt();
         }
