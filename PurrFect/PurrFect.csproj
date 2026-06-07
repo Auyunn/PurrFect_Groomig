@@ -88,11 +88,19 @@
     <Compile Include="BookingForm.Designer.cs">
       <DependentUpon>BookingForm.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="ForgotPasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ForgotPasswordForm.Designer.cs">
       <DependentUpon>ForgotPasswordForm.cs</DependentUpon>
+=======
+    <Compile Include="ManageCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageCustomer.Designer.cs">
+      <DependentUpon>ManageCustomer.cs</DependentUpon>
+>>>>>>> c8a5d75bf8c3cd0a2b8b087fc185f312a8fb5144
     </Compile>
     <Compile Include="PaymentForm.cs">
       <SubType>Form</SubType>
@@ -158,11 +166,16 @@
     <EmbeddedResource Include="BookingForm.resx">
       <DependentUpon>BookingForm.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="ForgotPasswordForm.resx">
       <DependentUpon>ForgotPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="ManageCustomer.resx">
+      <DependentUpon>ManageCustomer.cs</DependentUpon>
+>>>>>>> c8a5d75bf8c3cd0a2b8b087fc185f312a8fb5144
     </EmbeddedResource>
     <EmbeddedResource Include="PaymentForm.resx">
       <DependentUpon>PaymentForm.cs</DependentUpon>

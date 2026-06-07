@@ -49,8 +49,8 @@ namespace PurrFect
             con.Close();
 
              ReminderTagLabel.Text = 
-                "Please show your booking id at the counter on " + 
-                Booking.BookingDate.ToString("dd MMMM yyyy") + " at " + 
+                "Please show your booking id at the counter on \n" + 
+                Booking.BookingDate.ToString("dd MMMM yyyy") + " at" + 
                 Booking.TimeSlot + " to redeem your booking.";
 
         }
