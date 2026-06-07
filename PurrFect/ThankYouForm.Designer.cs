@@ -73,7 +73,7 @@ namespace PurrFect
             // 
             this.ReminderLabel.AutoSize = true;
             this.ReminderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReminderLabel.Location = new System.Drawing.Point(388, 417);
+            this.ReminderLabel.Location = new System.Drawing.Point(204, 415);
             this.ReminderLabel.Name = "ReminderLabel";
             this.ReminderLabel.Size = new System.Drawing.Size(92, 22);
             this.ReminderLabel.TabIndex = 3;
@@ -83,18 +83,20 @@ namespace PurrFect
             // IDlabel
             // 
             this.IDlabel.AutoSize = true;
-            this.IDlabel.Location = new System.Drawing.Point(485, 386);
+            this.IDlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IDlabel.Location = new System.Drawing.Point(485, 388);
             this.IDlabel.Name = "IDlabel";
-            this.IDlabel.Size = new System.Drawing.Size(0, 20);
+            this.IDlabel.Size = new System.Drawing.Size(0, 25);
             this.IDlabel.TabIndex = 4;
             this.IDlabel.Click += new System.EventHandler(this.IDlabel_Click);
             // 
             // ReminderTagLabel
             // 
             this.ReminderTagLabel.AutoSize = true;
-            this.ReminderTagLabel.Location = new System.Drawing.Point(485, 417);
+            this.ReminderTagLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReminderTagLabel.Location = new System.Drawing.Point(302, 417);
             this.ReminderTagLabel.Name = "ReminderTagLabel";
-            this.ReminderTagLabel.Size = new System.Drawing.Size(0, 20);
+            this.ReminderTagLabel.Size = new System.Drawing.Size(0, 25);
             this.ReminderTagLabel.TabIndex = 5;
             this.ReminderTagLabel.Click += new System.EventHandler(this.ReminderTagLabel_Click);
             // 

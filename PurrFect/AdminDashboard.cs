@@ -29,7 +29,7 @@ namespace PurrFect
 
         private void customerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -77,6 +77,24 @@ namespace PurrFect
         private void WelcomeLabel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void customerToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ManageCustomer cc = new ManageCustomer();
+
+            Panel.Visible = false;
+            WelcomeLabel.Visible = false;
+
+            cc.MdiParent = this;
+            cc.FormClosed += (s, args) =>
+            {
+                Panel.Visible = true;
+                WelcomeLabel.Visible = true;
+            };
+            cc.WindowState = FormWindowState.Maximized;
+
+            cc.Show();
         }
     }
 }
