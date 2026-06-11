@@ -53,12 +53,9 @@ namespace PurrFect
             this.managementToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-<<<<<<< HEAD
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(858, 30);
-=======
             this.menuStrip1.Size = new System.Drawing.Size(965, 36);
->>>>>>> c8a5d75bf8c3cd0a2b8b087fc185f312a8fb5144
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -100,41 +97,29 @@ namespace PurrFect
             // bookingToolStripMenuItem
             // 
             this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
-<<<<<<< HEAD
             this.bookingToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
-=======
             this.bookingToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
->>>>>>> c8a5d75bf8c3cd0a2b8b087fc185f312a8fb5144
             this.bookingToolStripMenuItem.Text = "Booking";
             // 
             // groomerToolStripMenuItem
             // 
             this.groomerToolStripMenuItem.Name = "groomerToolStripMenuItem";
-<<<<<<< HEAD
             this.groomerToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
-=======
             this.groomerToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
->>>>>>> c8a5d75bf8c3cd0a2b8b087fc185f312a8fb5144
             this.groomerToolStripMenuItem.Text = "Groomer";
             // 
             // paymentToolStripMenuItem
             // 
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
-<<<<<<< HEAD
             this.paymentToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
-=======
             this.paymentToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
->>>>>>> c8a5d75bf8c3cd0a2b8b087fc185f312a8fb5144
             this.paymentToolStripMenuItem.Text = "Payment";
             // 
             // petToolStripMenuItem
             // 
             this.petToolStripMenuItem.Name = "petToolStripMenuItem";
-<<<<<<< HEAD
             this.petToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
-=======
             this.petToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
->>>>>>> c8a5d75bf8c3cd0a2b8b087fc185f312a8fb5144
             this.petToolStripMenuItem.Text = "Pet";
             // 
             // contextMenuStrip1
@@ -146,16 +131,13 @@ namespace PurrFect
             // Panel
             // 
             this.Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-<<<<<<< HEAD
             this.Panel.Location = new System.Drawing.Point(0, 30);
             this.Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Panel.Name = "Panel";
             this.Panel.Size = new System.Drawing.Size(858, 528);
-=======
             this.Panel.Location = new System.Drawing.Point(0, 36);
             this.Panel.Name = "Panel";
             this.Panel.Size = new System.Drawing.Size(965, 661);
->>>>>>> c8a5d75bf8c3cd0a2b8b087fc185f312a8fb5144
             this.Panel.TabIndex = 2;
             this.Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Paint);
             // 

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace PurrFect
 {
+}
+
+namespace PurrFect
+{
     public static class Booking
     {
 
