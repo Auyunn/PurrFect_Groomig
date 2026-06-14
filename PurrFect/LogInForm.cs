@@ -71,8 +71,7 @@ namespace PurrFect
             {
                 con.Open();
 
-                string query =
-                    "SELECT * FROM Users WHERE Username=@Username AND Password=@Password AND Role=@Role";
+                string query = "SELECT * FROM Customer WHERE Username=@Username AND Password=@Password AND Role=@Role";
 
                 SqlCommand cmd = new SqlCommand(query, con);
 
@@ -86,7 +85,7 @@ namespace PurrFect
                 {
                     MessageBox.Show("Login Successful");
 
-                    LogInForm frm = new LogInForm();
+                    BookingForm frm = new BookingForm();
                     frm.Show();
 
                     this.Hide();

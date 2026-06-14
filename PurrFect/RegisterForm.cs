@@ -56,7 +56,7 @@ namespace PurrFect
 
                 // Check if username already exists
                 string checkQuery =
-                    "SELECT COUNT(*) FROM Users WHERE Username=@Username";
+                    "SELECT COUNT(*) FROM Customer WHERE Username=@Username";
 
                 SqlCommand checkCmd = new SqlCommand(checkQuery, con);
                 checkCmd.Parameters.AddWithValue("@Username", txtUsername.Text);

@@ -38,7 +38,7 @@ namespace PurrFect
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
         {
             txtNewPassword.UseSystemPasswordChar =
-        !chkShowPassword.Checked;
+                !chkShowPassword.Checked;
 
             txtConfirmPassword.UseSystemPasswordChar =
                 !chkShowPassword.Checked;
@@ -53,8 +53,7 @@ namespace PurrFect
 
                 if (!isVerified)
                 {
-                    string query =
-                        "SELECT * FROM Users WHERE Username=@Username AND Email=@Email";
+                    string query = "SELECT * FROM Customer WHERE Username=@Username AND Email=@Email";
 
                     SqlCommand cmd = new SqlCommand(query, con);
 
@@ -90,11 +89,7 @@ namespace PurrFect
                         return;
                     }
 
-                    string updateQuery =
-                        @"UPDATE Users
-                  SET Password=@Password
-                  WHERE Username=@Username
-                  AND Email=@Email";
+                    string updateQuery = @"UPDATE Customer SET Password=@Password WHERE Username=@Username AND Email=@Email";
 
                     SqlCommand updateCmd =
                         new SqlCommand(updateQuery, con);
