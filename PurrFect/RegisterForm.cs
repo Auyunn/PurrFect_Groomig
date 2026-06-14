@@ -70,10 +70,7 @@ namespace PurrFect
                 }
 
                 string query =
-                @"INSERT INTO Users
-        (FullName, Email, Phone, Username, Birthday, Address, Gender, Password, Role)
-        VALUES
-        (@FullName, @Email, @Phone, @Username, @Birthday, @Address, @Gender, @Password, @Role)";
+                @"INSERT INTO Customer (FullName, Email, Phone, Username, Birthday, Address, Gender, Password, Role)  VALUES (@FullName, @Email, @Phone, @Username, @Birthday, @Address, @Gender, @Password, @Role)";
 
                 SqlCommand cmd = new SqlCommand(query, con);
 
