@@ -37,13 +37,6 @@ namespace PurrFect
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            string gender = "";
-
-            if (chkFemale.Checked)
-                gender = "Female";
-            else if (chkMale.Checked)
-                gender = "Male";
-
             if (txtPassword.Text != txtConfirmPassword.Text)
             {
                 MessageBox.Show("Passwords do not match.");
@@ -56,7 +49,7 @@ namespace PurrFect
 
                 // Check if username already exists
                 string checkQuery =
-                    "SELECT COUNT(*) FROM Customer WHERE Username=@Username";
+                    "SELECT COUNT(*) FROM User WHERE Username=@Username";
 
                 SqlCommand checkCmd = new SqlCommand(checkQuery, con);
                 checkCmd.Parameters.AddWithValue("@Username", txtUsername.Text);
@@ -70,17 +63,11 @@ namespace PurrFect
                 }
 
                 string query =
-                @"INSERT INTO Customer (FullName, Email, Phone, Username, Birthday, Address, Gender, Password, Role)  VALUES (@FullName, @Email, @Phone, @Username, @Birthday, @Address, @Gender, @Password, @Role)";
+                @"INSERT INTO User (Username, Password, Role)  VALUES (@Username, @Password, @Role)";
 
                 SqlCommand cmd = new SqlCommand(query, con);
-
-                cmd.Parameters.AddWithValue("@FullName", txtName.Text);
-                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@Phone", txtPhoneNumber.Text);
+               
                 cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
-                cmd.Parameters.AddWithValue("@Birthday", dtpBirthday.Value);
-                cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
-                cmd.Parameters.AddWithValue("@Gender", gender);
                 cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
                 cmd.Parameters.AddWithValue("@Role", "User");
 
@@ -113,15 +100,10 @@ namespace PurrFect
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkFemale.Checked)
-                chkMale.Checked = false;
         }
 
         private void chkFemale_CheckedChanged(object sender, EventArgs e)
         {
-
-            if (chkMale.Checked)
-                chkFemale.Checked = false;
         }
     }
 }

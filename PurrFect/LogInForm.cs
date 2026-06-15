@@ -71,7 +71,7 @@ namespace PurrFect
             {
                 con.Open();
 
-                string query = "SELECT * FROM Customer WHERE Username=@Username AND Password=@Password AND Role=@Role";
+                string query = "SELECT * FROM User WHERE Username=@Username AND Password=@Password AND Role=@Role";
 
                 SqlCommand cmd = new SqlCommand(query, con);
 

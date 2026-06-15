@@ -58,7 +58,6 @@ namespace PurrFect
                     SqlCommand cmd = new SqlCommand(query, con);
 
                     cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
-                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
 
                     SqlDataReader dr = cmd.ExecuteReader();
 
@@ -89,14 +88,13 @@ namespace PurrFect
                         return;
                     }
 
-                    string updateQuery = @"UPDATE Customer SET Password=@Password WHERE Username=@Username AND Email=@Email";
+                    string updateQuery = @"UPDATE User SET Password=@Password WHERE Username=@Username AND Email=@Email";
 
                     SqlCommand updateCmd =
                         new SqlCommand(updateQuery, con);
 
                     updateCmd.Parameters.AddWithValue("@Password", txtNewPassword.Text);
                     updateCmd.Parameters.AddWithValue("@Username", txtUsername.Text);
-                    updateCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
 
                     int rows = updateCmd.ExecuteNonQuery();
 

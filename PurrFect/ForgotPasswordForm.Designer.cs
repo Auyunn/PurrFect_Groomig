@@ -31,9 +31,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblForgotPassword = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
-            this.lblEmail = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
             this.lblenter = new System.Windows.Forms.Label();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.lblreturn = new System.Windows.Forms.Label();
@@ -74,29 +72,12 @@
             this.lblUsername.TabIndex = 3;
             this.lblUsername.Text = "Username";
             // 
-            // lblEmail
-            // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(414, 148);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(41, 16);
-            this.lblEmail.TabIndex = 4;
-            this.lblEmail.Text = "Email";
-            // 
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(499, 115);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(234, 22);
             this.txtUsername.TabIndex = 5;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(499, 148);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(234, 22);
-            this.txtEmail.TabIndex = 6;
-            this.txtEmail.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // lblenter
             // 
@@ -111,9 +92,9 @@
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(417, 296);
+            this.btnConfirm.Location = new System.Drawing.Point(417, 277);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(316, 32);
+            this.btnConfirm.Size = new System.Drawing.Size(316, 35);
             this.btnConfirm.TabIndex = 8;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.UseVisualStyleBackColor = true;
@@ -122,7 +103,7 @@
             // lblreturn
             // 
             this.lblreturn.AutoSize = true;
-            this.lblreturn.Location = new System.Drawing.Point(492, 340);
+            this.lblreturn.Location = new System.Drawing.Point(492, 324);
             this.lblreturn.Name = "lblreturn";
             this.lblreturn.Size = new System.Drawing.Size(174, 16);
             this.lblreturn.TabIndex = 9;
@@ -132,7 +113,7 @@
             // chkShowPassword
             // 
             this.chkShowPassword.AutoSize = true;
-            this.chkShowPassword.Location = new System.Drawing.Point(611, 253);
+            this.chkShowPassword.Location = new System.Drawing.Point(611, 225);
             this.chkShowPassword.Name = "chkShowPassword";
             this.chkShowPassword.Size = new System.Drawing.Size(122, 20);
             this.chkShowPassword.TabIndex = 29;
@@ -142,7 +123,7 @@
             // 
             // txtConfirmPassword
             // 
-            this.txtConfirmPassword.Location = new System.Drawing.Point(540, 225);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(540, 197);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(193, 22);
             this.txtConfirmPassword.TabIndex = 28;
@@ -150,7 +131,7 @@
             // 
             // txtNewPassword
             // 
-            this.txtNewPassword.Location = new System.Drawing.Point(540, 194);
+            this.txtNewPassword.Location = new System.Drawing.Point(540, 166);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.Size = new System.Drawing.Size(193, 22);
             this.txtNewPassword.TabIndex = 27;
@@ -159,7 +140,7 @@
             // lblConfirmPassword
             // 
             this.lblConfirmPassword.AutoSize = true;
-            this.lblConfirmPassword.Location = new System.Drawing.Point(419, 228);
+            this.lblConfirmPassword.Location = new System.Drawing.Point(414, 200);
             this.lblConfirmPassword.Name = "lblConfirmPassword";
             this.lblConfirmPassword.Size = new System.Drawing.Size(115, 16);
             this.lblConfirmPassword.TabIndex = 26;
@@ -168,7 +149,7 @@
             // lblNewPassword
             // 
             this.lblNewPassword.AutoSize = true;
-            this.lblNewPassword.Location = new System.Drawing.Point(419, 197);
+            this.lblNewPassword.Location = new System.Drawing.Point(414, 169);
             this.lblNewPassword.Name = "lblNewPassword";
             this.lblNewPassword.Size = new System.Drawing.Size(97, 16);
             this.lblNewPassword.TabIndex = 25;
@@ -188,9 +169,7 @@
             this.Controls.Add(this.lblreturn);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.lblenter);
-            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtUsername);
-            this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.lblForgotPassword);
             this.Controls.Add(this.pictureBox1);
@@ -208,9 +187,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblForgotPassword;
         private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label lblenter;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Label lblreturn;
