@@ -19,7 +19,7 @@ namespace PurrFect
 
         private void RegisterPetForm_Load(object sender, EventArgs e)
         {
-
+            this.ActiveControl = textBoxName;
         }
 
         private void buttonUpload_Click(object sender, EventArgs e)
@@ -58,7 +58,7 @@ namespace PurrFect
                 return;
             }
 
-            if (dateTimePicker1.Value.Date > DateTime.Now)
+            if (dateTimePicker1.Value.Date > DateTime.Today)
             {
                 MessageBox.Show("Please select a valid birth date.");
                 return;
@@ -76,6 +76,10 @@ namespace PurrFect
                 MessageBox.Show("Please enter the pet's color.");
                 return;
             }
+
+            MessageBox.Show("Pet Registered!", "Success",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information);
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -89,7 +93,7 @@ namespace PurrFect
             radioButtonFemale.Checked = false;
             radioButtonMale.Checked = false;
 
-            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker1.Value = DateTime.Today;
 
             numericUpDown1.Value = 0;
 

@@ -235,9 +235,11 @@
             // 
             // pictureBoxPet
             // 
+            this.pictureBoxPet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxPet.Location = new System.Drawing.Point(81, 52);
             this.pictureBoxPet.Name = "pictureBoxPet";
             this.pictureBoxPet.Size = new System.Drawing.Size(445, 386);
+            this.pictureBoxPet.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxPet.TabIndex = 17;
             this.pictureBoxPet.TabStop = false;
             // 
