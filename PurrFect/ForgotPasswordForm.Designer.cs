@@ -35,11 +35,11 @@
             this.lblenter = new System.Windows.Forms.Label();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.lblreturn = new System.Windows.Forms.Label();
-            this.chkShowPassword = new System.Windows.Forms.CheckBox();
-            this.txtConfirmPassword = new System.Windows.Forms.TextBox();
-            this.txtNewPassword = new System.Windows.Forms.TextBox();
             this.lblConfirmPassword = new System.Windows.Forms.Label();
             this.lblNewPassword = new System.Windows.Forms.Label();
+            this.chkShowPassword = new System.Windows.Forms.CheckBox();
+            this.txtNewPassword = new System.Windows.Forms.TextBox();
+            this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,9 +86,9 @@
             this.lblenter.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.lblenter.Location = new System.Drawing.Point(414, 67);
             this.lblenter.Name = "lblenter";
-            this.lblenter.Size = new System.Drawing.Size(219, 15);
+            this.lblenter.Size = new System.Drawing.Size(166, 15);
             this.lblenter.TabIndex = 7;
-            this.lblenter.Text = "enter your username and email to reset !";
+            this.lblenter.Text = "enter your username to reset !";
             // 
             // btnConfirm
             // 
@@ -110,33 +110,6 @@
             this.lblreturn.Text = "< Return back to Login page";
             this.lblreturn.Click += new System.EventHandler(this.lblreturn_Click);
             // 
-            // chkShowPassword
-            // 
-            this.chkShowPassword.AutoSize = true;
-            this.chkShowPassword.Location = new System.Drawing.Point(611, 225);
-            this.chkShowPassword.Name = "chkShowPassword";
-            this.chkShowPassword.Size = new System.Drawing.Size(122, 20);
-            this.chkShowPassword.TabIndex = 29;
-            this.chkShowPassword.Text = "show password";
-            this.chkShowPassword.UseVisualStyleBackColor = true;
-            this.chkShowPassword.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged);
-            // 
-            // txtConfirmPassword
-            // 
-            this.txtConfirmPassword.Location = new System.Drawing.Point(540, 197);
-            this.txtConfirmPassword.Name = "txtConfirmPassword";
-            this.txtConfirmPassword.Size = new System.Drawing.Size(193, 22);
-            this.txtConfirmPassword.TabIndex = 28;
-            this.txtConfirmPassword.UseSystemPasswordChar = true;
-            // 
-            // txtNewPassword
-            // 
-            this.txtNewPassword.Location = new System.Drawing.Point(540, 166);
-            this.txtNewPassword.Name = "txtNewPassword";
-            this.txtNewPassword.Size = new System.Drawing.Size(193, 22);
-            this.txtNewPassword.TabIndex = 27;
-            this.txtNewPassword.UseSystemPasswordChar = true;
-            // 
             // lblConfirmPassword
             // 
             this.lblConfirmPassword.AutoSize = true;
@@ -155,15 +128,41 @@
             this.lblNewPassword.TabIndex = 25;
             this.lblNewPassword.Text = "New Password";
             // 
+            // chkShowPassword
+            // 
+            this.chkShowPassword.AutoSize = true;
+            this.chkShowPassword.Location = new System.Drawing.Point(611, 235);
+            this.chkShowPassword.Name = "chkShowPassword";
+            this.chkShowPassword.Size = new System.Drawing.Size(122, 20);
+            this.chkShowPassword.TabIndex = 27;
+            this.chkShowPassword.Text = "show password";
+            this.chkShowPassword.UseVisualStyleBackColor = true;
+            this.chkShowPassword.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged_1);
+            // 
+            // txtNewPassword
+            // 
+            this.txtNewPassword.Location = new System.Drawing.Point(535, 166);
+            this.txtNewPassword.Name = "txtNewPassword";
+            this.txtNewPassword.Size = new System.Drawing.Size(198, 22);
+            this.txtNewPassword.TabIndex = 28;
+            this.txtNewPassword.TextChanged += new System.EventHandler(this.txtNewPassword_TextChanged_1);
+            // 
+            // txtConfirmPassword
+            // 
+            this.txtConfirmPassword.Location = new System.Drawing.Point(535, 197);
+            this.txtConfirmPassword.Name = "txtConfirmPassword";
+            this.txtConfirmPassword.Size = new System.Drawing.Size(198, 22);
+            this.txtConfirmPassword.TabIndex = 29;
+            // 
             // ForgotPasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.chkShowPassword);
             this.Controls.Add(this.txtConfirmPassword);
             this.Controls.Add(this.txtNewPassword);
+            this.Controls.Add(this.chkShowPassword);
             this.Controls.Add(this.lblConfirmPassword);
             this.Controls.Add(this.lblNewPassword);
             this.Controls.Add(this.lblreturn);
@@ -191,10 +190,10 @@
         private System.Windows.Forms.Label lblenter;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Label lblreturn;
-        private System.Windows.Forms.CheckBox chkShowPassword;
-        private System.Windows.Forms.TextBox txtConfirmPassword;
-        private System.Windows.Forms.TextBox txtNewPassword;
         private System.Windows.Forms.Label lblConfirmPassword;
         private System.Windows.Forms.Label lblNewPassword;
+        private System.Windows.Forms.CheckBox chkShowPassword;
+        private System.Windows.Forms.TextBox txtNewPassword;
+        private System.Windows.Forms.TextBox txtConfirmPassword;
     }
 }

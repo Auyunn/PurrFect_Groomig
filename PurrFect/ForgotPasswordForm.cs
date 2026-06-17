@@ -142,5 +142,28 @@ namespace PurrFect
 
             this.Hide();
         }
+
+        private void txtNewPassword_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtConfirmPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkShowPassword_CheckedChanged_1(object sender, EventArgs e)
+        {
+            txtNewPassword.UseSystemPasswordChar =
+              !chkShowPassword.Checked;
+
+            txtConfirmPassword.UseSystemPasswordChar =
+                !chkShowPassword.Checked;
+        }
+
+        private void txtNewPassword_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
