@@ -183,6 +183,9 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RegisterPetForm.resx">
+      <DependentUpon>RegisterPetForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SalesChart.resx">
       <DependentUpon>SalesChart.cs</DependentUpon>
     </EmbeddedResource>
