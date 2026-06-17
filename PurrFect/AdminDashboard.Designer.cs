@@ -54,8 +54,7 @@ namespace PurrFect
             this.managementToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(965, 36);
+            this.menuStrip1.Size = new System.Drawing.Size(965, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -65,7 +64,7 @@ namespace PurrFect
             this.salesToolStripMenuItem,
             this.BestSellingMS});
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            this.homeToolStripMenuItem.Size = new System.Drawing.Size(77, 32);
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(77, 30);
             this.homeToolStripMenuItem.Text = "Home";
             // 
             // salesToolStripMenuItem
@@ -91,37 +90,37 @@ namespace PurrFect
             this.petToolStripMenuItem,
             this.customerToolStripMenuItem});
             this.managementToolStripMenuItem.Name = "managementToolStripMenuItem";
-            this.managementToolStripMenuItem.Size = new System.Drawing.Size(133, 32);
+            this.managementToolStripMenuItem.Size = new System.Drawing.Size(133, 30);
             this.managementToolStripMenuItem.Text = "Management";
             // 
             // bookingToolStripMenuItem
             // 
             this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
-            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(191, 34);
             this.bookingToolStripMenuItem.Text = "Booking";
             // 
             // groomerToolStripMenuItem
             // 
             this.groomerToolStripMenuItem.Name = "groomerToolStripMenuItem";
-            this.groomerToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.groomerToolStripMenuItem.Size = new System.Drawing.Size(191, 34);
             this.groomerToolStripMenuItem.Text = "Groomer";
             // 
             // paymentToolStripMenuItem
             // 
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
-            this.paymentToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.paymentToolStripMenuItem.Size = new System.Drawing.Size(191, 34);
             this.paymentToolStripMenuItem.Text = "Payment";
             // 
             // petToolStripMenuItem
             // 
             this.petToolStripMenuItem.Name = "petToolStripMenuItem";
-            this.petToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.petToolStripMenuItem.Size = new System.Drawing.Size(191, 34);
             this.petToolStripMenuItem.Text = "Pet";
             // 
             // customerToolStripMenuItem
             // 
             this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
-            this.customerToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.customerToolStripMenuItem.Size = new System.Drawing.Size(191, 34);
             this.customerToolStripMenuItem.Text = "Customer";
             this.customerToolStripMenuItem.Click += new System.EventHandler(this.customerToolStripMenuItem_Click_1);
             // 
@@ -134,10 +133,10 @@ namespace PurrFect
             // Panel
             // 
             this.Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel.Location = new System.Drawing.Point(0, 36);
+            this.Panel.Location = new System.Drawing.Point(0, 33);
             this.Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Panel.Name = "Panel";
-            this.Panel.Size = new System.Drawing.Size(965, 662);
+            this.Panel.Size = new System.Drawing.Size(965, 665);
             this.Panel.TabIndex = 2;
             this.Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Paint);
             // 
@@ -168,6 +167,7 @@ namespace PurrFect
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AdminDashboard";
             this.Text = "AdminDashboard";
+            this.Load += new System.EventHandler(this.AdminDashboard_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

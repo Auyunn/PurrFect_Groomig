@@ -39,68 +39,74 @@ namespace PurrFect
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.chkShowPassword = new System.Windows.Forms.CheckBox();
-            this.chkAdmin = new System.Windows.Forms.CheckBox();
-            this.chkUser = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblRole = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(405, 104);
+            this.lblUsername.Location = new System.Drawing.Point(456, 130);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(70, 16);
+            this.lblUsername.Size = new System.Drawing.Size(83, 20);
             this.lblUsername.TabIndex = 2;
             this.lblUsername.Text = "Username";
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(405, 138);
+            this.lblPassword.Location = new System.Drawing.Point(456, 172);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(67, 16);
+            this.lblPassword.Size = new System.Drawing.Size(78, 20);
             this.lblPassword.TabIndex = 6;
             this.lblPassword.Text = "Password";
             // 
             // lblConfirmPassword
             // 
             this.lblConfirmPassword.AutoSize = true;
-            this.lblConfirmPassword.Location = new System.Drawing.Point(405, 169);
+            this.lblConfirmPassword.Location = new System.Drawing.Point(456, 211);
             this.lblConfirmPassword.Name = "lblConfirmPassword";
-            this.lblConfirmPassword.Size = new System.Drawing.Size(115, 16);
+            this.lblConfirmPassword.Size = new System.Drawing.Size(137, 20);
             this.lblConfirmPassword.TabIndex = 7;
             this.lblConfirmPassword.Text = "Confirm Password";
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(526, 101);
+            this.txtUsername.Location = new System.Drawing.Point(592, 126);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(259, 22);
+            this.txtUsername.Size = new System.Drawing.Size(291, 26);
             this.txtUsername.TabIndex = 8;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(526, 135);
+            this.txtPassword.Location = new System.Drawing.Point(592, 169);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(259, 22);
+            this.txtPassword.Size = new System.Drawing.Size(291, 26);
             this.txtPassword.TabIndex = 13;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtConfirmPassword
             // 
-            this.txtConfirmPassword.Location = new System.Drawing.Point(526, 166);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(592, 208);
+            this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
-            this.txtConfirmPassword.Size = new System.Drawing.Size(259, 22);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(291, 26);
             this.txtConfirmPassword.TabIndex = 14;
             this.txtConfirmPassword.UseSystemPasswordChar = true;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(663, 316);
+            this.btnCancel.Location = new System.Drawing.Point(746, 395);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(125, 36);
+            this.btnCancel.Size = new System.Drawing.Size(141, 45);
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -108,9 +114,10 @@ namespace PurrFect
             // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(411, 316);
+            this.btnRegister.Location = new System.Drawing.Point(462, 395);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(239, 36);
+            this.btnRegister.Size = new System.Drawing.Size(269, 45);
             this.btnRegister.TabIndex = 16;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
@@ -119,9 +126,10 @@ namespace PurrFect
             // pictureBox1
             // 
             this.pictureBox1.Image = global::PurrFect.Properties.Resources.BeAPartOfUs__purrfect_;
-            this.pictureBox1.Location = new System.Drawing.Point(411, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(462, 15);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(377, 74);
+            this.pictureBox1.Size = new System.Drawing.Size(424, 92);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -129,9 +137,10 @@ namespace PurrFect
             // pictureBox2
             // 
             this.pictureBox2.Image = global::PurrFect.Properties.Resources.PurrfectLogo;
-            this.pictureBox2.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(14, 15);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(371, 426);
+            this.pictureBox2.Size = new System.Drawing.Size(417, 532);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
@@ -139,51 +148,65 @@ namespace PurrFect
             // chkShowPassword
             // 
             this.chkShowPassword.AutoSize = true;
-            this.chkShowPassword.Location = new System.Drawing.Point(663, 194);
+            this.chkShowPassword.Location = new System.Drawing.Point(746, 242);
+            this.chkShowPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chkShowPassword.Name = "chkShowPassword";
-            this.chkShowPassword.Size = new System.Drawing.Size(122, 20);
+            this.chkShowPassword.Size = new System.Drawing.Size(144, 24);
             this.chkShowPassword.TabIndex = 21;
             this.chkShowPassword.Text = "show password";
             this.chkShowPassword.UseVisualStyleBackColor = true;
             this.chkShowPassword.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged);
             // 
-            // chkAdmin
+            // groupBox1
             // 
-            this.chkAdmin.AutoSize = true;
-            this.chkAdmin.Location = new System.Drawing.Point(526, 259);
-            this.chkAdmin.Name = "chkAdmin";
-            this.chkAdmin.Size = new System.Drawing.Size(67, 20);
-            this.chkAdmin.TabIndex = 24;
-            this.chkAdmin.Text = "Admin";
-            this.chkAdmin.UseVisualStyleBackColor = true;
-            // 
-            // chkUser
-            // 
-            this.chkUser.AutoSize = true;
-            this.chkUser.Location = new System.Drawing.Point(526, 232);
-            this.chkUser.Name = "chkUser";
-            this.chkUser.Size = new System.Drawing.Size(58, 20);
-            this.chkUser.TabIndex = 23;
-            this.chkUser.Text = "User";
-            this.chkUser.UseVisualStyleBackColor = true;
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(592, 288);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 23;
+            this.groupBox1.TabStop = false;
             // 
             // lblRole
             // 
             this.lblRole.AutoSize = true;
-            this.lblRole.Location = new System.Drawing.Point(479, 232);
+            this.lblRole.Location = new System.Drawing.Point(539, 290);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(36, 16);
+            this.lblRole.Size = new System.Drawing.Size(42, 20);
             this.lblRole.TabIndex = 22;
             this.lblRole.Text = "Role";
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(42, 25);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(68, 24);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "User";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(42, 55);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(79, 24);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Admin";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
             // RegisterForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.chkAdmin);
-            this.Controls.Add(this.chkUser);
+            this.ClientSize = new System.Drawing.Size(900, 562);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblRole);
             this.Controls.Add(this.chkShowPassword);
             this.Controls.Add(this.btnRegister);
@@ -196,11 +219,14 @@ namespace PurrFect
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "RegisterForm";
             this.Text = "RegisterForm";
             this.Load += new System.EventHandler(this.RegisterForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,8 +245,9 @@ namespace PurrFect
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.CheckBox chkShowPassword;
-        private System.Windows.Forms.CheckBox chkAdmin;
-        private System.Windows.Forms.CheckBox chkUser;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label lblRole;
     }
 }

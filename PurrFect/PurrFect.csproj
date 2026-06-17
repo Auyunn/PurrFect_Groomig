@@ -109,12 +109,6 @@
     <Compile Include="PurrFect.cs">
       <DependentUpon>PurrFect.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ReceiptForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReceiptForm.Designer.cs">
-      <DependentUpon>ReceiptForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -37,9 +37,45 @@ namespace PurrFect
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            string role = "";
+
+            if (radioButton1.Checked)
+            {
+                role = "User";
+            }
+            else if (radioButton2.Checked)
+            {
+                role = "Admin";
+            }
+
+            // Validation
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
+            {
+                MessageBox.Show("Please enter username.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                MessageBox.Show("Please enter password.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtConfirmPassword.Text))
+            {
+                MessageBox.Show("Please confirm password.");
+                return;
+            }
+
             if (txtPassword.Text != txtConfirmPassword.Text)
             {
                 MessageBox.Show("Passwords do not match.");
+                return;
+            }
+
+            if (role == "")
+            {
+                MessageBox.Show("Please select role.");
                 return;
             }
 
@@ -47,12 +83,14 @@ namespace PurrFect
             {
                 con.Open();
 
-                // Check if username already exists
-                string checkQuery =
-                    "SELECT COUNT(*) FROM User WHERE Username=@Username";
+                // Check username
+                SqlCommand checkCmd = new SqlCommand(
+                    "SELECT COUNT(*) FROM Users WHERE Username=@Username",
+                    con);
 
-                SqlCommand checkCmd = new SqlCommand(checkQuery, con);
-                checkCmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+                checkCmd.Parameters.AddWithValue(
+                    "@Username",
+                    txtUsername.Text.Trim());
 
                 int count = (int)checkCmd.ExecuteScalar();
 
@@ -62,14 +100,23 @@ namespace PurrFect
                     return;
                 }
 
-                string query =
-                @"INSERT INTO User (Username, Password, Role)  VALUES (@Username, @Password, @Role)";
+                // Insert user/admin
+                SqlCommand cmd = new SqlCommand(
+                    "INSERT INTO Users (Username, Password, Role) " +
+                    "VALUES (@Username, @Password, @Role)",
+                    con);
 
-                SqlCommand cmd = new SqlCommand(query, con);
-               
-                cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
-                cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-                cmd.Parameters.AddWithValue("@Role", "User");
+                cmd.Parameters.AddWithValue(
+                    "@Username",
+                    txtUsername.Text.Trim());
+
+                cmd.Parameters.AddWithValue(
+                    "@Password",
+                    txtPassword.Text);
+
+                cmd.Parameters.AddWithValue(
+                    "@Role",
+                    role);
 
                 cmd.ExecuteNonQuery();
 
@@ -104,6 +151,16 @@ namespace PurrFect
 
         private void chkFemale_CheckedChanged(object sender, EventArgs e)
         {
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

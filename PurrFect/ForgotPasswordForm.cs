@@ -45,6 +45,7 @@ namespace PurrFect
         }
 
         private bool isVerified = false;
+
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             try
@@ -53,11 +54,13 @@ namespace PurrFect
 
                 if (!isVerified)
                 {
-                    string query = "SELECT * FROM Customer WHERE Username=@Username AND Email=@Email";
+                    string query =
+                        "SELECT * FROM Users WHERE Username=@Username";
 
                     SqlCommand cmd = new SqlCommand(query, con);
 
-                    cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+                    cmd.Parameters.AddWithValue("@Username",
+                        txtUsername.Text);
 
                     SqlDataReader dr = cmd.ExecuteReader();
 
@@ -71,11 +74,11 @@ namespace PurrFect
 
                         btnConfirm.Text = "Reset Password";
 
-                        MessageBox.Show("Verification Successful.");
+                        MessageBox.Show("Username found.");
                     }
                     else
                     {
-                        MessageBox.Show("Username or Email not found.");
+                        MessageBox.Show("Username not found.");
                     }
 
                     dr.Close();
@@ -88,19 +91,27 @@ namespace PurrFect
                         return;
                     }
 
-                    string updateQuery = @"UPDATE User SET Password=@Password WHERE Username=@Username AND Email=@Email";
+                    string updateQuery =
+                        "UPDATE Users SET Password=@Password " +
+                        "WHERE Username=@Username";
 
                     SqlCommand updateCmd =
                         new SqlCommand(updateQuery, con);
 
-                    updateCmd.Parameters.AddWithValue("@Password", txtNewPassword.Text);
-                    updateCmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+                    updateCmd.Parameters.AddWithValue(
+                        "@Password",
+                        txtNewPassword.Text);
+
+                    updateCmd.Parameters.AddWithValue(
+                        "@Username",
+                        txtUsername.Text);
 
                     int rows = updateCmd.ExecuteNonQuery();
 
                     if (rows > 0)
                     {
-                        MessageBox.Show("Password Reset Successful!");
+                        MessageBox.Show(
+                            "Password Reset Successful!");
 
                         LogInForm login = new LogInForm();
                         login.Show();
@@ -109,7 +120,8 @@ namespace PurrFect
                     }
                     else
                     {
-                        MessageBox.Show("Password reset failed.");
+                        MessageBox.Show(
+                            "Password reset failed.");
                     }
                 }
             }

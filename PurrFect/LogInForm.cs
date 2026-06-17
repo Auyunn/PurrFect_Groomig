@@ -35,8 +35,8 @@ namespace PurrFect
             txtUsername.Clear();
             txtPassword.Clear();
 
-            chkUser.Checked = false;
-            chkAdmin.Checked = false;
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
 
             txtUsername.Focus();
         }
@@ -45,9 +45,9 @@ namespace PurrFect
         {
             string role = "";
 
-            if (chkUser.Checked)
+            if (radioButton1.Checked)
                 role = "User";
-            else if (chkAdmin.Checked)
+            else if (radioButton2.Checked)
                 role = "Admin";
             else
             {
@@ -71,31 +71,44 @@ namespace PurrFect
             {
                 con.Open();
 
-                string query = "SELECT * FROM User WHERE Username=@Username AND Password=@Password AND Role=@Role";
+                string query =
+                    "SELECT * FROM Users " +
+                    "WHERE Username=@Username " +
+                    "AND Password=@Password " +
+                    "AND Role=@Role";
 
                 SqlCommand cmd = new SqlCommand(query, con);
 
-                cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
-                cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
+                cmd.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
+                cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
                 cmd.Parameters.AddWithValue("@Role", role);
 
                 SqlDataReader dr = cmd.ExecuteReader();
 
                 if (dr.Read())
                 {
-                    MessageBox.Show("Login Successful");
+                    MessageBox.Show("Login Successful!");
 
-                    BookingForm frm = new BookingForm();
-                    frm.Show();
+                    dr.Close();
+
+                    if (role == "Admin")
+                    {
+                        AdminDashboard admin = new AdminDashboard();
+                        admin.Show();
+                    }
+                    else
+                    {
+                        BookingForm booking = new BookingForm();
+                        booking.Show();
+                    }
 
                     this.Hide();
                 }
                 else
                 {
                     MessageBox.Show("Invalid Username, Password or Role.");
+                    dr.Close();
                 }
-
-                dr.Close();
             }
             catch (Exception ex)
             {
@@ -123,16 +136,14 @@ namespace PurrFect
             this.Hide();
         }
 
-        private void chkUser_CheckedChanged(object sender, EventArgs e)
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkUser.Checked)
-                chkAdmin.Checked = false;
+
         }
 
-        private void chkAdmin_CheckedChanged(object sender, EventArgs e)
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkAdmin.Checked)
-                chkUser.Checked = false;
+
         }
     }
 }
