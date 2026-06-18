@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace PurrFect
 {
@@ -24,109 +25,160 @@ namespace PurrFect
         {
             decimal price = 0;
 
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand(
-                "SELECT Price FROM AddOn WHERE AddOnName=@name", con);
-
-            cmd.Parameters.AddWithValue("@name", addOnName);
-
-            object result = cmd.ExecuteScalar();
-
-            if (result != null)
+            try
             {
-                price = Convert.ToDecimal(result);
-            }
+                con.Open();
 
-            con.Close();
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT Price FROM AddOn WHERE AddOnName=@name",
+                    con);
+
+                cmd.Parameters.AddWithValue("@name", addOnName);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result != null)
+                {
+                    price = Convert.ToDecimal(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
 
             return price;
         }
 
         private void summaryBTN_Click(object sender, EventArgs e)
         {
-            listBox2.Items.Clear();
-            listBox3.Items.Clear();
-
-            decimal totalPrice = 0;
-            decimal price = 0;
-
-            // HAIRCUT
-            if (KoreanCutRB.Checked)
-            { price = GetAddOnPrice("Korean Haircut");
-              listBox2.Items.Add("Korean Haircut");
-              listBox3.Items.Add("RM " + price);
-              totalPrice += price;
-            }
-
-
-            else if (LionCutRB.Checked)
+            try
             {
-                price = GetAddOnPrice("Lion Haircut");
-                listBox2.Items.Add("Lion Haircut");
-                listBox3.Items.Add("RM " + price);
-                totalPrice += price;
-            }
+                listBox2.Items.Clear();
+                listBox3.Items.Clear();
 
-            else if (DinasourCutRB.Checked)
+                decimal totalPrice = 0;
+                decimal price = 0;
+
+                // HAIRCUT
+                if (KoreanCutRB.Checked)
+                {
+                    price = GetAddOnPrice("Korean Haircut");
+
+                    listBox2.Items.Add("Korean Haircut");
+                    listBox3.Items.Add(price);
+
+                    totalPrice += price;
+                }
+                else if (LionCutRB.Checked)
+                {
+                    price = GetAddOnPrice("Lion Haircut");
+
+                    listBox2.Items.Add("Lion Haircut");
+                    listBox3.Items.Add(price);
+
+                    totalPrice += price;
+                }
+                else if (DinasourCutRB.Checked)
+                {
+                    price = GetAddOnPrice("Dinasour Haircut");
+
+                    listBox2.Items.Add("Dinasour Haircut");
+                    listBox3.Items.Add(price);
+
+                    totalPrice += price;
+                }
+                else if (BellyCutRB.Checked)
+                {
+                    price = GetAddOnPrice("Belly Haircut");
+
+                    listBox2.Items.Add("Belly Haircut");
+                    listBox3.Items.Add(price);
+
+                    totalPrice += price;
+                }
+
+                // SHAMPOO
+                if (comboBox1.SelectedItem != null)
+                {
+                    string shampoo = comboBox1.SelectedItem.ToString();
+
+                    if (shampoo != "None")
+                    {
+                        price = GetAddOnPrice(shampoo);
+
+                        listBox2.Items.Add(shampoo);
+                        listBox3.Items.Add(price);
+
+                        totalPrice += price;
+                    }
+                }
+
+                // FLEA
+                if (listBox1.SelectedItem != null)
+                {
+                    string flea = listBox1.SelectedItem.ToString();
+
+                    if (flea != "None")
+                    {
+                        price = GetAddOnPrice(flea);
+
+                        listBox2.Items.Add(flea);
+                        listBox3.Items.Add(price);
+
+                        totalPrice += price;
+                    }
+                }
+
+                // NAIL
+                if (YesRB.Checked)
+                {
+                    price = GetAddOnPrice("Nail Clipping");
+
+                    listBox2.Items.Add("Nail Clipping");
+                    listBox3.Items.Add(price);
+
+                    totalPrice += price;
+                }
+
+                // TEETH
+                if (Yes2RB.Checked)
+                {
+                    price = GetAddOnPrice("Teeth Cleaning");
+
+                    listBox2.Items.Add("Teeth Cleaning");
+                    listBox3.Items.Add(price);
+
+                    totalPrice += price;
+                }
+
+                Booking.TotalPrice = totalPrice;
+
+                label1.Text = "RM " + totalPrice.ToString("0.00");
+
+                
+                int totalItems =
+                    listBox3.Items.Cast<object>().Count();
+
+                int premiumItems =
+                    listBox3.Items.Cast<object>()
+                    .Select(x => Convert.ToDecimal(x))
+                    .Count(x => x >= 20);
+
+                TotalItemLabel.Text =
+                    "Total Add Ons : " + totalItems;
+
+                ExpensiveItemLabel.Text =
+                    "Premium Add Ons : " + premiumItems;
+            }
+            catch (Exception ex)
             {
-                price = GetAddOnPrice("Dinasour Haircut");
-                listBox2.Items.Add("Dinasour Haircut");
-                listBox3.Items.Add("RM " + price);
-                totalPrice += price;
+                MessageBox.Show(ex.Message);
             }
-
-            else if (BellyCutRB.Checked)
-            {
-                price = GetAddOnPrice("Belly Haircut");
-                listBox2.Items.Add("Belly Haircut");
-                listBox3.Items.Add("RM " + price);
-                totalPrice += price;
-            }
-
-            // SHAMPOO
-            if (comboBox1.SelectedItem != null &&
-                comboBox1.SelectedItem.ToString() != "None")
-            {
-                string shampoo = comboBox1.SelectedItem.ToString();
-                price = GetAddOnPrice(shampoo);
-                listBox2.Items.Add(shampoo);
-                listBox3.Items.Add("RM " + price);
-                totalPrice += price;
-            }
-
-            // FLEA
-            if (listBox1.SelectedItem != null &&
-                listBox1.SelectedItem.ToString() != "None")
-            {
-                string flea = listBox1.SelectedItem.ToString();
-                price = GetAddOnPrice(flea);
-                listBox2.Items.Add(flea);
-                listBox3.Items.Add("RM " + price);
-                totalPrice += price;
-            }
-
-            // YES / NO
-            if (YesRB.Checked)
-            {   price = GetAddOnPrice("Nail Clipping");
-                listBox2.Items.Add("Nail Clipping");
-                listBox3.Items.Add("RM " + price);
-                totalPrice += price;
-            }
-
-
-            if (Yes2RB.Checked)
-            {
-                price = GetAddOnPrice("Teeth Cleaning");
-                listBox2.Items.Add("Teeth Cleaning");
-                listBox3.Items.Add("RM " + price);
-                totalPrice += price;
-            }
-
-            label1.Text = "RM " + totalPrice.ToString("0.00");
-            Booking.TotalPrice = totalPrice;
-
-
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -244,84 +296,85 @@ namespace PurrFect
             string FleaTreatment = "";
             string TeethCleaning = "";
 
-            //get haircut
-            if (KoreanCutRB.Checked)
-            {
-                HairCut = "Korean Haircut";
-            }
-            else if (DinasourCutRB.Checked)
-            {
-                HairCut = "Dinasour Haircut";
-            }
-            else if (LionCutRB.Checked)
-            {
-                HairCut = "Lion Haircut";
-            }
-            else if (BellyCutRB.Checked)
-            {
-                HairCut = "Belly Haircut";
-            }
+            // 1. Get data
+            if (KoreanCutRB.Checked) HairCut = "Korean Haircut";
+            else if (DinasourCutRB.Checked) HairCut = "Dinasour Haircut";
+            else if (LionCutRB.Checked) HairCut = "Lion Haircut";
+            else if (BellyCutRB.Checked) HairCut = "Belly Haircut";
 
-            //get shampoo
-            if (comboBox1.SelectedItem != null)
-            {
-                Shampoo = comboBox1.SelectedItem.ToString();
-            }
+            if (comboBox1.SelectedItem != null) Shampoo = comboBox1.SelectedItem.ToString();
+            if (YesRB.Checked) NailClip = "Nail Clipping";
+            if (Yes2RB.Checked) TeethCleaning = "Teeth Cleaning";
+            if (listBox1.SelectedItem != null) FleaTreatment = listBox1.SelectedItem.ToString();
 
-            //get nail trim
-            if (YesRB.Checked)
+            // 2. Validation
+            if (HairCut == "" || comboBox1.SelectedItem == null || listBox1.SelectedItem == null)
             {
-                NailClip = "Nail Clipping";
-            }
-
-            if (Yes2RB.Checked)
-            {
-                TeethCleaning = "Teeth Cleaning";
-            }
-
-            if (listBox1.SelectedItem != null)
-            {
-                FleaTreatment = listBox1.SelectedItem.ToString();
-            }
-
-            //check
-            if (HairCut == "")
-            {
-                MessageBox.Show("Please select haircut.");
+                MessageBox.Show("Please ensure all add-ons are selected.");
                 return;
             }
-
-            if (comboBox1.SelectedItem == null)
-            {
-                MessageBox.Show("Please select shampoo type.");
-                return;
-            }
-
-         
-            if (listBox1.SelectedItem == null)
-            {
-                MessageBox.Show("Please select flea treatment.");
-                return;
-            }
-
             if (!YesRB.Checked && !NoRB.Checked)
             {
                 MessageBox.Show("Please select nail clipping.");
                 return;
             }
-
             if (!Yes2RB.Checked && !No2RB.Checked)
             {
                 MessageBox.Show("Please select teeth cleaning.");
                 return;
             }
 
+            // Save to global variables
             Booking.HairCut = HairCut;
             Booking.Shampoo = Shampoo;
             Booking.NailClip = NailClip;
             Booking.FleaTreatment = FleaTreatment;
             Booking.TeethCleaning = TeethCleaning;
 
+            // if pet is 0
+            if (Booking.PetID <= 0)
+            {
+                Booking.PetID = 1;
+            }
+
+            // 3. Database Operation
+            try
+            {
+                con.Open();
+
+                string query = "INSERT INTO Booking (PetID, GroomerID, ServiceID, BookingDate, BookingTime, Status, TotalPrice) " +
+                               "VALUES (@pet, @groom, @service, @date, @time, @status, @total); " +
+                               "SELECT SCOPE_IDENTITY();";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                
+                cmd.Parameters.AddWithValue("@pet", Booking.PetID <= 0 ? 1 : Booking.PetID);
+                cmd.Parameters.AddWithValue("@groom", Booking.GroomerID);   
+                cmd.Parameters.AddWithValue("@service", Booking.ServiceID);
+
+                cmd.Parameters.AddWithValue("@date", Booking.BookingDate);
+                cmd.Parameters.AddWithValue("@time", Booking.TimeSlot);
+                cmd.Parameters.AddWithValue("@status", "Pending"); 
+                cmd.Parameters.AddWithValue("@total", Booking.TotalPrice);
+
+                object newId = cmd.ExecuteScalar();
+                if (newId != null)
+                {
+                    Booking.BookingID = Convert.ToInt32(newId);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Booking save error: " + ex.Message);
+                return;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            // 4. Move to next form
             PaymentForm pay = new PaymentForm();
             pay.Show();
             this.Hide();

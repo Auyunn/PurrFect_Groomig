@@ -14,27 +14,27 @@ namespace PurrFect
     public static class Booking
     {
 
-        public static int BookingID;
-        
-        //book
-        public static string Package;
-        public static string groomer;
-        public static string TimeSlot;
-        public static DateTime BookingDate;
+        public static int PetID { get; set; }
+        public static int GroomerID { get; set; }     
+        public static int ServiceID { get; set; }     
+        public static string Package { get; set; }    
+        public static string groomer { get; set; }     
+        public static string TimeSlot { get; set; }
+        public static DateTime BookingDate { get; set; }
+        public static decimal TotalPrice { get; set; }
+        public static int BookingID { get; set; }
 
-        //add on
-        public static string HairCut;
-        public static string NailClip;
-        public static string FleaTreatment;
-        public static string TeethCleaning;
-        public static string Shampoo;
+        public static string PaymentMethod { get; set; }
 
-        //payment
-        public static decimal TotalPrice;
-        public static string PaymentMethod;
+        // Add-on variables
+        public static string HairCut { get; set; }
+        public static string Shampoo { get; set; }
+        public static string NailClip { get; set; }
+        public static string FleaTreatment { get; set; }
+        public static string TeethCleaning { get; set; }
 
 
-    
+
     }
 
     

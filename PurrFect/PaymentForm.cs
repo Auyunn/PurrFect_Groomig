@@ -25,59 +25,52 @@ namespace PurrFect
             string paymentMethod = "";
 
             if (CardRB.Checked)
-            {
                 paymentMethod = "Card";
-            }
             else if (CashRB.Checked)
-            {
                 paymentMethod = "Cash";
-            }
             else if (OnlineBankRB.Checked)
-            {
                 paymentMethod = "FPX";
-            }
 
             Booking.PaymentMethod = paymentMethod;
 
-            //generate receipt
             ReceiptRTB.Clear();
 
-            ReceiptRTB.AppendText("============== PURRFECT RECEIPT ==============\n");
-            ReceiptRTB.AppendText("\t\t   PACKAGE\n");
-            ReceiptRTB.AppendText("\t\t "+Booking.Package + "\n\n");
+            ReceiptRTB.AppendText("============== PURRFECT RECEIPT ==============\n\n");
 
-            ReceiptRTB.AppendText("\t\t  GROOMER\n");
-            ReceiptRTB.AppendText("\t\t " + Booking.groomer + "\n\n");
+            ReceiptRTB.AppendText("PACKAGE\n");
+            ReceiptRTB.AppendText(Booking.Package + "\n\n");
 
-            ReceiptRTB.AppendText("\t\tDATE\n");
-            ReceiptRTB.AppendText("\t\t" + Booking.BookingDate + "\n\n");
+            ReceiptRTB.AppendText("GROOMER\n");
+            ReceiptRTB.AppendText(Booking.groomer + "\n\n");
 
-            ReceiptRTB.AppendText("\t\tTime Slot\n");
-            ReceiptRTB.AppendText("\t\t  " + Booking.TimeSlot + "\n\n");
+            ReceiptRTB.AppendText("DATE\n");
+            ReceiptRTB.AppendText(Booking.BookingDate.ToString("dd MMM yyyy") + "\n\n");
 
-            ReceiptRTB.AppendText("\t\t  ADDS ON \n");
-            if(Booking.HairCut != "")
-                ReceiptRTB.AppendText("\t\t-" + Booking.HairCut + "\n");
-            if(Booking.Shampoo != "")
-                ReceiptRTB.AppendText("\t\t-" + Booking.Shampoo + "\n");
-            if(Booking.NailClip != "")
-                ReceiptRTB.AppendText("\t\t-" + Booking.NailClip + "\n");
-            if (Booking.NailClip != "No")
-                ReceiptRTB.AppendText("\t\t-" + Booking.NailClip + "\n");
-            if (Booking.FleaTreatment != "")
-                ReceiptRTB.AppendText("\t\t-" + Booking.FleaTreatment + "\n");
-            if(Booking.TeethCleaning != "")
-                ReceiptRTB.AppendText("\t\t-" + Booking.TeethCleaning + "\n");
-            if (Booking.TeethCleaning != "No")
-                ReceiptRTB.AppendText("\t\t-" + Booking.TeethCleaning + "\n");
+            ReceiptRTB.AppendText("TIME SLOT\n");
+            ReceiptRTB.AppendText(Booking.TimeSlot + "\n\n");
 
-            ReceiptRTB.AppendText("\n");
+            ReceiptRTB.AppendText("ADD ONS\n");
 
-            ReceiptRTB.AppendText("\t\tPAYMENT METHOD \n");
-            ReceiptRTB.AppendText("\t\t  " + Booking.PaymentMethod + "\n\n");
+            if (!string.IsNullOrEmpty(Booking.HairCut))
+                ReceiptRTB.AppendText("- " + Booking.HairCut + "\n");
 
-            ReceiptRTB.AppendText("\t\tTOTAL PRICE \n");
-            ReceiptRTB.AppendText("\t\t  RM " + Booking.TotalPrice.ToString("0.00"));
+            if (!string.IsNullOrEmpty(Booking.Shampoo))
+                ReceiptRTB.AppendText("- " + Booking.Shampoo + "\n");
+
+            if (!string.IsNullOrEmpty(Booking.NailClip))
+                ReceiptRTB.AppendText("- " + Booking.NailClip + "\n");
+
+            if (!string.IsNullOrEmpty(Booking.FleaTreatment))
+                ReceiptRTB.AppendText("- " + Booking.FleaTreatment + "\n");
+
+            if (!string.IsNullOrEmpty(Booking.TeethCleaning))
+                ReceiptRTB.AppendText("- " + Booking.TeethCleaning + "\n");
+
+            ReceiptRTB.AppendText("\nPAYMENT METHOD\n");
+            ReceiptRTB.AppendText(paymentMethod + "\n\n");
+
+            ReceiptRTB.AppendText("TOTAL PRICE\n");
+            ReceiptRTB.AppendText("RM " + Booking.TotalPrice.ToString("0.00"));
         }
 
         private void BackBTN_Click(object sender, EventArgs e)
@@ -117,41 +110,64 @@ namespace PurrFect
         {
             string paymentMethod = "";
 
-            //payment
-            if(CardRB.Checked)
-            {
+            
+            if (CardRB.Checked)
                 paymentMethod = "Card";
-            }
-            else if(CashRB.Checked)
-            {
+            else if (CashRB.Checked)
                 paymentMethod = "Cash";
-            }
-            else if(OnlineBankRB.Checked)
-            {
+            else if (OnlineBankRB.Checked)
                 paymentMethod = "FPX";
-            }
 
-            //validate
-            if (paymentMethod == "")
+            // Validation
+            if (string.IsNullOrEmpty(paymentMethod))
             {
                 MessageBox.Show("Please select payment method");
                 return;
             }
 
-            //save payment
-            con.Open();
-            using (SqlCommand cmd = new SqlCommand(
-                "INSERT INTO Payment (BookingID, PaymentMethod, PaymentDate, Amount) VALUES (@bookingid, @method, @date, @amount)", con))
+           
+            try
             {
+                con.Open();
+
+                
+                string checkQuery = "SELECT COUNT(1) FROM Booking WHERE BookingID = @id";
+                SqlCommand checkCmd = new SqlCommand(checkQuery, con);
+                checkCmd.Parameters.AddWithValue("@id", Booking.BookingID);
+
+                int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                if (exists == 0)
+                {
+                    MessageBox.Show("BookingID " + Booking.BookingID + " not found. Cannot record payment.");
+                    return;
+                }
+
+                
+                string insertQuery = "INSERT INTO Payment (BookingID, PaymentMethod, PaymentDate, Amount) " +
+                                     "VALUES (@bookingid, @method, @date, @amount)";
+
+                SqlCommand cmd = new SqlCommand(insertQuery, con);
+
+               
                 cmd.Parameters.AddWithValue("@bookingid", Booking.BookingID);
                 cmd.Parameters.AddWithValue("@method", paymentMethod);
-                cmd.Parameters.AddWithValue("@date", DateTime.Now);
+                cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
                 cmd.Parameters.AddWithValue("@amount", Booking.TotalPrice);
 
                 cmd.ExecuteNonQuery();
             }
-            con.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Payment Error: " + ex.Message);
+                return; 
+            }
+            finally
+            {
+                con.Close();
+            }
 
+            
             ThankYouForm thankYou = new ThankYouForm();
             thankYou.Show();
             this.Hide();
@@ -166,10 +182,6 @@ namespace PurrFect
 
         private void PaymentForm_Load(object sender, EventArgs e)
         {
-            if (Booking.BookingID == 0)
-            {
-                Booking.BookingID = 1;
-            }
             GenerateReceipt();
         }
     }

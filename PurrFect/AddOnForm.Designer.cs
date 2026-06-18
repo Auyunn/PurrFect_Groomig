@@ -60,6 +60,8 @@ namespace PurrFect
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.TotalItemLabel = new System.Windows.Forms.Label();
+            this.ExpensiveItemLabel = new System.Windows.Forms.Label();
             this.AddOnP.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -365,6 +367,8 @@ namespace PurrFect
             // SummaryP
             // 
             this.SummaryP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.SummaryP.Controls.Add(this.ExpensiveItemLabel);
+            this.SummaryP.Controls.Add(this.TotalItemLabel);
             this.SummaryP.Controls.Add(this.NextBTN);
             this.SummaryP.Controls.Add(this.BackBTN);
             this.SummaryP.Controls.Add(this.label1);
@@ -451,6 +455,26 @@ namespace PurrFect
             this.label2.Text = "Summary Of Your Choice";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // TotalItemLabel
+            // 
+            this.TotalItemLabel.AutoSize = true;
+            this.TotalItemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalItemLabel.Location = new System.Drawing.Point(55, 337);
+            this.TotalItemLabel.Name = "TotalItemLabel";
+            this.TotalItemLabel.Size = new System.Drawing.Size(157, 22);
+            this.TotalItemLabel.TabIndex = 8;
+            this.TotalItemLabel.Text = "Total Add Ons : ";
+            // 
+            // ExpensiveItemLabel
+            // 
+            this.ExpensiveItemLabel.AutoSize = true;
+            this.ExpensiveItemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExpensiveItemLabel.Location = new System.Drawing.Point(55, 380);
+            this.ExpensiveItemLabel.Name = "ExpensiveItemLabel";
+            this.ExpensiveItemLabel.Size = new System.Drawing.Size(182, 22);
+            this.ExpensiveItemLabel.TabIndex = 9;
+            this.ExpensiveItemLabel.Text = "Premium Add Ons :";
+            // 
             // AddOnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -514,5 +538,7 @@ namespace PurrFect
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label TotalItemLabel;
+        private System.Windows.Forms.Label ExpensiveItemLabel;
     }
 }

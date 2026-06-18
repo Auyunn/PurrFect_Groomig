@@ -35,99 +35,153 @@ namespace PurrFect
 
         void LoadCustomers()
         {
-            DataTable dt = new DataTable();
+            try
+            {
+                DataTable dt = new DataTable();
 
-            SqlDataAdapter da = new SqlDataAdapter(
-                "SELECT UserID, Username, Password, Role FROM Users",
-                con);
+                SqlDataAdapter da = new SqlDataAdapter(
+                    "SELECT UserID, Username, Password, Role FROM Users",
+                    con);
 
-            da.Fill(dt);
+                da.Fill(dt);
 
-            CustomerDGV.DataSource = dt;
+                CustomerDGV.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        void LoadChart()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+
+                con.Open();
+
+                SqlDataAdapter adt = new SqlDataAdapter(
+                    "SELECT Role, COUNT(*) AS Total FROM Users GROUP BY Role",
+                    con);
+
+                adt.Fill(dt);
+
+                con.Close();
+
+                CustomerChart.Series.Clear();
+
+                Series s = new Series("Users");
+                s.ChartType = SeriesChartType.Pie;
+
+                CustomerChart.Series.Add(s);
+
+                // LINQ: convert table -> dictionary
+                var roleData = dt.AsEnumerable()
+                    .ToDictionary(
+                        row => row["Role"].ToString(),
+                        row => Convert.ToInt32(row["Total"])
+                    );
+
+                // LAMBDA usage
+                roleData.ToList().ForEach(x =>
+                {
+                    s.Points.AddXY(x.Key, x.Value);
+                });
+
+                s.IsValueShownAsLabel = true;
+
+                // SAFE LABEL UPDATE
+                AdminCountLabel.Text =
+                    "Total Admin: " + (roleData.ContainsKey("Admin") ? roleData["Admin"] : 0);
+
+                CustomerCountLabel.Text =
+                    "Total Customers: " + (roleData.ContainsKey("User") ? roleData["User"] : 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
+            }
         }
 
         private void ManageCustomer_Load(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-
-            con.Open();
-
-            SqlDataAdapter adt = new SqlDataAdapter(
-                "SELECT Role, COUNT(*) AS Total " +
-                "FROM Users " +
-                "GROUP BY Role",
-                con);
-
-            adt.Fill(dt);
-
-            con.Close();
-
-            CustomerChart.Series.Clear();
-
-            Series s = new Series("Users");
-            s.ChartType = SeriesChartType.Pie;
-
-            CustomerChart.Series.Add(s);
-
-            int adminCount = 0;
-            int customerCount = 0;
-
-            foreach (DataRow row in dt.Rows)
-            {
-                string role = row["Role"].ToString();
-                int total = Convert.ToInt32(row["Total"]);
-
-                s.Points.AddXY(role, total);
-
-                if (role == "Admin")
-                    adminCount = total;
-
-                else if (role == "User")
-                    customerCount = total;
-            }
-
-            s.IsValueShownAsLabel = true;
-
-            AdminCountLabel.Text = "Total Admin: " + adminCount;
-            CustomerCountLabel.Text = "Total Customers: " + customerCount;
-
+            LoadChart();
             LoadCustomers();
 
         }
 
         private void EditBTN_Click(object sender, EventArgs e)
         {
-            con.Open();
-            SqlCommand com = new SqlCommand("UPDATE Users "+"SET Username = @U, Password = @P, Role = @R " + "WHERE UserID=@id", con);
-            com.Parameters.Add("@U", SqlDbType.NVarChar, 100).Value = UsernameTB.Text.Trim();
-            com.Parameters.Add("@P", SqlDbType.NVarChar, 200).Value = PasswordTB.Text; // store hashed value instead
-            com.Parameters.Add("@R", SqlDbType.NVarChar, 50).Value = RoleCB.Text;
-            com.Parameters.Add("@id", SqlDbType.Int).Value = selectID;
+            if (selectID == 0)
+            {
+                MessageBox.Show("Select user first");
+                return;
+            }
 
-            com.ExecuteNonQuery();
-            con.Close();
-            MessageBox.Show("User Edited");
-            LoadCustomers();
+            try
+            {
+                con.Open();
+
+                SqlCommand com = new SqlCommand(
+                    "UPDATE Users SET Username=@U, Password=@P, Role=@R WHERE UserID=@id",
+                    con);
+
+                com.Parameters.AddWithValue("@U", UsernameTB.Text.Trim());
+                com.Parameters.AddWithValue("@P", PasswordTB.Text);
+                com.Parameters.AddWithValue("@R", RoleCB.Text);
+                com.Parameters.AddWithValue("@id", selectID);
+
+                com.ExecuteNonQuery();
+
+                MessageBox.Show("User Edited");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+                LoadCustomers();
+                LoadChart();
+            }
 
         }
 
         private void AddBTN_Click(object sender, EventArgs e)
         {
-            using (var com = new SqlCommand(
-            "INSERT INTO Users (Username, Password, Role) VALUES (@U, @P, @R)",
-            con))
+            try
             {
-                com.Parameters.Add("@U", SqlDbType.NVarChar, 100).Value = UsernameTB.Text.Trim();
-                com.Parameters.Add("@P", SqlDbType.NVarChar, 200).Value = PasswordTB.Text;
-                com.Parameters.Add("@R", SqlDbType.NVarChar, 50).Value = RoleCB.Text;
-
                 con.Open();
-                com.ExecuteNonQuery();
-                con.Close();
-            }
 
-            MessageBox.Show("User Added");
-            LoadCustomers();
+                SqlCommand com = new SqlCommand(
+                    "INSERT INTO Users (Username, Password, Role) VALUES (@U, @P, @R)",
+                    con);
+
+                com.Parameters.AddWithValue("@U", UsernameTB.Text.Trim());
+                com.Parameters.AddWithValue("@P", PasswordTB.Text);
+                com.Parameters.AddWithValue("@R", RoleCB.Text);
+
+                com.ExecuteNonQuery();
+
+                MessageBox.Show("User Added");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+                LoadCustomers();
+                LoadChart();
+            }
         }
 
         private void DeleteBTN_Click(object sender, EventArgs e)
@@ -138,21 +192,36 @@ namespace PurrFect
                 return;
             }
 
-            if (MessageBox.Show(
-                "DELETE this user?", "Confirm", MessageBoxButtons.YesNo)== DialogResult.Yes)
+            if (MessageBox.Show("DELETE this user?", "Confirm",
+                MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                con.Open();
-                SqlCommand cmd = new SqlCommand(
-                    "DELETE FROM Users WHERE UserID=@id",
-                    con);
+                try
+                {
+                    con.Open();
 
-                cmd.Parameters.AddWithValue("@id", selectID);
-                cmd.ExecuteNonQuery();
-                con.Close() ;
-                MessageBox.Show("User Deleted");
-                LoadCustomers();
+                    SqlCommand cmd = new SqlCommand(
+                        "DELETE FROM Users WHERE UserID=@id",
+                        con);
+
+                    cmd.Parameters.AddWithValue("@id", selectID);
+
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("User Deleted");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                    LoadCustomers();
+                    LoadChart();
+                }
             }
         }
+        
 
         private void CustomerDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {

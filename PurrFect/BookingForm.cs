@@ -57,26 +57,39 @@ namespace PurrFect
 
         void LoadPackage()
         {
-           con.Open();
-
-            SqlCommand cmd = new SqlCommand("SELECT * FROM ServicePackage", con);
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            int i = 0;
-
-            while (dr.Read())
+            try
             {
-                if (i == 0) 
-                    { Package1RB.Text = dr["ServiceName"].ToString(); }
-                else if (i == 1) 
-                    { Package2RB.Text = dr["ServiceName"].ToString(); }
-                else if (i == 2) 
-                   { Package3RB.Text = dr["ServiceName"].ToString(); }
+                con.Open();
 
-                i++;
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT * FROM ServicePackage", con);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                int i = 0;
+
+                while (dr.Read())
+                {
+                    if (i == 0)
+                        Package1RB.Text = dr["ServiceName"].ToString();
+                    else if (i == 1)
+                        Package2RB.Text = dr["ServiceName"].ToString();
+                    else if (i == 2)
+                        Package3RB.Text = dr["ServiceName"].ToString();
+
+                    i++;
+                }
+
+                dr.Close();
             }
-
-            con.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
         void LoadGroomer()
@@ -220,76 +233,66 @@ namespace PurrFect
             string timeSlot = "";
             DateTime bookingDate = DateMC.SelectionStart;
 
-            // package
-            if (Package1RB.Checked)
-                package = "Basic";
+            // 1. take name from rb
+            if (Package1RB.Checked) package = Package1RB.Text;
+            else if (Package2RB.Checked) package = Package2RB.Text;
+            else if (Package3RB.Checked) package = Package3RB.Text;
 
-            else if (Package2RB.Checked)
-                package = "Silver";
+            // 2. take slot
+            if (TimeLB.SelectedItem != null) timeSlot = TimeLB.SelectedItem.ToString();
 
-            else if (Package3RB.Checked)
-                package = "Premium";
+            // 3. take groomer
+            if (Groomer1RB.Checked) groomer = Groomer1RB.Text;
+            else if (Groomer2RB.Checked) groomer = Groomer2RB.Text;
+            else if (Groomer3RB.Checked) groomer = Groomer3RB.Text;
+            else if (Groomer4RB.Checked) groomer = Groomer4RB.Text;
 
-            // time
-            if (TimeLB.SelectedItem != null)
+            // 4. Validation
+            if (package == "" || groomer == "" || timeSlot == "")
             {
-                timeSlot = TimeLB.SelectedItem.ToString();
-            }
-
-            // groomer
-            if (Groomer1RB.Checked)
-            {
-                groomer = Groomer1RB.Text;
-            }
-            else if (Groomer2RB.Checked)
-            {
-                groomer = Groomer2RB.Text;
-            }
-            else if (Groomer3RB.Checked)
-            {
-                groomer = Groomer3RB.Text;
-            }
-            else if (Groomer4RB.Checked)
-            {
-                groomer = Groomer4RB.Text;
-            }
-
-            // validation
-            if (package == "")
-            {
-                MessageBox.Show("Please select package.");
+                MessageBox.Show("Please complete all selections.");
                 return;
             }
-
-            if (groomer == "")
-            {
-                MessageBox.Show("Please select groomer.");
-                return;
-            }
-
-            if (timeSlot == "")
-            {
-                MessageBox.Show("Please select time slot.");
-                return;
-            }
-
             if (bookingDate < DateTime.Today)
             {
-                MessageBox.Show("Please select valid date.");
+                MessageBox.Show("Please select a valid date.");
                 return;
             }
 
+            // find id
+            try
+            {
+                con.Open();
+
+                // find service id
+                SqlCommand cmdService = new SqlCommand("SELECT ServiceID FROM ServicePackage WHERE ServiceName = @pName", con);
+                cmdService.Parameters.AddWithValue("@pName", package);
+                object sID = cmdService.ExecuteScalar();
+                if (sID != null) Booking.ServiceID = Convert.ToInt32(sID);
+
+                // 
+                SqlCommand cmdGroomer = new SqlCommand("SELECT GroomerID FROM Groomer WHERE GroomerName = @gName", con);
+                cmdGroomer.Parameters.AddWithValue("@gName", groomer);
+                object gID = cmdGroomer.ExecuteScalar();
+                if (gID != null) Booking.GroomerID = Convert.ToInt32(gID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching IDs: " + ex.Message);
+                return;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            // Store in global variable
             Booking.Package = package;
             Booking.groomer = groomer;
             Booking.TimeSlot = timeSlot;
             Booking.BookingDate = bookingDate;
 
-            MessageBox.Show("Package: " + package +
-                            "\nGroomer: " + groomer +
-                            "\nTime Slot: " + timeSlot +
-                            "\nDate: " + bookingDate.ToShortDateString());
-
-
+            
             AddOnForm addon = new AddOnForm();
             addon.Show();
             this.Hide();

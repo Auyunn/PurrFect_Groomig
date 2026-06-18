@@ -21,7 +21,7 @@ namespace PurrFect
 
         private void LogInForm_Load(object sender, EventArgs e)
         {
-            txtPassword.UseSystemPasswordChar = true;
+                txtPassword.UseSystemPasswordChar = true;
         }
 
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
@@ -87,10 +87,40 @@ namespace PurrFect
 
                 if (dr.Read())
                 {
-                    MessageBox.Show("Login Successful!");
+                    // 1. Ambil UserID dari akaun yang berjaya login
+                    int currentUserId = Convert.ToInt32(dr["UserID"]);
 
+                    // 2. Wajib tutup Reader (dr) dulu sebelum kita boleh buat query baru guna connection yang sama
                     dr.Close();
 
+                    MessageBox.Show("Login Successful!");
+
+                    // 3. Cari PetID berdasarkan UserID tadi (Hanya jika role ialah User)
+                    if (role == "User")
+                    {
+                        try
+                        {
+                            string petQuery = "SELECT PetID FROM Pet WHERE UserID = @userid";
+                            SqlCommand petCmd = new SqlCommand(petQuery, con);
+                            petCmd.Parameters.AddWithValue("@userid", currentUserId);
+
+                            object result = petCmd.ExecuteScalar();
+                            if (result != null)
+                            {
+                                Booking.PetID = Convert.ToInt32(result); // Simpan ke global variable
+                            }
+                            else
+                            {
+                                Booking.PetID = 0; // Set 0 kalau user ni belum register pet
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error loading pet details: " + ex.Message);
+                        }
+                    }
+
+                    // 4. Tukar ke form seterusnya ikut Role
                     if (role == "Admin")
                     {
                         AdminDashboard admin = new AdminDashboard();
@@ -116,7 +146,7 @@ namespace PurrFect
             }
             finally
             {
-                con.Close();
+                con.Close(); // Pastikan connection sentiasa ditutup rapat
             }
         }
 

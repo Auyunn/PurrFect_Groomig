@@ -25,47 +25,76 @@ namespace PurrFect
 
         private void Best_Selling_Service_Load(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            con.Open();
-
-           string query =
-                       "SELECT s.ServiceName AS Service, COUNT(b.BookingID) AS TotalServiceBooked " +
-                       "FROM Booking b " +
-                       "JOIN ServicePackage s ON b.ServiceID = s.ServiceID " +
-                       "GROUP BY s.ServiceName " +
-                       "ORDER BY TotalServiceBooked DESC";              
-
-            SqlDataAdapter adt = new SqlDataAdapter(query, con);
-            adt.Fill(dt);
-            con.Close();
-
-            service_chart.Series.Clear();
-            service_chart.ChartAreas[0].AxisX.Title = "Service";
-            service_chart.ChartAreas[0].AxisY.Title = "Preferred Service";
-            service_chart.ChartAreas[0].AxisX.Interval = 1;
-
-            service_chart.ChartAreas[0].AxisX.LabelStyle.IsStaggered = false; // Ensure labels are not staggered
-            service_chart.ChartAreas[0].AxisX.LabelStyle.Angle = 0;
-
-
-            Series s = new Series("Best Selling");
-            s.ChartType = SeriesChartType.Column;
-
-            service_chart.Series.Add(s);
-
-            foreach (DataRow row in dt.Rows)
-            {
-                s.Points.AddXY(
-                    row["Service"].ToString(),
-                    Convert.ToInt32(row["TotalServiceBooked"])
-                );
-            }
+            LoadChart();
         }
 
         private void service_chart_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void LoadChart()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                con.Open();
+
+                string query =
+                    "SELECT s.ServiceName AS Service, COUNT(b.BookingID) AS TotalServiceBooked " +
+                    "FROM Booking b " +
+                    "JOIN ServicePackage s ON b.ServiceID = s.ServiceID " +
+                    "GROUP BY s.ServiceName " +
+                    "ORDER BY TotalServiceBooked DESC";
+
+                SqlDataAdapter adt = new SqlDataAdapter(query, con);
+                adt.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message);
+                return;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            
+            service_chart.Series.Clear();
+            service_chart.ChartAreas[0].AxisX.Title = "Service";
+            service_chart.ChartAreas[0].AxisY.Title = "Total Bookings";
+            service_chart.ChartAreas[0].AxisX.Interval = 1;
+
+            Series s = new Series("Best Selling Service");
+            s.ChartType = SeriesChartType.Column;
+
+            service_chart.Series.Add(s);
+
+           
+            var chartData = dt.AsEnumerable()
+                               .Select(row => new
+                               {
+                                   Service = row["Service"].ToString(),
+                                   Total = Convert.ToInt32(row["TotalServiceBooked"])
+                               })
+                               .OrderByDescending(x => x.Total);
+
+            foreach (var item in chartData)
+            {
+                s.Points.AddXY(item.Service, item.Total);
+            }
+
+            
+            var topService = chartData.FirstOrDefault();
+
+            if (topService != null)
+            {
+                this.Text = "Top Service: " + topService.Service +
+                            " (" + topService.Total + " bookings)";
+            }
+        }
+    
     }
 }
 

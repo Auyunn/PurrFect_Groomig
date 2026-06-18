@@ -28,9 +28,9 @@ namespace PurrFect
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.CustomerChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.AdminCountLabel = new System.Windows.Forms.Label();
             this.CustomerCountLabel = new System.Windows.Forms.Label();
@@ -44,22 +44,23 @@ namespace PurrFect
             this.AddBTN = new System.Windows.Forms.Button();
             this.EditBTN = new System.Windows.Forms.Button();
             this.DeleteBTN = new System.Windows.Forms.Button();
+            this.TotalUsersLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // CustomerChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.CustomerChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.CustomerChart.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.CustomerChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.CustomerChart.Legends.Add(legend2);
             this.CustomerChart.Location = new System.Drawing.Point(561, 43);
             this.CustomerChart.Name = "CustomerChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.CustomerChart.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.CustomerChart.Series.Add(series2);
             this.CustomerChart.Size = new System.Drawing.Size(339, 260);
             this.CustomerChart.TabIndex = 0;
             this.CustomerChart.Text = "Total Admin and User";
@@ -177,12 +178,22 @@ namespace PurrFect
             this.DeleteBTN.UseVisualStyleBackColor = true;
             this.DeleteBTN.Click += new System.EventHandler(this.DeleteBTN_Click);
             // 
+            // TotalUsersLabel
+            // 
+            this.TotalUsersLabel.AutoSize = true;
+            this.TotalUsersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalUsersLabel.Location = new System.Drawing.Point(557, 328);
+            this.TotalUsersLabel.Name = "TotalUsersLabel";
+            this.TotalUsersLabel.Size = new System.Drawing.Size(0, 22);
+            this.TotalUsersLabel.TabIndex = 13;
+            // 
             // ManageCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(946, 668);
+            this.Controls.Add(this.TotalUsersLabel);
             this.Controls.Add(this.DeleteBTN);
             this.Controls.Add(this.EditBTN);
             this.Controls.Add(this.AddBTN);
@@ -221,5 +232,6 @@ namespace PurrFect
         private System.Windows.Forms.Button AddBTN;
         private System.Windows.Forms.Button EditBTN;
         private System.Windows.Forms.Button DeleteBTN;
+        private System.Windows.Forms.Label TotalUsersLabel;
     }
 }
