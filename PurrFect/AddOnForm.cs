@@ -61,45 +61,45 @@ namespace PurrFect
                 listBox2.Items.Clear();
                 listBox3.Items.Clear();
 
-                decimal totalPrice = 0;
+
+                PriceCalculator calc = new PriceCalculator();
                 decimal price = 0;
 
-                // HAIRCUT
                 if (KoreanCutRB.Checked)
                 {
                     price = GetAddOnPrice("Korean Haircut");
+                    PremiumService item = new PremiumService { ItemName = "Korean Haircut", FixedPrice = price };
+                    calc.AddItem(item); 
 
-                    listBox2.Items.Add("Korean Haircut");
-                    listBox3.Items.Add(price);
-
-                    totalPrice += price;
+                    listBox2.Items.Add(item.ItemName);
+                    listBox3.Items.Add(item.GetPrice()); 
                 }
                 else if (LionCutRB.Checked)
                 {
                     price = GetAddOnPrice("Lion Haircut");
+                    PremiumService item = new PremiumService { ItemName = "Lion Haircut", FixedPrice = price };
+                    calc.AddItem(item);
 
-                    listBox2.Items.Add("Lion Haircut");
-                    listBox3.Items.Add(price);
-
-                    totalPrice += price;
+                    listBox2.Items.Add(item.ItemName);
+                    listBox3.Items.Add(item.GetPrice());
                 }
                 else if (DinasourCutRB.Checked)
                 {
                     price = GetAddOnPrice("Dinasour Haircut");
+                    PremiumService item = new PremiumService { ItemName = "Dinasour Haircut", FixedPrice = price };
+                    calc.AddItem(item);
 
-                    listBox2.Items.Add("Dinasour Haircut");
-                    listBox3.Items.Add(price);
-
-                    totalPrice += price;
+                    listBox2.Items.Add(item.ItemName);
+                    listBox3.Items.Add(item.GetPrice());
                 }
                 else if (BellyCutRB.Checked)
                 {
                     price = GetAddOnPrice("Belly Haircut");
+                    PremiumService item = new PremiumService { ItemName = "Belly Haircut", FixedPrice = price };
+                    calc.AddItem(item);
 
-                    listBox2.Items.Add("Belly Haircut");
-                    listBox3.Items.Add(price);
-
-                    totalPrice += price;
+                    listBox2.Items.Add(item.ItemName);
+                    listBox3.Items.Add(item.GetPrice());
                 }
 
                 // SHAMPOO
@@ -110,11 +110,11 @@ namespace PurrFect
                     if (shampoo != "None")
                     {
                         price = GetAddOnPrice(shampoo);
+                        PremiumService item = new PremiumService { ItemName = shampoo, FixedPrice = price };
+                        calc.AddItem(item);
 
-                        listBox2.Items.Add(shampoo);
-                        listBox3.Items.Add(price);
-
-                        totalPrice += price;
+                        listBox2.Items.Add(item.ItemName);
+                        listBox3.Items.Add(item.GetPrice());
                     }
                 }
 
@@ -126,11 +126,11 @@ namespace PurrFect
                     if (flea != "None")
                     {
                         price = GetAddOnPrice(flea);
+                        PremiumService item = new PremiumService { ItemName = flea, FixedPrice = price };
+                        calc.AddItem(item);
 
-                        listBox2.Items.Add(flea);
-                        listBox3.Items.Add(price);
-
-                        totalPrice += price;
+                        listBox2.Items.Add(item.ItemName);
+                        listBox3.Items.Add(item.GetPrice());
                     }
                 }
 
@@ -138,48 +138,46 @@ namespace PurrFect
                 if (YesRB.Checked)
                 {
                     price = GetAddOnPrice("Nail Clipping");
+                    PremiumService item = new PremiumService { ItemName = "Nail Clipping", FixedPrice = price };
+                    calc.AddItem(item);
 
-                    listBox2.Items.Add("Nail Clipping");
-                    listBox3.Items.Add(price);
-
-                    totalPrice += price;
+                    listBox2.Items.Add(item.ItemName);
+                    listBox3.Items.Add(item.GetPrice());
                 }
 
                 // TEETH
                 if (Yes2RB.Checked)
                 {
                     price = GetAddOnPrice("Teeth Cleaning");
+                    PremiumService item = new PremiumService { ItemName = "Teeth Cleaning", FixedPrice = price };
+                    calc.AddItem(item);
 
-                    listBox2.Items.Add("Teeth Cleaning");
-                    listBox3.Items.Add(price);
-
-                    totalPrice += price;
+                    listBox2.Items.Add(item.ItemName);
+                    listBox3.Items.Add(item.GetPrice());
                 }
+
+
+                decimal totalPrice = calc.CalculateTotal();
 
                 Booking.TotalPrice = totalPrice;
 
                 label1.Text = "RM " + totalPrice.ToString("0.00");
 
-                
-                int totalItems =
-                    listBox3.Items.Cast<object>().Count();
+                int totalItems = listBox3.Items.Cast<object>().Count();
 
-                int premiumItems =
-                    listBox3.Items.Cast<object>()
+                int premiumItems = listBox3.Items.Cast<object>()
                     .Select(x => Convert.ToDecimal(x))
                     .Count(x => x >= 20);
 
-                TotalItemLabel.Text =
-                    "Total Add Ons : " + totalItems;
-
-                ExpensiveItemLabel.Text =
-                    "Premium Add Ons : " + premiumItems;
+                TotalItemLabel.Text = "Total Add Ons : " + totalItems;
+                ExpensiveItemLabel.Text = "Premium Add Ons : " + premiumItems;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
