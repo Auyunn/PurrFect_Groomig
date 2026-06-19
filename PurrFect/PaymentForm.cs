@@ -175,11 +175,6 @@ namespace PurrFect
 
         }
 
-        private void ReceiptRTB_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-
         private void PaymentForm_Load(object sender, EventArgs e)
         {
             GenerateReceipt();

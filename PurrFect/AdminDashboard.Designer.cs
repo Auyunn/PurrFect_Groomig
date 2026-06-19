@@ -54,7 +54,8 @@ namespace PurrFect
             this.managementToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(965, 36);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1287, 40);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -64,20 +65,20 @@ namespace PurrFect
             this.salesToolStripMenuItem,
             this.BestSellingMS});
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            this.homeToolStripMenuItem.Size = new System.Drawing.Size(77, 30);
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(99, 36);
             this.homeToolStripMenuItem.Text = "Home";
             // 
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(333, 34);
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(447, 44);
             this.salesToolStripMenuItem.Text = "Sales";
             this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
             // 
             // BestSellingMS
             // 
             this.BestSellingMS.Name = "BestSellingMS";
-            this.BestSellingMS.Size = new System.Drawing.Size(333, 34);
+            this.BestSellingMS.Size = new System.Drawing.Size(447, 44);
             this.BestSellingMS.Text = "Best Selling Service Package";
             this.BestSellingMS.Click += new System.EventHandler(this.BestSellingMS_Click);
             // 
@@ -90,37 +91,37 @@ namespace PurrFect
             this.petToolStripMenuItem,
             this.customerToolStripMenuItem});
             this.managementToolStripMenuItem.Name = "managementToolStripMenuItem";
-            this.managementToolStripMenuItem.Size = new System.Drawing.Size(133, 30);
+            this.managementToolStripMenuItem.Size = new System.Drawing.Size(177, 36);
             this.managementToolStripMenuItem.Text = "Management";
             // 
             // bookingToolStripMenuItem
             // 
             this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
-            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.bookingToolStripMenuItem.Text = "Booking";
             // 
             // groomerToolStripMenuItem
             // 
             this.groomerToolStripMenuItem.Name = "groomerToolStripMenuItem";
-            this.groomerToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.groomerToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.groomerToolStripMenuItem.Text = "Groomer";
             // 
             // paymentToolStripMenuItem
             // 
             this.paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
-            this.paymentToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.paymentToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.paymentToolStripMenuItem.Text = "Payment";
             // 
             // petToolStripMenuItem
             // 
             this.petToolStripMenuItem.Name = "petToolStripMenuItem";
-            this.petToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.petToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.petToolStripMenuItem.Text = "Pet";
             // 
             // customerToolStripMenuItem
             // 
             this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
-            this.customerToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.customerToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.customerToolStripMenuItem.Text = "Customer";
             this.customerToolStripMenuItem.Click += new System.EventHandler(this.customerToolStripMenuItem_Click_1);
             // 
@@ -133,10 +134,10 @@ namespace PurrFect
             // Panel
             // 
             this.Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel.Location = new System.Drawing.Point(0, 36);
-            this.Panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Panel.Location = new System.Drawing.Point(0, 40);
+            this.Panel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Panel.Name = "Panel";
-            this.Panel.Size = new System.Drawing.Size(965, 662);
+            this.Panel.Size = new System.Drawing.Size(1287, 832);
             this.Panel.TabIndex = 2;
             this.Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Paint);
             // 
@@ -145,9 +146,10 @@ namespace PurrFect
             this.WelcomeLabel.AutoSize = true;
             this.WelcomeLabel.Font = new System.Drawing.Font("Bookman Old Style", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WelcomeLabel.ForeColor = System.Drawing.Color.HotPink;
-            this.WelcomeLabel.Location = new System.Drawing.Point(150, 328);
+            this.WelcomeLabel.Location = new System.Drawing.Point(200, 410);
+            this.WelcomeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.WelcomeLabel.Name = "WelcomeLabel";
-            this.WelcomeLabel.Size = new System.Drawing.Size(665, 42);
+            this.WelcomeLabel.Size = new System.Drawing.Size(889, 56);
             this.WelcomeLabel.TabIndex = 4;
             this.WelcomeLabel.Text = "WELCOME TO ADMIN DASHBOARD";
             this.WelcomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -155,16 +157,16 @@ namespace PurrFect
             // 
             // AdminDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(965, 698);
+            this.ClientSize = new System.Drawing.Size(1287, 872);
             this.Controls.Add(this.WelcomeLabel);
             this.Controls.Add(this.Panel);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "AdminDashboard";
             this.Text = "AdminDashboard";
             this.Load += new System.EventHandler(this.AdminDashboard_Load);
