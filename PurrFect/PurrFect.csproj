@@ -94,11 +94,26 @@
     <Compile Include="ForgotPasswordForm.Designer.cs">
       <DependentUpon>ForgotPasswordForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroomerClass.cs" />
+    <Compile Include="Groomer.cs" />
+    <Compile Include="GroomerService.cs" />
+    <Compile Include="ManageBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageBooking.Designer.cs">
+      <DependentUpon>ManageBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManageCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ManageCustomer.Designer.cs">
       <DependentUpon>ManageCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageGroomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageGroomer.Designer.cs">
+      <DependentUpon>ManageGroomer.cs</DependentUpon>
     </Compile>
     <Compile Include="PaymentForm.cs">
       <SubType>Form</SubType>
@@ -106,6 +121,7 @@
     <Compile Include="PaymentForm.Designer.cs">
       <DependentUpon>PaymentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Person.cs" />
     <Compile Include="PurrFect.cs">
       <DependentUpon>PurrFect.xsd</DependentUpon>
     </Compile>
@@ -164,8 +180,14 @@
     <EmbeddedResource Include="LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManageBooking.resx">
+      <DependentUpon>ManageBooking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ManageCustomer.resx">
       <DependentUpon>ManageCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageGroomer.resx">
+      <DependentUpon>ManageGroomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PaymentForm.resx">
       <DependentUpon>PaymentForm.cs</DependentUpon>

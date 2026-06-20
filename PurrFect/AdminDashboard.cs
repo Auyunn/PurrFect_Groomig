@@ -104,38 +104,27 @@ namespace PurrFect
 
         private void bookingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ManageBookingh cc = new ManageBooking();
+            ManageBooking mb = new ManageBooking();
 
             Panel.Visible = false;
             WelcomeLabel.Visible = false;
 
-            cc.MdiParent = this;
-            cc.FormClosed += (s, args) =>
+            mb.MdiParent = this;
+
+            mb.FormClosed += (s, args) =>
             {
                 Panel.Visible = true;
                 WelcomeLabel.Visible = true;
             };
-            cc.WindowState = FormWindowState.Maximized;
 
-            cc.Show();
+            mb.WindowState = FormWindowState.Maximized;
+            mb.Show();
         }
 
-        private void groomerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            ManageGroomer cc = new ManageGroomer();
 
-            Panel.Visible = false;
-            WelcomeLabel.Visible = false;
-
-            cc.MdiParent = this;
-            cc.FormClosed += (s, args) =>
-            {
-                Panel.Visible = true;
-                WelcomeLabel.Visible = true;
-            };
-            cc.WindowState = FormWindowState.Maximized;
-
-            cc.Show();
         }
+
     }
 }
