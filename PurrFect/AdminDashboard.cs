@@ -101,5 +101,41 @@ namespace PurrFect
         {
 
         }
+
+        private void bookingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageBookingh cc = new ManageBooking();
+
+            Panel.Visible = false;
+            WelcomeLabel.Visible = false;
+
+            cc.MdiParent = this;
+            cc.FormClosed += (s, args) =>
+            {
+                Panel.Visible = true;
+                WelcomeLabel.Visible = true;
+            };
+            cc.WindowState = FormWindowState.Maximized;
+
+            cc.Show();
+        }
+
+        private void groomerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageGroomer cc = new ManageGroomer();
+
+            Panel.Visible = false;
+            WelcomeLabel.Visible = false;
+
+            cc.MdiParent = this;
+            cc.FormClosed += (s, args) =>
+            {
+                Panel.Visible = true;
+                WelcomeLabel.Visible = true;
+            };
+            cc.WindowState = FormWindowState.Maximized;
+
+            cc.Show();
+        }
     }
 }
