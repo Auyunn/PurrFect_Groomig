@@ -127,7 +127,7 @@
             this.txtbxSalary.Name = "txtbxSalary";
             this.txtbxSalary.Size = new System.Drawing.Size(313, 26);
             this.txtbxSalary.TabIndex = 12;
-            this.txtbxSalary.TextChanged += new System.EventHandler(this.txtbxSalary_TextChanged);
+          
             // 
             // cbStatus
             // 
@@ -145,7 +145,7 @@
             this.bttnAdd.TabIndex = 16;
             this.bttnAdd.Text = "ADD";
             this.bttnAdd.UseVisualStyleBackColor = true;
-            this.bttnAdd.Click += new System.EventHandler(this.bttnAdd_Click_1);
+            this.bttnAdd.Click += new System.EventHandler(this.bttnAdd_Click);
             // 
             // bttnEdit
             // 

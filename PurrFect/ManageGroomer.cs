@@ -14,8 +14,7 @@ namespace PurrFect
 {
     public partial class ManageGroomer : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Nur Auyunn\OneDrive\Documents\PROJECT\PurrFect\PurrFect\PurrFect.mdf;Integrated Security=True");
-        int selectID = 0;
+        SqlConnection con = new SqlConnection( "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=PurrFect;Integrated Security=True");
         public ManageGroomer()
         {
             InitializeComponent();
@@ -51,8 +50,7 @@ namespace PurrFect
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand(
-                                   "INSERT INTO Groomer (GroomerName, Phone, Status, Salary) VALUES (@n,@p,@s,@sal)", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Groomer (GroomerName, Phone, Status, Salary) VALUES (@n,@p,@s,@sal)", con);
 
                 cmd.Parameters.AddWithValue("@n", g.Name);
                 cmd.Parameters.AddWithValue("@p", g.Phone);
@@ -60,6 +58,7 @@ namespace PurrFect
                 cmd.Parameters.AddWithValue("@sal", g.Salary);
 
                 cmd.ExecuteNonQuery();
+                con.Close();
 
                 MessageBox.Show("Groomer Added!");
                 LoadGroomer();
@@ -109,25 +108,7 @@ namespace PurrFect
         // ✅ FORM LOAD + LAMBDA
        
        
-        private void txtbxSalary_TextChanged(object sender, EventArgs e)
-        {
-        
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand(
-                "INSERT INTO Groomer (GroomerName, Phone, Status, Salary) VALUES (@n,@p,@s,@sal)", con);
-
-            cmd.Parameters.AddWithValue("@n", txtbxName.Text);
-            cmd.Parameters.AddWithValue("@p", txtbxPhone.Text);
-            cmd.Parameters.AddWithValue("@s", cbStatus.Text);
-            cmd.Parameters.AddWithValue("@sal", txtbxSalary.Text);
-
-            cmd.ExecuteNonQuery();
-            con.Close();
-
-            MessageBox.Show("Groomer Added!");
-            LoadGroomer();
-        }
+   
 
         private void bttnEdit_Click(object sender, EventArgs e)
         {
@@ -146,7 +127,6 @@ namespace PurrFect
                     cmd.Parameters.AddWithValue("@p", txtbxPhone.Text);
                     cmd.Parameters.AddWithValue("@s", cbStatus.Text);
                     cmd.Parameters.AddWithValue("@sal", txtbxSalary.Text);
-
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Updated!");
@@ -218,51 +198,6 @@ namespace PurrFect
                 MessageBox.Show(summary);
             }
         }
-
-        private void bttnAdd_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                // ✅ Inheritance + Interface
-                GroomerClass g = new GroomerClass();
-
-                g.Name = txtbxName.Text;
-                g.Phone = txtbxPhone.Text;
-                g.Status = cbStatus.Text;
-                g.Salary = Convert.ToDecimal(txtbxSalary.Text);
-
-                decimal annualSalary = g.CalculateAnnualSalary(g.Salary);
-
-                MessageBox.Show("Annual Salary: RM " + annualSalary);
-
-                con.Open();
-
-                SqlCommand cmd = new SqlCommand(
-                                   "INSERT INTO Groomer (GroomerName, Phone, Status, Salary) VALUES (@n,@p,@s,@sal)", con);
-
-                cmd.Parameters.AddWithValue("@n", g.Name);
-                cmd.Parameters.AddWithValue("@p", g.Phone);
-                cmd.Parameters.AddWithValue("@s", g.Status);
-                cmd.Parameters.AddWithValue("@sal", g.Salary);
-
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Groomer Added!");
-                LoadGroomer();
-            }
-            catch (Exception ex)
-
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
-        
     }
-    }
-
-
 
 }

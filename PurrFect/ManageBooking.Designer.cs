@@ -36,7 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtbxBooking = new System.Windows.Forms.TextBox();
+            this.txtbxCustomer = new System.Windows.Forms.TextBox();
             this.txtbxSummary = new System.Windows.Forms.TextBox();
             this.cbPackage = new System.Windows.Forms.ComboBox();
             this.cbTime = new System.Windows.Forms.ComboBox();
@@ -62,16 +62,16 @@
             // lbID
             // 
             this.lbID.AutoSize = true;
-            this.lbID.Location = new System.Drawing.Point(23, 56);
+            this.lbID.Location = new System.Drawing.Point(30, 112);
             this.lbID.Name = "lbID";
-            this.lbID.Size = new System.Drawing.Size(103, 20);
+            this.lbID.Size = new System.Drawing.Size(82, 20);
             this.lbID.TabIndex = 4;
-            this.lbID.Text = "Customer ID:";
+            this.lbID.Text = "Customer:";
             // 
             // lbBooking
             // 
             this.lbBooking.AutoSize = true;
-            this.lbBooking.Location = new System.Drawing.Point(23, 112);
+            this.lbBooking.Location = new System.Drawing.Point(28, 59);
             this.lbBooking.Name = "lbBooking";
             this.lbBooking.Size = new System.Drawing.Size(92, 20);
             this.lbBooking.TabIndex = 5;
@@ -122,12 +122,12 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Add-On Summary:";
             // 
-            // txtbxBooking
+            // txtbxCustomer
             // 
-            this.txtbxBooking.Location = new System.Drawing.Point(187, 106);
-            this.txtbxBooking.Name = "txtbxBooking";
-            this.txtbxBooking.Size = new System.Drawing.Size(313, 26);
-            this.txtbxBooking.TabIndex = 12;
+            this.txtbxCustomer.Location = new System.Drawing.Point(187, 106);
+            this.txtbxCustomer.Name = "txtbxCustomer";
+            this.txtbxCustomer.Size = new System.Drawing.Size(313, 26);
+            this.txtbxCustomer.TabIndex = 12;
             // 
             // txtbxSummary
             // 
@@ -218,7 +218,7 @@
             this.Controls.Add(this.cbTime);
             this.Controls.Add(this.cbPackage);
             this.Controls.Add(this.txtbxSummary);
-            this.Controls.Add(this.txtbxBooking);
+            this.Controls.Add(this.txtbxCustomer);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -229,6 +229,7 @@
             this.Controls.Add(this.dgvBooking);
             this.Name = "ManageBooking";
             this.Text = "ManageBooking";
+            this.Load += new System.EventHandler(this.ManageBooking_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -245,7 +246,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtbxBooking;
+        private System.Windows.Forms.TextBox txtbxCustomer;
         private System.Windows.Forms.TextBox txtbxSummary;
         private System.Windows.Forms.ComboBox cbPackage;
         private System.Windows.Forms.ComboBox cbTime;

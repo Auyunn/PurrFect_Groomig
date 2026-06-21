@@ -13,8 +13,7 @@ namespace PurrFect
 {
     public partial class ManageBooking : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Nur Auyunn\OneDrive\Documents\PROJECT\PurrFect\PurrFect\PurrFect.mdf;Integrated Security=True");
-        int selectID = 0;
+        SqlConnection con = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=PurrFect;Integrated Security=True");
         public ManageBooking()
         {
             InitializeComponent();
@@ -29,24 +28,18 @@ namespace PurrFect
         {
             try
             {
-                con.Open();
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
 
                 SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Booking", con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
                 dgvBooking.DataSource = dt;
-
-
-                var expensiveBooking = dt.AsEnumerable()
-                    .Where(row => Convert.ToDecimal(row["TotalPrice"]) > 50)
-                    .ToList();
-
-                Console.WriteLine("Expensive Booking Count: " + expensiveBooking.Count);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -65,16 +58,17 @@ namespace PurrFect
         }
         private void bttnAdd_Click(object sender, EventArgs e)
         {
-
+             
             try
             {
-                con.Open();
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
 
                 SqlCommand cmd = new SqlCommand(
                     "INSERT INTO Booking (Customer, Package, Groomer, BookingDate, TimeSlot) " +
                     "VALUES (@c,@p,@g,@d,@t)", con);
 
-                cmd.Parameters.AddWithValue("@c", txtbxID.Text);
+                cmd.Parameters.AddWithValue("@c", txtbxCustomer.Text); 
                 cmd.Parameters.AddWithValue("@p", cbPackage.Text);
                 cmd.Parameters.AddWithValue("@g", cbGroomer.Text);
                 cmd.Parameters.AddWithValue("@d", dtpDate.Value);
@@ -107,7 +101,7 @@ namespace PurrFect
                     "BookingDate=@d, TimeSlot=@t WHERE BookingID=@id", con);
 
                 cmd.Parameters.AddWithValue("@id", txtbxID.Text);
-                cmd.Parameters.AddWithValue("@c", txtbxBooking.Text);
+                cmd.Parameters.AddWithValue("@c", txtbxCustomer.Text);
                 cmd.Parameters.AddWithValue("@p", cbPackage.Text);
                 cmd.Parameters.AddWithValue("@g", cbGroomer.Text);
                 cmd.Parameters.AddWithValue("@d", dtpDate.Value);
@@ -157,49 +151,37 @@ namespace PurrFect
         }
 
 
-  private void dgvBooking_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvBooking_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 var row = dgvBooking.Rows[e.RowIndex];
 
                 txtbxID.Text = row.Cells[0].Value.ToString();
-                txtbxBooking.Text = row.Cells[1].Value.ToString();
+                txtbxCustomer.Text = row.Cells[1].Value.ToString();
                 cbPackage.Text = row.Cells[2].Value.ToString();
                 cbGroomer.Text = row.Cells[3].Value.ToString();
 
                 ShowSummaryFromGrid(row);
             }
-
-            void ShowSummaryFromGrid(DataGridViewRow row)
-            {
-                List<string> addons = new List<string>();
-
-                addons.Add("Haircut: " + row.Cells["HairCut"].Value.ToString());
-                addons.Add("Shampoo: " + row.Cells["Shampoo"].Value.ToString());
-                addons.Add("Flea: " + row.Cells["FleaTreatment"].Value.ToString());
-                addons.Add("Nail: " + row.Cells["NailClip"].Value.ToString());
-                addons.Add("Teeth: " + row.Cells["TeethCleaning"].Value.ToString());
-
-                string summary = string.Join(Environment.NewLine, addons);
-
-                summary += Environment.NewLine +
-                           "------------------------" + Environment.NewLine +
-                           "Total: RM " + row.Cells["TotalPrice"].Value.ToString();
-
-                txtbxSummary.Text = summary;
-            }
-
         }
+        void ShowSummaryFromGrid(DataGridViewRow row)
+        {
+            List<string> addons = new List<string>();
 
+            addons.Add("Haircut: " + row.Cells["HairCut"].Value.ToString());
+            addons.Add("Shampoo: " + row.Cells["Shampoo"].Value.ToString());
+            addons.Add("Flea: " + row.Cells["FleaTreatment"].Value.ToString());
+            addons.Add("Nail: " + row.Cells["NailClip"].Value.ToString());
+            addons.Add("Teeth: " + row.Cells["TeethCleaning"].Value.ToString());
 
+            string summary = string.Join(Environment.NewLine, addons);
 
+            summary += "\n------------------------\nTotal: RM " + row.Cells["TotalPrice"].Value.ToString();
 
+            txtbxSummary.Text = summary;
+        }
     }
-
-
-
-
 }
 
 

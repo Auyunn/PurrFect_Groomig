@@ -66,15 +66,12 @@ namespace PurrFect
             this.salesToolStripMenuItem,
             this.BestSellingMS});
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             this.homeToolStripMenuItem.Size = new System.Drawing.Size(77, 29);
-=======
+
             this.homeToolStripMenuItem.Size = new System.Drawing.Size(77, 30);
->>>>>>> 1d5da95 (login, register, forgot)
-=======
+
             this.homeToolStripMenuItem.Size = new System.Drawing.Size(99, 36);
->>>>>>> d73e803 (all files)
             this.homeToolStripMenuItem.Text = "Home";
             // 
             // salesToolStripMenuItem
@@ -100,15 +97,13 @@ namespace PurrFect
             this.petToolStripMenuItem,
             this.customerToolStripMenuItem});
             this.managementToolStripMenuItem.Name = "managementToolStripMenuItem";
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             this.managementToolStripMenuItem.Size = new System.Drawing.Size(133, 29);
-=======
+
             this.managementToolStripMenuItem.Size = new System.Drawing.Size(133, 30);
->>>>>>> 1d5da95 (login, register, forgot)
-=======
+
             this.managementToolStripMenuItem.Size = new System.Drawing.Size(177, 36);
->>>>>>> d73e803 (all files)
+
             this.managementToolStripMenuItem.Text = "Management";
             // 
             // bookingToolStripMenuItem
