@@ -1,4 +1,4 @@
-﻿namespace PurrFect
+namespace PurrFect
 {
     partial class ManageBooking
     {
@@ -36,16 +36,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtbxCustomer = new System.Windows.Forms.TextBox();
-            this.txtbxSummary = new System.Windows.Forms.TextBox();
-            this.cbPackage = new System.Windows.Forms.ComboBox();
+            this.TBPetID = new System.Windows.Forms.TextBox();
+            this.TBStatus = new System.Windows.Forms.TextBox();
+            this.TBGroomerID = new System.Windows.Forms.ComboBox();
             this.cbTime = new System.Windows.Forms.ComboBox();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.bttnAdd = new System.Windows.Forms.Button();
             this.bttnEdit = new System.Windows.Forms.Button();
             this.bttnDelete = new System.Windows.Forms.Button();
             this.txtbxID = new System.Windows.Forms.TextBox();
-            this.cbGroomer = new System.Windows.Forms.ComboBox();
+            this.TBServiceID = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TBTotPrice = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,15 +60,16 @@
             this.dgvBooking.RowTemplate.Height = 28;
             this.dgvBooking.Size = new System.Drawing.Size(561, 351);
             this.dgvBooking.TabIndex = 2;
+            this.dgvBooking.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBooking_CellClick_1);
             // 
             // lbID
             // 
             this.lbID.AutoSize = true;
             this.lbID.Location = new System.Drawing.Point(30, 112);
             this.lbID.Name = "lbID";
-            this.lbID.Size = new System.Drawing.Size(82, 20);
+            this.lbID.Size = new System.Drawing.Size(58, 20);
             this.lbID.TabIndex = 4;
-            this.lbID.Text = "Customer:";
+            this.lbID.Text = "Pet ID:";
             // 
             // lbBooking
             // 
@@ -80,25 +83,25 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 168);
+            this.label1.Location = new System.Drawing.Point(30, 165);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 20);
+            this.label1.Size = new System.Drawing.Size(101, 20);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Grooming Package:";
+            this.label1.Text = "Groomer ID: ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 217);
+            this.label2.Location = new System.Drawing.Point(30, 217);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 20);
+            this.label2.Size = new System.Drawing.Size(86, 20);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Groomer ID:";
+            this.label2.Text = "Service ID:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 278);
+            this.label3.Location = new System.Drawing.Point(30, 278);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(110, 20);
             this.label3.TabIndex = 8;
@@ -107,7 +110,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 333);
+            this.label4.Location = new System.Drawing.Point(30, 333);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(109, 20);
             this.label4.TabIndex = 9;
@@ -116,42 +119,47 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 395);
+            this.label5.Location = new System.Drawing.Point(30, 392);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(139, 20);
+            this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Add-On Summary:";
+            this.label5.Text = "Status";
             // 
-            // txtbxCustomer
+            // TBPetID
             // 
-            this.txtbxCustomer.Location = new System.Drawing.Point(187, 106);
-            this.txtbxCustomer.Name = "txtbxCustomer";
-            this.txtbxCustomer.Size = new System.Drawing.Size(313, 26);
-            this.txtbxCustomer.TabIndex = 12;
+            this.TBPetID.Location = new System.Drawing.Point(187, 106);
+            this.TBPetID.Name = "TBPetID";
+            this.TBPetID.Size = new System.Drawing.Size(313, 26);
+            this.TBPetID.TabIndex = 12;
             // 
-            // txtbxSummary
+            // TBStatus
             // 
-            this.txtbxSummary.Location = new System.Drawing.Point(187, 389);
-            this.txtbxSummary.Multiline = true;
-            this.txtbxSummary.Name = "txtbxSummary";
-            this.txtbxSummary.Size = new System.Drawing.Size(313, 119);
-            this.txtbxSummary.TabIndex = 13;
+            this.TBStatus.Location = new System.Drawing.Point(187, 389);
+            this.TBStatus.Name = "TBStatus";
+            this.TBStatus.Size = new System.Drawing.Size(313, 26);
+            this.TBStatus.TabIndex = 13;
             // 
-            // cbPackage
+            // TBGroomerID
             // 
-            this.cbPackage.FormattingEnabled = true;
-            this.cbPackage.Location = new System.Drawing.Point(187, 165);
-            this.cbPackage.Name = "cbPackage";
-            this.cbPackage.Size = new System.Drawing.Size(313, 28);
-            this.cbPackage.TabIndex = 14;
+            this.TBGroomerID.FormattingEnabled = true;
+            this.TBGroomerID.Location = new System.Drawing.Point(187, 165);
+            this.TBGroomerID.Name = "TBGroomerID";
+            this.TBGroomerID.Size = new System.Drawing.Size(313, 28);
+            this.TBGroomerID.TabIndex = 14;
             // 
             // cbTime
             // 
             this.cbTime.FormattingEnabled = true;
+            this.cbTime.Items.AddRange(new object[] {
+            "10:00",
+            "12:00",
+            "2:00",
+            "4:00"});
             this.cbTime.Location = new System.Drawing.Point(187, 325);
             this.cbTime.Name = "cbTime";
             this.cbTime.Size = new System.Drawing.Size(313, 28);
             this.cbTime.TabIndex = 15;
+            this.cbTime.SelectedIndexChanged += new System.EventHandler(this.cbTime_SelectedIndexChanged);
             // 
             // dtpDate
             // 
@@ -178,6 +186,7 @@
             this.bttnEdit.TabIndex = 19;
             this.bttnEdit.Text = "EDIT";
             this.bttnEdit.UseVisualStyleBackColor = true;
+            this.bttnEdit.Click += new System.EventHandler(this.bttnEdit_Click);
             // 
             // bttnDelete
             // 
@@ -187,6 +196,7 @@
             this.bttnDelete.TabIndex = 20;
             this.bttnDelete.Text = "DELETE";
             this.bttnDelete.UseVisualStyleBackColor = true;
+            this.bttnDelete.Click += new System.EventHandler(this.bttnDelete_Click);
             // 
             // txtbxID
             // 
@@ -195,13 +205,29 @@
             this.txtbxID.Size = new System.Drawing.Size(313, 26);
             this.txtbxID.TabIndex = 21;
             // 
-            // cbGroomer
+            // TBServiceID
             // 
-            this.cbGroomer.FormattingEnabled = true;
-            this.cbGroomer.Location = new System.Drawing.Point(187, 214);
-            this.cbGroomer.Name = "cbGroomer";
-            this.cbGroomer.Size = new System.Drawing.Size(313, 28);
-            this.cbGroomer.TabIndex = 22;
+            this.TBServiceID.FormattingEnabled = true;
+            this.TBServiceID.Location = new System.Drawing.Point(187, 214);
+            this.TBServiceID.Name = "TBServiceID";
+            this.TBServiceID.Size = new System.Drawing.Size(313, 28);
+            this.TBServiceID.TabIndex = 22;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(32, 460);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(116, 20);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Total Price RM:";
+            // 
+            // TBTotPrice
+            // 
+            this.TBTotPrice.Location = new System.Drawing.Point(187, 454);
+            this.TBTotPrice.Name = "TBTotPrice";
+            this.TBTotPrice.Size = new System.Drawing.Size(313, 26);
+            this.TBTotPrice.TabIndex = 24;
             // 
             // ManageBooking
             // 
@@ -209,16 +235,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1142, 544);
-            this.Controls.Add(this.cbGroomer);
+            this.Controls.Add(this.TBTotPrice);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.TBServiceID);
             this.Controls.Add(this.txtbxID);
             this.Controls.Add(this.bttnDelete);
             this.Controls.Add(this.bttnEdit);
             this.Controls.Add(this.bttnAdd);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.cbTime);
-            this.Controls.Add(this.cbPackage);
-            this.Controls.Add(this.txtbxSummary);
-            this.Controls.Add(this.txtbxCustomer);
+            this.Controls.Add(this.TBGroomerID);
+            this.Controls.Add(this.TBStatus);
+            this.Controls.Add(this.TBPetID);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -246,15 +274,17 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtbxCustomer;
-        private System.Windows.Forms.TextBox txtbxSummary;
-        private System.Windows.Forms.ComboBox cbPackage;
+        private System.Windows.Forms.TextBox TBPetID;
+        private System.Windows.Forms.TextBox TBStatus;
+        private System.Windows.Forms.ComboBox TBGroomerID;
         private System.Windows.Forms.ComboBox cbTime;
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.Button bttnAdd;
         private System.Windows.Forms.Button bttnEdit;
         private System.Windows.Forms.Button bttnDelete;
         private System.Windows.Forms.TextBox txtbxID;
-        private System.Windows.Forms.ComboBox cbGroomer;
+        private System.Windows.Forms.ComboBox TBServiceID;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox TBTotPrice;
     }
 }

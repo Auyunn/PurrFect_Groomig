@@ -1,4 +1,4 @@
-﻿namespace PurrFect
+namespace PurrFect
 {
     partial class ManageGroomer
     {
@@ -54,6 +54,7 @@
             this.dgvGroomer.RowTemplate.Height = 28;
             this.dgvGroomer.Size = new System.Drawing.Size(561, 351);
             this.dgvGroomer.TabIndex = 1;
+            this.dgvGroomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGroomer_CellClick_1);
             // 
             // lbID
             // 
@@ -96,9 +97,9 @@
             this.lbStatus.AutoSize = true;
             this.lbStatus.Location = new System.Drawing.Point(12, 370);
             this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(123, 20);
+            this.lbStatus.Size = new System.Drawing.Size(155, 20);
             this.lbStatus.TabIndex = 7;
-            this.lbStatus.Text = "Groomer Status";
+            this.lbStatus.Text = "Groomer Experience";
             // 
             // txtbxID
             // 
@@ -127,7 +128,6 @@
             this.txtbxSalary.Name = "txtbxSalary";
             this.txtbxSalary.Size = new System.Drawing.Size(313, 26);
             this.txtbxSalary.TabIndex = 12;
-          
             // 
             // cbStatus
             // 

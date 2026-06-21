@@ -94,7 +94,6 @@
     <Compile Include="ForgotPasswordForm.Designer.cs">
       <DependentUpon>ForgotPasswordForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GroomerClass.cs" />
     <Compile Include="Groomer.cs" />
     <Compile Include="GroomerService.cs" />
     <Compile Include="ManageBooking.cs">
@@ -251,6 +250,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PurrFect_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>PurrFect.mdf</DependentUpon>
+    </Content>
     <None Include="Resources\BeAPartOfUs %28purrfect%29.png" />
     <None Include="Resources\banner purrfect.png" />
     <None Include="Resources\PurrfectLogo.png" />
@@ -261,13 +264,7 @@
     <None Include="image\Lion Haircut.jpg" />
     <None Include="image\Dinasour Haircut.jpg" />
     <None Include="image\Belly Haircut.jpg" />
-    <Content Include="PurrFect.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="PurrFect_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>PurrFect.mdf</DependentUpon>
-    </Content>
+    <Content Include="PurrFect.mdf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

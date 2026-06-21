@@ -102,7 +102,14 @@ namespace PurrFect
 
         }
 
-        private void bookingToolStripMenuItem_Click(object sender, EventArgs e)
+       
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void bookingToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             ManageBooking mb = new ManageBooking();
 
@@ -121,10 +128,23 @@ namespace PurrFect
             mb.Show();
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void groomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ManageGroomer mb = new ManageGroomer();
 
+            Panel.Visible = false;
+            WelcomeLabel.Visible = false;
+
+            mb.MdiParent = this;
+
+            mb.FormClosed += (s, args) =>
+            {
+                Panel.Visible = true;
+                WelcomeLabel.Visible = true;
+            };
+
+            mb.WindowState = FormWindowState.Maximized;
+            mb.Show();
         }
-
     }
 }
