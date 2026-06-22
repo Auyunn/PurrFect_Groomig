@@ -265,7 +265,7 @@
             this.groupBoxPhoto.Controls.Add(this.buttonUpload);
             this.groupBoxPhoto.Controls.Add(this.pictureBoxPet);
             this.groupBoxPhoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxPhoto.Location = new System.Drawing.Point(939, 64);
+            this.groupBoxPhoto.Location = new System.Drawing.Point(861, 64);
             this.groupBoxPhoto.Name = "groupBoxPhoto";
             this.groupBoxPhoto.Size = new System.Drawing.Size(607, 517);
             this.groupBoxPhoto.TabIndex = 19;
@@ -276,7 +276,7 @@
             // 
             this.buttonRegister.BackColor = System.Drawing.Color.LightGreen;
             this.buttonRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRegister.Location = new System.Drawing.Point(996, 605);
+            this.buttonRegister.Location = new System.Drawing.Point(918, 605);
             this.buttonRegister.Name = "buttonRegister";
             this.buttonRegister.Size = new System.Drawing.Size(242, 53);
             this.buttonRegister.TabIndex = 19;
@@ -288,7 +288,7 @@
             // 
             this.buttonCancel.BackColor = System.Drawing.Color.IndianRed;
             this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancel.Location = new System.Drawing.Point(1291, 605);
+            this.buttonCancel.Location = new System.Drawing.Point(1213, 605);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(242, 53);
             this.buttonCancel.TabIndex = 20;
@@ -299,7 +299,7 @@
             // buttonNext
             // 
             this.buttonNext.BackColor = System.Drawing.Color.Khaki;
-            this.buttonNext.Location = new System.Drawing.Point(1418, 717);
+            this.buttonNext.Location = new System.Drawing.Point(1244, 718);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(224, 81);
             this.buttonNext.TabIndex = 21;
@@ -309,7 +309,7 @@
             // buttonPrev
             // 
             this.buttonPrev.BackColor = System.Drawing.Color.Khaki;
-            this.buttonPrev.Location = new System.Drawing.Point(1173, 717);
+            this.buttonPrev.Location = new System.Drawing.Point(999, 718);
             this.buttonPrev.Name = "buttonPrev";
             this.buttonPrev.Size = new System.Drawing.Size(224, 81);
             this.buttonPrev.TabIndex = 22;
@@ -320,8 +320,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Cornsilk;
-            this.ClientSize = new System.Drawing.Size(1654, 970);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ClientSize = new System.Drawing.Size(1554, 869);
             this.Controls.Add(this.buttonPrev);
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.buttonRegister);

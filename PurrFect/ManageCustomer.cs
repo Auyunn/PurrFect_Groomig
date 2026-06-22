@@ -250,5 +250,10 @@ namespace PurrFect
             PasswordTB.Text = (p == null || p == DBNull.Value) ? string.Empty : p.ToString();
             RoleCB.Text = (r == null || r == DBNull.Value) ? string.Empty : r.ToString();
         }
+
+        private void UsernameTB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
