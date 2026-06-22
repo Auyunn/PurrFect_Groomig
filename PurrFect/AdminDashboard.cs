@@ -102,13 +102,23 @@ namespace PurrFect
 
         }
 
-<<<<<<< HEAD
         private void paymentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AdminPayment ap = new AdminPayment();
-            ap.Show();
-=======
-       
+            AdminPayment cc = new AdminPayment();
+
+            Panel.Visible = false;
+            WelcomeLabel.Visible = false;
+
+            cc.MdiParent = this;
+            cc.FormClosed += (s, args) =>
+            {
+                Panel.Visible = true;
+                WelcomeLabel.Visible = true;
+            };
+            cc.WindowState = FormWindowState.Maximized;
+
+            cc.Show();
+        }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -151,7 +161,24 @@ namespace PurrFect
 
             mb.WindowState = FormWindowState.Maximized;
             mb.Show();
->>>>>>> 0b3e1c66058459d9c2d90964d4938d02ddf56b1d
+        }
+
+        private void petToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AdminPetList cc = new AdminPetList();
+
+            Panel.Visible = false;
+            WelcomeLabel.Visible = false;
+
+            cc.MdiParent = this;
+            cc.FormClosed += (s, args) =>
+            {
+                Panel.Visible = true;
+                WelcomeLabel.Visible = true;
+            };
+            cc.WindowState = FormWindowState.Maximized;
+
+            cc.Show();
         }
     }
 }

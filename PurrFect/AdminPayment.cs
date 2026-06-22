@@ -13,7 +13,8 @@ namespace PurrFect
 {
     public partial class AdminPayment : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Nur Auyunn\OneDrive\Documents\PROJECT\PurrFect\PurrFect\PurrFect.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Databases\PurrFect\PurrFect.mdf;Integrated Security=True; Connect Timeout=30");
+
         int selectID = 0;
         public AdminPayment()
         {

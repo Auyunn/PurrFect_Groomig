@@ -122,7 +122,7 @@ namespace PurrFect
 
                 MessageBox.Show("Account Registered Successfully!");
 
-                LogInForm login = new LogInForm();
+                RegisterPetForm login = new RegisterPetForm();
                 login.Show();
 
                 this.Hide();

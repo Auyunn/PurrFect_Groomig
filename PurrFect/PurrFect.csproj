@@ -269,7 +269,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PurrFect_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PurrFect.mdf</DependentUpon>
     </Content>
     <None Include="Resources\BeAPartOfUs %28purrfect%29.png" />
