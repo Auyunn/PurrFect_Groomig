@@ -76,6 +76,18 @@
     <Compile Include="AdminDashboard.Designer.cs">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPayment.Designer.cs">
+      <DependentUpon>AdminPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPetList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPetList.Designer.cs">
+      <DependentUpon>AdminPetList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Best_Selling_Service.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +163,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminDashboard.resx">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPayment.resx">
+      <DependentUpon>AdminPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminPetList.resx">
+      <DependentUpon>AdminPetList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Best_Selling_Service.resx">
       <DependentUpon>Best_Selling_Service.cs</DependentUpon>

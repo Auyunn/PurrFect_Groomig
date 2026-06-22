@@ -101,5 +101,11 @@ namespace PurrFect
         {
 
         }
+
+        private void paymentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AdminPayment ap = new AdminPayment();
+            ap.Show();
+        }
     }
 }
