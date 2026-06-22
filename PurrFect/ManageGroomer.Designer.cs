@@ -1,4 +1,4 @@
-﻿namespace PurrFect
+namespace PurrFect
 {
     partial class ManageGroomer
     {
@@ -38,145 +38,145 @@
             this.txtbxName = new System.Windows.Forms.TextBox();
             this.txtbxPhone = new System.Windows.Forms.TextBox();
             this.txtbxSalary = new System.Windows.Forms.TextBox();
-            this.cbxStatus = new System.Windows.Forms.ComboBox();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
             this.bttnAdd = new System.Windows.Forms.Button();
+            this.bttnEdit = new System.Windows.Forms.Button();
             this.bttnDelete = new System.Windows.Forms.Button();
-            this.bttnUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGroomer)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvGroomer
             // 
             this.dgvGroomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvGroomer.Location = new System.Drawing.Point(488, 53);
+            this.dgvGroomer.Location = new System.Drawing.Point(596, 44);
             this.dgvGroomer.Name = "dgvGroomer";
             this.dgvGroomer.RowHeadersWidth = 62;
             this.dgvGroomer.RowTemplate.Height = 28;
-            this.dgvGroomer.Size = new System.Drawing.Size(529, 295);
+            this.dgvGroomer.Size = new System.Drawing.Size(561, 351);
             this.dgvGroomer.TabIndex = 1;
+            this.dgvGroomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGroomer_CellClick_1);
             // 
             // lbID
             // 
             this.lbID.AutoSize = true;
-            this.lbID.Location = new System.Drawing.Point(35, 71);
+            this.lbID.Location = new System.Drawing.Point(12, 83);
             this.lbID.Name = "lbID";
             this.lbID.Size = new System.Drawing.Size(97, 20);
-            this.lbID.TabIndex = 2;
+            this.lbID.TabIndex = 3;
             this.lbID.Text = "Groomer ID:";
             // 
             // lbName
             // 
             this.lbName.AutoSize = true;
-            this.lbName.Location = new System.Drawing.Point(32, 132);
+            this.lbName.Location = new System.Drawing.Point(12, 155);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(122, 20);
-            this.lbName.TabIndex = 3;
+            this.lbName.TabIndex = 4;
             this.lbName.Text = "Groomer Name:";
             // 
             // lbPhone
             // 
             this.lbPhone.AutoSize = true;
-            this.lbPhone.Location = new System.Drawing.Point(35, 188);
+            this.lbPhone.Location = new System.Drawing.Point(12, 223);
             this.lbPhone.Name = "lbPhone";
             this.lbPhone.Size = new System.Drawing.Size(119, 20);
-            this.lbPhone.TabIndex = 4;
+            this.lbPhone.TabIndex = 5;
             this.lbPhone.Text = "Number Phone:";
-            this.lbPhone.Click += new System.EventHandler(this.lbPhone_Click);
             // 
             // lbSalary
             // 
             this.lbSalary.AutoSize = true;
-            this.lbSalary.Location = new System.Drawing.Point(35, 246);
+            this.lbSalary.Location = new System.Drawing.Point(12, 298);
             this.lbSalary.Name = "lbSalary";
             this.lbSalary.Size = new System.Drawing.Size(124, 20);
-            this.lbSalary.TabIndex = 5;
+            this.lbSalary.TabIndex = 6;
             this.lbSalary.Text = "Groomer Salary:";
             // 
             // lbStatus
             // 
             this.lbStatus.AutoSize = true;
-            this.lbStatus.Location = new System.Drawing.Point(40, 308);
+            this.lbStatus.Location = new System.Drawing.Point(12, 370);
             this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(127, 20);
-            this.lbStatus.TabIndex = 6;
-            this.lbStatus.Text = "Groomer Status:";
+            this.lbStatus.Size = new System.Drawing.Size(155, 20);
+            this.lbStatus.TabIndex = 7;
+            this.lbStatus.Text = "Groomer Experience";
             // 
             // txtbxID
             // 
-            this.txtbxID.Location = new System.Drawing.Point(181, 71);
+            this.txtbxID.Location = new System.Drawing.Point(185, 83);
             this.txtbxID.Name = "txtbxID";
-            this.txtbxID.Size = new System.Drawing.Size(279, 26);
-            this.txtbxID.TabIndex = 15;
+            this.txtbxID.Size = new System.Drawing.Size(313, 26);
+            this.txtbxID.TabIndex = 9;
             // 
             // txtbxName
             // 
-            this.txtbxName.Location = new System.Drawing.Point(181, 132);
+            this.txtbxName.Location = new System.Drawing.Point(185, 152);
             this.txtbxName.Name = "txtbxName";
-            this.txtbxName.Size = new System.Drawing.Size(279, 26);
-            this.txtbxName.TabIndex = 16;
+            this.txtbxName.Size = new System.Drawing.Size(313, 26);
+            this.txtbxName.TabIndex = 10;
             // 
             // txtbxPhone
             // 
-            this.txtbxPhone.Location = new System.Drawing.Point(181, 188);
+            this.txtbxPhone.Location = new System.Drawing.Point(185, 223);
             this.txtbxPhone.Name = "txtbxPhone";
-            this.txtbxPhone.Size = new System.Drawing.Size(279, 26);
-            this.txtbxPhone.TabIndex = 17;
+            this.txtbxPhone.Size = new System.Drawing.Size(313, 26);
+            this.txtbxPhone.TabIndex = 11;
             // 
             // txtbxSalary
             // 
-            this.txtbxSalary.Location = new System.Drawing.Point(181, 243);
+            this.txtbxSalary.Location = new System.Drawing.Point(185, 298);
             this.txtbxSalary.Name = "txtbxSalary";
-            this.txtbxSalary.Size = new System.Drawing.Size(279, 26);
-            this.txtbxSalary.TabIndex = 18;
+            this.txtbxSalary.Size = new System.Drawing.Size(313, 26);
+            this.txtbxSalary.TabIndex = 12;
             // 
-            // cbxStatus
+            // cbStatus
             // 
-            this.cbxStatus.FormattingEnabled = true;
-            this.cbxStatus.Location = new System.Drawing.Point(181, 305);
-            this.cbxStatus.Name = "cbxStatus";
-            this.cbxStatus.Size = new System.Drawing.Size(279, 28);
-            this.cbxStatus.TabIndex = 21;
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Location = new System.Drawing.Point(185, 367);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(313, 28);
+            this.cbStatus.TabIndex = 13;
             // 
             // bttnAdd
             // 
-            this.bttnAdd.Location = new System.Drawing.Point(44, 396);
+            this.bttnAdd.Location = new System.Drawing.Point(611, 428);
             this.bttnAdd.Name = "bttnAdd";
             this.bttnAdd.Size = new System.Drawing.Size(90, 58);
-            this.bttnAdd.TabIndex = 22;
+            this.bttnAdd.TabIndex = 16;
             this.bttnAdd.Text = "ADD";
             this.bttnAdd.UseVisualStyleBackColor = true;
             this.bttnAdd.Click += new System.EventHandler(this.bttnAdd_Click);
             // 
+            // bttnEdit
+            // 
+            this.bttnEdit.Location = new System.Drawing.Point(832, 428);
+            this.bttnEdit.Name = "bttnEdit";
+            this.bttnEdit.Size = new System.Drawing.Size(90, 58);
+            this.bttnEdit.TabIndex = 17;
+            this.bttnEdit.Text = "EDIT";
+            this.bttnEdit.UseVisualStyleBackColor = true;
+            this.bttnEdit.Click += new System.EventHandler(this.bttnEdit_Click);
+            // 
             // bttnDelete
             // 
-            this.bttnDelete.Location = new System.Drawing.Point(214, 396);
+            this.bttnDelete.Location = new System.Drawing.Point(1039, 428);
             this.bttnDelete.Name = "bttnDelete";
             this.bttnDelete.Size = new System.Drawing.Size(90, 58);
-            this.bttnDelete.TabIndex = 23;
+            this.bttnDelete.TabIndex = 18;
             this.bttnDelete.Text = "DELETE";
             this.bttnDelete.UseVisualStyleBackColor = true;
             this.bttnDelete.Click += new System.EventHandler(this.bttnDelete_Click);
-            // 
-            // bttnUpdate
-            // 
-            this.bttnUpdate.Location = new System.Drawing.Point(381, 396);
-            this.bttnUpdate.Name = "bttnUpdate";
-            this.bttnUpdate.Size = new System.Drawing.Size(90, 58);
-            this.bttnUpdate.TabIndex = 24;
-            this.bttnUpdate.Text = "UPDATE";
-            this.bttnUpdate.UseVisualStyleBackColor = true;
-            this.bttnUpdate.Click += new System.EventHandler(this.bttnUpdate_Click);
             // 
             // ManageGroomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1029, 495);
-            this.Controls.Add(this.bttnUpdate);
+            this.ClientSize = new System.Drawing.Size(1169, 538);
             this.Controls.Add(this.bttnDelete);
+            this.Controls.Add(this.bttnEdit);
             this.Controls.Add(this.bttnAdd);
-            this.Controls.Add(this.cbxStatus);
+            this.Controls.Add(this.cbStatus);
             this.Controls.Add(this.txtbxSalary);
             this.Controls.Add(this.txtbxPhone);
             this.Controls.Add(this.txtbxName);
@@ -188,7 +188,7 @@
             this.Controls.Add(this.lbID);
             this.Controls.Add(this.dgvGroomer);
             this.Name = "ManageGroomer";
-            this.Text = "ManageGroomer Form";
+            this.Text = "ManageGroomer";
             this.Load += new System.EventHandler(this.ManageGroomer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGroomer)).EndInit();
             this.ResumeLayout(false);
@@ -208,9 +208,9 @@
         private System.Windows.Forms.TextBox txtbxName;
         private System.Windows.Forms.TextBox txtbxPhone;
         private System.Windows.Forms.TextBox txtbxSalary;
-        private System.Windows.Forms.ComboBox cbxStatus;
+        private System.Windows.Forms.ComboBox cbStatus;
         private System.Windows.Forms.Button bttnAdd;
+        private System.Windows.Forms.Button bttnEdit;
         private System.Windows.Forms.Button bttnDelete;
-        private System.Windows.Forms.Button bttnUpdate;
     }
 }

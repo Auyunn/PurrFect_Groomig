@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+
 
 
 namespace PurrFect
@@ -102,10 +102,56 @@ namespace PurrFect
 
         }
 
+<<<<<<< HEAD
         private void paymentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AdminPayment ap = new AdminPayment();
             ap.Show();
+=======
+       
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void bookingToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            ManageBooking mb = new ManageBooking();
+
+            Panel.Visible = false;
+            WelcomeLabel.Visible = false;
+
+            mb.MdiParent = this;
+
+            mb.FormClosed += (s, args) =>
+            {
+                Panel.Visible = true;
+                WelcomeLabel.Visible = true;
+            };
+
+            mb.WindowState = FormWindowState.Maximized;
+            mb.Show();
+        }
+
+        private void groomerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ManageGroomer mb = new ManageGroomer();
+
+            Panel.Visible = false;
+            WelcomeLabel.Visible = false;
+
+            mb.MdiParent = this;
+
+            mb.FormClosed += (s, args) =>
+            {
+                Panel.Visible = true;
+                WelcomeLabel.Visible = true;
+            };
+
+            mb.WindowState = FormWindowState.Maximized;
+            mb.Show();
+>>>>>>> 0b3e1c66058459d9c2d90964d4938d02ddf56b1d
         }
     }
 }

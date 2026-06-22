@@ -106,11 +106,25 @@
     <Compile Include="ForgotPasswordForm.Designer.cs">
       <DependentUpon>ForgotPasswordForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Groomer.cs" />
+    <Compile Include="GroomerService.cs" />
+    <Compile Include="ManageBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageBooking.Designer.cs">
+      <DependentUpon>ManageBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManageCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ManageCustomer.Designer.cs">
       <DependentUpon>ManageCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageGroomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageGroomer.Designer.cs">
+      <DependentUpon>ManageGroomer.cs</DependentUpon>
     </Compile>
     <Compile Include="PaymentForm.cs">
       <SubType>Form</SubType>
@@ -118,6 +132,7 @@
     <Compile Include="PaymentForm.Designer.cs">
       <DependentUpon>PaymentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Person.cs" />
     <Compile Include="PurrFect.cs">
       <DependentUpon>PurrFect.xsd</DependentUpon>
     </Compile>
@@ -182,8 +197,14 @@
     <EmbeddedResource Include="LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManageBooking.resx">
+      <DependentUpon>ManageBooking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ManageCustomer.resx">
       <DependentUpon>ManageCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageGroomer.resx">
+      <DependentUpon>ManageGroomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PaymentForm.resx">
       <DependentUpon>PaymentForm.cs</DependentUpon>
@@ -247,6 +268,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PurrFect_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>PurrFect.mdf</DependentUpon>
+    </Content>
     <None Include="Resources\BeAPartOfUs %28purrfect%29.png" />
     <None Include="Resources\banner purrfect.png" />
     <None Include="Resources\PurrfectLogo.png" />
@@ -257,13 +282,7 @@
     <None Include="image\Lion Haircut.jpg" />
     <None Include="image\Dinasour Haircut.jpg" />
     <None Include="image\Belly Haircut.jpg" />
-    <Content Include="PurrFect.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="PurrFect_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>PurrFect.mdf</DependentUpon>
-    </Content>
+    <Content Include="PurrFect.mdf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
