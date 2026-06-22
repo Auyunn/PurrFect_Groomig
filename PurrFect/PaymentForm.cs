@@ -14,15 +14,21 @@ namespace PurrFect
     public partial class PaymentForm : Form
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Nur Auyunn\OneDrive\Documents\PROJECT\PurrFect\PurrFect\PurrFect.mdf;Integrated Security=True");
+
         public PaymentForm()
         {
             InitializeComponent();
             this.Load += PaymentForm_Load;
         }
 
+        private void PaymentForm_Load(object sender, EventArgs e)
+        {
+            GenerateReceipt();
+        }
+
         void GenerateReceipt()
         {
-            string paymentMethod = "";
+            string paymentMethod = "Not Selected";
 
             if (CardRB.Checked)
                 paymentMethod = "Card";
@@ -34,7 +40,6 @@ namespace PurrFect
             Booking.PaymentMethod = paymentMethod;
 
             ReceiptRTB.Clear();
-
             ReceiptRTB.AppendText("============== PURRFECT RECEIPT ==============\n\n");
 
             ReceiptRTB.AppendText("PACKAGE\n");
@@ -51,20 +56,15 @@ namespace PurrFect
 
             ReceiptRTB.AppendText("ADD ONS\n");
 
-            if (!string.IsNullOrEmpty(Booking.HairCut))
-                ReceiptRTB.AppendText("- " + Booking.HairCut + "\n");
+            bool hasAddOns = false;
+            if (!string.IsNullOrEmpty(Booking.HairCut)) { ReceiptRTB.AppendText("- " + Booking.HairCut + "\n"); hasAddOns = true; }
+            if (!string.IsNullOrEmpty(Booking.Shampoo)) { ReceiptRTB.AppendText("- " + Booking.Shampoo + "\n"); hasAddOns = true; }
+            if (!string.IsNullOrEmpty(Booking.NailClip)) { ReceiptRTB.AppendText("- " + Booking.NailClip + "\n"); hasAddOns = true; }
+            if (!string.IsNullOrEmpty(Booking.FleaTreatment)) { ReceiptRTB.AppendText("- " + Booking.FleaTreatment + "\n"); hasAddOns = true; }
+            if (!string.IsNullOrEmpty(Booking.TeethCleaning)) { ReceiptRTB.AppendText("- " + Booking.TeethCleaning + "\n"); hasAddOns = true; }
 
-            if (!string.IsNullOrEmpty(Booking.Shampoo))
-                ReceiptRTB.AppendText("- " + Booking.Shampoo + "\n");
-
-            if (!string.IsNullOrEmpty(Booking.NailClip))
-                ReceiptRTB.AppendText("- " + Booking.NailClip + "\n");
-
-            if (!string.IsNullOrEmpty(Booking.FleaTreatment))
-                ReceiptRTB.AppendText("- " + Booking.FleaTreatment + "\n");
-
-            if (!string.IsNullOrEmpty(Booking.TeethCleaning))
-                ReceiptRTB.AppendText("- " + Booking.TeethCleaning + "\n");
+            if (!hasAddOns)
+                ReceiptRTB.AppendText("None\n");
 
             ReceiptRTB.AppendText("\nPAYMENT METHOD\n");
             ReceiptRTB.AppendText(paymentMethod + "\n\n");
@@ -78,22 +78,11 @@ namespace PurrFect
             AddOnForm book = new AddOnForm();
             book.Show();
             this.Hide();
-
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            GenerateReceipt(); 
-        }
-
-        private void BillsP_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            GenerateReceipt();
         }
 
         private void OnlineBankRB_CheckedChanged(object sender, EventArgs e)
@@ -110,7 +99,6 @@ namespace PurrFect
         {
             string paymentMethod = "";
 
-            
             if (CardRB.Checked)
                 paymentMethod = "Card";
             else if (CashRB.Checked)
@@ -118,19 +106,19 @@ namespace PurrFect
             else if (OnlineBankRB.Checked)
                 paymentMethod = "FPX";
 
-            // Validation
             if (string.IsNullOrEmpty(paymentMethod))
             {
-                MessageBox.Show("Please select payment method");
+                MessageBox.Show("Please select a payment method.");
                 return;
             }
 
-           
+            bool isPaymentSuccessful = false;
+
             try
             {
                 con.Open();
 
-                
+                // Semak kewujudan BookingID
                 string checkQuery = "SELECT COUNT(1) FROM Booking WHERE BookingID = @id";
                 SqlCommand checkCmd = new SqlCommand(checkQuery, con);
                 checkCmd.Parameters.AddWithValue("@id", Booking.BookingID);
@@ -139,45 +127,41 @@ namespace PurrFect
 
                 if (exists == 0)
                 {
-                    MessageBox.Show("BookingID " + Booking.BookingID + " not found. Cannot record payment.");
+                    MessageBox.Show("BookingID " + Booking.BookingID + " not found. Cannot record payment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                
+                // Simpan transaksi bayaran
                 string insertQuery = "INSERT INTO Payment (BookingID, PaymentMethod, PaymentDate, Amount) " +
                                      "VALUES (@bookingid, @method, @date, @amount)";
 
                 SqlCommand cmd = new SqlCommand(insertQuery, con);
-
-               
                 cmd.Parameters.AddWithValue("@bookingid", Booking.BookingID);
                 cmd.Parameters.AddWithValue("@method", paymentMethod);
-                cmd.Parameters.AddWithValue("@date", DateTime.Now.Date);
+                cmd.Parameters.AddWithValue("@date", DateTime.Today);
                 cmd.Parameters.AddWithValue("@amount", Booking.TotalPrice);
 
                 cmd.ExecuteNonQuery();
+                isPaymentSuccessful = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Payment Error: " + ex.Message);
-                return; 
+                MessageBox.Show("Payment Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 con.Close();
             }
 
-            
-            ThankYouForm thankYou = new ThankYouForm();
-            thankYou.Show();
-            this.Hide();
-
-
+            if (isPaymentSuccessful)
+            {
+                ThankYouForm thankYou = new ThankYouForm();
+                thankYou.Show();
+                this.Hide();
+            }
         }
 
-        private void PaymentForm_Load(object sender, EventArgs e)
-        {
-            GenerateReceipt();
-        }
+        private void BillsP_Paint(object sender, PaintEventArgs e) { }
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e) { }
     }
 }

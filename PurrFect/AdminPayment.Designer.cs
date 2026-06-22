@@ -1,4 +1,4 @@
-﻿namespace PurrFect
+namespace PurrFect
 {
     partial class AdminPayment
     {
@@ -39,7 +39,6 @@
             this.textBoxMethod = new System.Windows.Forms.TextBox();
             this.textBoxDate = new System.Windows.Forms.TextBox();
             this.textBoxAmount = new System.Windows.Forms.TextBox();
-            this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPayment)).BeginInit();
@@ -48,108 +47,111 @@
             // dataGridViewPayment
             // 
             this.dataGridViewPayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPayment.Location = new System.Drawing.Point(395, 44);
+            this.dataGridViewPayment.Location = new System.Drawing.Point(296, 35);
+            this.dataGridViewPayment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewPayment.Name = "dataGridViewPayment";
             this.dataGridViewPayment.RowHeadersWidth = 82;
             this.dataGridViewPayment.RowTemplate.Height = 33;
-            this.dataGridViewPayment.Size = new System.Drawing.Size(733, 284);
+            this.dataGridViewPayment.Size = new System.Drawing.Size(550, 227);
             this.dataGridViewPayment.TabIndex = 0;
+            this.dataGridViewPayment.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPayment_CellClick);
             // 
             // labelPaymentID
             // 
             this.labelPaymentID.AutoSize = true;
-            this.labelPaymentID.Location = new System.Drawing.Point(384, 391);
+            this.labelPaymentID.Location = new System.Drawing.Point(288, 313);
+            this.labelPaymentID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelPaymentID.Name = "labelPaymentID";
-            this.labelPaymentID.Size = new System.Drawing.Size(128, 25);
+            this.labelPaymentID.Size = new System.Drawing.Size(96, 20);
             this.labelPaymentID.TabIndex = 1;
             this.labelPaymentID.Text = "PaymentID :";
             // 
             // labelBookingID
             // 
             this.labelBookingID.AutoSize = true;
-            this.labelBookingID.Location = new System.Drawing.Point(384, 458);
+            this.labelBookingID.Location = new System.Drawing.Point(288, 366);
+            this.labelBookingID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBookingID.Name = "labelBookingID";
-            this.labelBookingID.Size = new System.Drawing.Size(122, 25);
+            this.labelBookingID.Size = new System.Drawing.Size(92, 20);
             this.labelBookingID.TabIndex = 2;
             this.labelBookingID.Text = "BookingID :";
             // 
             // labelMethod
             // 
             this.labelMethod.AutoSize = true;
-            this.labelMethod.Location = new System.Drawing.Point(320, 520);
+            this.labelMethod.Location = new System.Drawing.Point(240, 416);
+            this.labelMethod.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelMethod.Name = "labelMethod";
-            this.labelMethod.Size = new System.Drawing.Size(186, 25);
+            this.labelMethod.Size = new System.Drawing.Size(137, 20);
             this.labelMethod.TabIndex = 3;
             this.labelMethod.Text = "Payment Method :";
             // 
             // labelDate
             // 
             this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(347, 597);
+            this.labelDate.Location = new System.Drawing.Point(260, 478);
+            this.labelDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(159, 25);
+            this.labelDate.Size = new System.Drawing.Size(118, 20);
             this.labelDate.TabIndex = 4;
             this.labelDate.Text = "Payment Date :";
             // 
             // labelAmount
             // 
             this.labelAmount.AutoSize = true;
-            this.labelAmount.Location = new System.Drawing.Point(409, 674);
+            this.labelAmount.Location = new System.Drawing.Point(307, 539);
+            this.labelAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAmount.Name = "labelAmount";
-            this.labelAmount.Size = new System.Drawing.Size(97, 25);
+            this.labelAmount.Size = new System.Drawing.Size(73, 20);
             this.labelAmount.TabIndex = 5;
             this.labelAmount.Text = "Amount :";
             // 
             // textBoxPaymentID
             // 
-            this.textBoxPaymentID.Location = new System.Drawing.Point(536, 385);
+            this.textBoxPaymentID.Location = new System.Drawing.Point(402, 308);
+            this.textBoxPaymentID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxPaymentID.Name = "textBoxPaymentID";
-            this.textBoxPaymentID.Size = new System.Drawing.Size(592, 31);
+            this.textBoxPaymentID.Size = new System.Drawing.Size(445, 26);
             this.textBoxPaymentID.TabIndex = 6;
             // 
             // textBoxBookingID
             // 
-            this.textBoxBookingID.Location = new System.Drawing.Point(536, 455);
+            this.textBoxBookingID.Location = new System.Drawing.Point(402, 364);
+            this.textBoxBookingID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxBookingID.Name = "textBoxBookingID";
-            this.textBoxBookingID.Size = new System.Drawing.Size(592, 31);
+            this.textBoxBookingID.Size = new System.Drawing.Size(445, 26);
             this.textBoxBookingID.TabIndex = 7;
             // 
             // textBoxMethod
             // 
-            this.textBoxMethod.Location = new System.Drawing.Point(536, 520);
+            this.textBoxMethod.Location = new System.Drawing.Point(402, 416);
+            this.textBoxMethod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxMethod.Name = "textBoxMethod";
-            this.textBoxMethod.Size = new System.Drawing.Size(592, 31);
+            this.textBoxMethod.Size = new System.Drawing.Size(445, 26);
             this.textBoxMethod.TabIndex = 8;
             // 
             // textBoxDate
             // 
-            this.textBoxDate.Location = new System.Drawing.Point(536, 597);
+            this.textBoxDate.Location = new System.Drawing.Point(402, 478);
+            this.textBoxDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxDate.Name = "textBoxDate";
-            this.textBoxDate.Size = new System.Drawing.Size(592, 31);
+            this.textBoxDate.Size = new System.Drawing.Size(445, 26);
             this.textBoxDate.TabIndex = 9;
             // 
             // textBoxAmount
             // 
-            this.textBoxAmount.Location = new System.Drawing.Point(536, 674);
+            this.textBoxAmount.Location = new System.Drawing.Point(402, 539);
+            this.textBoxAmount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxAmount.Name = "textBoxAmount";
-            this.textBoxAmount.Size = new System.Drawing.Size(592, 31);
+            this.textBoxAmount.Size = new System.Drawing.Size(445, 26);
             this.textBoxAmount.TabIndex = 10;
-            // 
-            // buttonAdd
-            // 
-            this.buttonAdd.Location = new System.Drawing.Point(357, 730);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(224, 71);
-            this.buttonAdd.TabIndex = 11;
-            this.buttonAdd.Text = "ADD";
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(663, 730);
+            this.buttonEdit.Location = new System.Drawing.Point(419, 596);
+            this.buttonEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(224, 71);
+            this.buttonEdit.Size = new System.Drawing.Size(168, 57);
             this.buttonEdit.TabIndex = 12;
             this.buttonEdit.Text = "EDIT";
             this.buttonEdit.UseVisualStyleBackColor = true;
@@ -157,9 +159,10 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(965, 730);
+            this.buttonDelete.Location = new System.Drawing.Point(646, 596);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(224, 71);
+            this.buttonDelete.Size = new System.Drawing.Size(168, 57);
             this.buttonDelete.TabIndex = 13;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
@@ -167,13 +170,12 @@
             // 
             // AdminPayment
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1554, 869);
+            this.ClientSize = new System.Drawing.Size(1166, 695);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonEdit);
-            this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.textBoxAmount);
             this.Controls.Add(this.textBoxDate);
             this.Controls.Add(this.textBoxMethod);
@@ -185,6 +187,7 @@
             this.Controls.Add(this.labelBookingID);
             this.Controls.Add(this.labelPaymentID);
             this.Controls.Add(this.dataGridViewPayment);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AdminPayment";
             this.Text = "AdminPayment";
             this.Load += new System.EventHandler(this.AdminPayment_Load);
@@ -207,7 +210,6 @@
         private System.Windows.Forms.TextBox textBoxMethod;
         private System.Windows.Forms.TextBox textBoxDate;
         private System.Windows.Forms.TextBox textBoxAmount;
-        private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonDelete;
     }

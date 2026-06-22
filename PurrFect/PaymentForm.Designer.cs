@@ -49,11 +49,9 @@ namespace PurrFect
             this.PaymentGB.Controls.Add(this.CashRB);
             this.PaymentGB.Controls.Add(this.CardRB);
             this.PaymentGB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PaymentGB.Location = new System.Drawing.Point(761, 378);
-            this.PaymentGB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PaymentGB.Location = new System.Drawing.Point(571, 302);
             this.PaymentGB.Name = "PaymentGB";
-            this.PaymentGB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.PaymentGB.Size = new System.Drawing.Size(539, 280);
+            this.PaymentGB.Size = new System.Drawing.Size(404, 224);
             this.PaymentGB.TabIndex = 2;
             this.PaymentGB.TabStop = false;
             this.PaymentGB.Text = "Choose Payment Method";
@@ -62,16 +60,15 @@ namespace PurrFect
             // 
             this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 25;
+            this.listBox1.ItemHeight = 20;
             this.listBox1.Items.AddRange(new object[] {
             "Maybank2U",
             "Bank Islam Berhad",
             "CIMB",
             "RHB"});
-            this.listBox1.Location = new System.Drawing.Point(361, 221);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox1.Location = new System.Drawing.Point(271, 177);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(156, 29);
+            this.listBox1.Size = new System.Drawing.Size(118, 24);
             this.listBox1.TabIndex = 3;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -79,10 +76,9 @@ namespace PurrFect
             // 
             this.OnlineBankRB.AutoSize = true;
             this.OnlineBankRB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OnlineBankRB.Location = new System.Drawing.Point(49, 221);
-            this.OnlineBankRB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OnlineBankRB.Location = new System.Drawing.Point(37, 177);
             this.OnlineBankRB.Name = "OnlineBankRB";
-            this.OnlineBankRB.Size = new System.Drawing.Size(86, 30);
+            this.OnlineBankRB.Size = new System.Drawing.Size(65, 24);
             this.OnlineBankRB.TabIndex = 2;
             this.OnlineBankRB.TabStop = true;
             this.OnlineBankRB.Text = "FPX";
@@ -94,10 +90,9 @@ namespace PurrFect
             // 
             this.CashRB.AutoSize = true;
             this.CashRB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CashRB.Location = new System.Drawing.Point(49, 150);
-            this.CashRB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CashRB.Location = new System.Drawing.Point(37, 120);
             this.CashRB.Name = "CashRB";
-            this.CashRB.Size = new System.Drawing.Size(94, 30);
+            this.CashRB.Size = new System.Drawing.Size(71, 24);
             this.CashRB.TabIndex = 1;
             this.CashRB.TabStop = true;
             this.CashRB.Text = "Cash";
@@ -109,10 +104,9 @@ namespace PurrFect
             // 
             this.CardRB.AutoSize = true;
             this.CardRB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CardRB.Location = new System.Drawing.Point(49, 71);
-            this.CardRB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CardRB.Location = new System.Drawing.Point(37, 57);
             this.CardRB.Name = "CardRB";
-            this.CardRB.Size = new System.Drawing.Size(90, 30);
+            this.CardRB.Size = new System.Drawing.Size(68, 24);
             this.CardRB.TabIndex = 0;
             this.CardRB.TabStop = true;
             this.CardRB.Text = "Card";
@@ -121,10 +115,9 @@ namespace PurrFect
             // 
             // ProceedBTN
             // 
-            this.ProceedBTN.Location = new System.Drawing.Point(1264, 780);
-            this.ProceedBTN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ProceedBTN.Location = new System.Drawing.Point(948, 624);
             this.ProceedBTN.Name = "ProceedBTN";
-            this.ProceedBTN.Size = new System.Drawing.Size(136, 46);
+            this.ProceedBTN.Size = new System.Drawing.Size(102, 37);
             this.ProceedBTN.TabIndex = 3;
             this.ProceedBTN.Text = "Proceed";
             this.ProceedBTN.UseVisualStyleBackColor = true;
@@ -132,10 +125,9 @@ namespace PurrFect
             // 
             // BackBTN
             // 
-            this.BackBTN.Location = new System.Drawing.Point(1102, 778);
-            this.BackBTN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BackBTN.Location = new System.Drawing.Point(826, 622);
             this.BackBTN.Name = "BackBTN";
-            this.BackBTN.Size = new System.Drawing.Size(128, 49);
+            this.BackBTN.Size = new System.Drawing.Size(96, 39);
             this.BackBTN.TabIndex = 7;
             this.BackBTN.TabStop = false;
             this.BackBTN.Text = "Back";
@@ -145,34 +137,35 @@ namespace PurrFect
             // pictureBox1
             // 
             this.pictureBox1.Image = global::PurrFect.Properties.Resources.PurrfectLogo;
-            this.pictureBox1.Location = new System.Drawing.Point(376, 54);
+            this.pictureBox1.Location = new System.Drawing.Point(282, 43);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(613, 268);
+            this.pictureBox1.Size = new System.Drawing.Size(460, 214);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
             // ReceiptRTB
             // 
-            this.ReceiptRTB.Location = new System.Drawing.Point(79, 378);
+            this.ReceiptRTB.Location = new System.Drawing.Point(59, 302);
+            this.ReceiptRTB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ReceiptRTB.Name = "ReceiptRTB";
-            this.ReceiptRTB.Size = new System.Drawing.Size(599, 461);
+            this.ReceiptRTB.Size = new System.Drawing.Size(473, 370);
             this.ReceiptRTB.TabIndex = 10;
             this.ReceiptRTB.Text = "";
             // 
             // PaymentForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Cornsilk;
-            this.ClientSize = new System.Drawing.Size(1452, 868);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ClientSize = new System.Drawing.Size(1089, 694);
             this.Controls.Add(this.ReceiptRTB);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.BackBTN);
             this.Controls.Add(this.ProceedBTN);
             this.Controls.Add(this.PaymentGB);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PaymentForm";
             this.Text = "Payment";
             this.Load += new System.EventHandler(this.PaymentForm_Load);

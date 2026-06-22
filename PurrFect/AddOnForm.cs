@@ -178,6 +178,218 @@ namespace PurrFect
         }
 
 
+        private void NextBTN_Click(object sender, EventArgs e)
+        {
+            string HairCut = "";
+            string Shampoo = "";
+            string NailClip = "";
+            string FleaTreatment = "";
+            string TeethCleaning = "";
+
+            // 1. Ambil data daripada UI
+            if (KoreanCutRB.Checked) HairCut = "Korean Haircut";
+            else if (DinasourCutRB.Checked) HairCut = "Dinasour Haircut";
+            else if (LionCutRB.Checked) HairCut = "Lion Haircut";
+            else if (BellyCutRB.Checked) HairCut = "Belly Haircut";
+
+            if (comboBox1.SelectedItem != null) Shampoo = comboBox1.SelectedItem.ToString();
+            if (YesRB.Checked) NailClip = "Nail Clipping";
+            if (Yes2RB.Checked) TeethCleaning = "Teeth Cleaning";
+            if (listBox1.SelectedItem != null) FleaTreatment = listBox1.SelectedItem.ToString();
+
+            // 2. Validasi Input Add-On
+            if (HairCut == "" || comboBox1.SelectedItem == null || listBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Please ensure all add-ons are selected.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!YesRB.Checked && !NoRB.Checked)
+            {
+                MessageBox.Show("Please select nail clipping.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!Yes2RB.Checked && !No2RB.Checked)
+            {
+                MessageBox.Show("Please select teeth cleaning.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            
+            Booking.HairCut = HairCut;
+            Booking.Shampoo = Shampoo;
+            Booking.NailClip = NailClip;
+            Booking.FleaTreatment = FleaTreatment;
+            Booking.TeethCleaning = TeethCleaning;
+
+            if (Booking.PetID <= 0)
+            {
+                MessageBox.Show("Ralat: ID Pet tidak dikesan! Sila pastikan pet telah dipilih atau didaftarkan dengan betul di Form sebelum ini sebelum masuk ke Add-On.", "Missing Pet ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                con.Open();
+
+                string query = "INSERT INTO Booking (PetID, GroomerID, ServiceID, BookingDate, BookingTime, Status, TotalPrice) " +
+                               "VALUES (@pet, @groom, @service, @date, @time, @status, @total); " +
+                               "SELECT SCOPE_IDENTITY();";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@pet", Booking.PetID); // Menggunakan PetID yang sah
+                cmd.Parameters.AddWithValue("@groom", Booking.GroomerID);
+                cmd.Parameters.AddWithValue("@service", Booking.ServiceID);
+                cmd.Parameters.AddWithValue("@date", Booking.BookingDate);
+                cmd.Parameters.AddWithValue("@time", Booking.TimeSlot);
+                cmd.Parameters.AddWithValue("@status", "Pending");
+                cmd.Parameters.AddWithValue("@total", Booking.TotalPrice);
+
+                object newId = cmd.ExecuteScalar();
+                if (newId != null)
+                {
+                    Booking.BookingID = Convert.ToInt32(newId);
+                    MessageBox.Show("Booking successfully saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Booking save error: " + ex.Message, "SQL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            // 4. Pindah ke PaymentForm
+            PaymentForm pay = new PaymentForm();
+            pay.Show();
+            this.Hide();
+        }
+
+        private void BackBTN_Click(object sender, EventArgs e)
+        {
+            string HairCut = "";
+            string Shampoo = "";
+            string NailClip = "";
+            string FleaTreatment = "";
+            string TeethCleaning = "";
+
+            //get haircut
+            if (KoreanCutRB.Checked)
+            {
+                HairCut = "Korean Haircut";
+            }
+            else if (DinasourCutRB.Checked)
+            {
+                HairCut = "Dinasour Haircut";
+            }
+            else if (LionCutRB.Checked)
+            {
+                HairCut = "Lion Haircut";
+            }
+            else if (BellyCutRB.Checked)
+            {
+                HairCut = "Belly Haircut";
+            }
+
+            //get shampoo
+            if (comboBox1.SelectedItem != null)
+            {
+                Shampoo = comboBox1.SelectedItem.ToString();
+            }
+
+            //get nail trim
+            if (YesRB.Checked)
+            {
+                NailClip = "Nail Clipping";
+            }
+            else if(NoRB.Checked)
+            {
+                NailClip = "No";
+            }
+
+            if (Yes2RB.Checked)
+            {
+                TeethCleaning = "Teeth Cleaning";
+            }
+            else if (No2RB.Checked)
+            {
+                TeethCleaning = "No";
+            }
+
+            if (listBox1.SelectedItem != null)
+            {
+                FleaTreatment = listBox1.SelectedItem.ToString();
+            }
+
+            //check
+            if (HairCut == "")
+            {
+                MessageBox.Show("Please select haircut.");
+                return;
+            }
+
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Please select shampoo type.");
+                return;
+            }
+
+            if (listBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Please select flea treatment.");
+                return;
+            }
+
+            if (!YesRB.Checked && !NoRB.Checked)
+            {
+                MessageBox.Show("Please select nail clipping.");
+                return;
+            }
+
+            if (!Yes2RB.Checked && !No2RB.Checked)
+            {
+                MessageBox.Show("Please select teeth cleaning.");
+                return;
+            }
+
+            Booking.HairCut = HairCut;
+            Booking.Shampoo = Shampoo;
+            Booking.NailClip = NailClip;
+            Booking.FleaTreatment = FleaTreatment;
+            Booking.TeethCleaning = TeethCleaning;
+
+            BookingForm book = new BookingForm();
+            book.Show();
+            this.Hide();
+        }
+
+        private void AddOnForm_Load(object sender, EventArgs e)
+        {
+            if (Booking.HairCut == "Korean Haircut") KoreanCutRB.Checked = true;
+            else if (Booking.HairCut == "Dinasour Haircut") DinasourCutRB.Checked = true;
+            else if (Booking.HairCut == "Lion Haircut") LionCutRB.Checked = true;
+            else if (Booking.HairCut == "Belly Haircut") BellyCutRB.Checked = true;
+
+            if (!string.IsNullOrEmpty(Booking.Shampoo))
+            {
+                comboBox1.SelectedItem = Booking.Shampoo;
+            }
+
+            if (!string.IsNullOrEmpty(Booking.FleaTreatment))
+            {
+                listBox1.SelectedItem = Booking.FleaTreatment;
+            }
+
+            if (Booking.NailClip == "Nail Clipping") YesRB.Checked = true;
+            else if (Booking.NailClip == "No") NoRB.Checked = true;
+
+            if (Booking.TeethCleaning == "Teeth Cleaning") Yes2RB.Checked = true;
+            else if (Booking.TeethCleaning == "No") No2RB.Checked = true;
+        }
+
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -285,196 +497,6 @@ namespace PurrFect
 
         }
 
-        private void NextBTN_Click(object sender, EventArgs e)
-        {
-            string HairCut = "";
-            string Shampoo = "";
-            string NailClip = "";
-            string FleaTreatment = "";
-            string TeethCleaning = "";
-
-            // 1. Get data
-            if (KoreanCutRB.Checked) HairCut = "Korean Haircut";
-            else if (DinasourCutRB.Checked) HairCut = "Dinasour Haircut";
-            else if (LionCutRB.Checked) HairCut = "Lion Haircut";
-            else if (BellyCutRB.Checked) HairCut = "Belly Haircut";
-
-            if (comboBox1.SelectedItem != null) Shampoo = comboBox1.SelectedItem.ToString();
-            if (YesRB.Checked) NailClip = "Nail Clipping";
-            if (Yes2RB.Checked) TeethCleaning = "Teeth Cleaning";
-            if (listBox1.SelectedItem != null) FleaTreatment = listBox1.SelectedItem.ToString();
-
-            // 2. Validation
-            if (HairCut == "" || comboBox1.SelectedItem == null || listBox1.SelectedItem == null)
-            {
-                MessageBox.Show("Please ensure all add-ons are selected.");
-                return;
-            }
-            if (!YesRB.Checked && !NoRB.Checked)
-            {
-                MessageBox.Show("Please select nail clipping.");
-                return;
-            }
-            if (!Yes2RB.Checked && !No2RB.Checked)
-            {
-                MessageBox.Show("Please select teeth cleaning.");
-                return;
-            }
-
-            // Save to global variables
-            Booking.HairCut = HairCut;
-            Booking.Shampoo = Shampoo;
-            Booking.NailClip = NailClip;
-            Booking.FleaTreatment = FleaTreatment;
-            Booking.TeethCleaning = TeethCleaning;
-
-            // if pet is 0
-            if (Booking.PetID <= 0)
-            {
-                Booking.PetID = 1;
-            }
-
-            // 3. Database Operation
-            try
-            {
-                con.Open();
-
-                string query = "INSERT INTO Booking (PetID, GroomerID, ServiceID, BookingDate, BookingTime, Status, TotalPrice) " +
-                               "VALUES (@pet, @groom, @service, @date, @time, @status, @total); " +
-                               "SELECT SCOPE_IDENTITY();";
-
-                SqlCommand cmd = new SqlCommand(query, con);
-
-                
-                cmd.Parameters.AddWithValue("@pet", Booking.PetID <= 0 ? 1 : Booking.PetID);
-                cmd.Parameters.AddWithValue("@groom", Booking.GroomerID);   
-                cmd.Parameters.AddWithValue("@service", Booking.ServiceID);
-
-                cmd.Parameters.AddWithValue("@date", Booking.BookingDate);
-                cmd.Parameters.AddWithValue("@time", Booking.TimeSlot);
-                cmd.Parameters.AddWithValue("@status", "Pending"); 
-                cmd.Parameters.AddWithValue("@total", Booking.TotalPrice);
-
-                object newId = cmd.ExecuteScalar();
-                if (newId != null)
-                {
-                    Booking.BookingID = Convert.ToInt32(newId);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Booking save error: " + ex.Message);
-                return;
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            // 4. Move to next form
-            PaymentForm pay = new PaymentForm();
-            pay.Show();
-            this.Hide();
-        }
-
-        private void BackBTN_Click(object sender, EventArgs e)
-        {
-            string HairCut = "";
-            string Shampoo = "";
-            string NailClip = "";
-            string FleaTreatment = "";
-            string TeethCleaning = "";
-
-            //get haircut
-            if (KoreanCutRB.Checked)
-            {
-                HairCut = "Korean Haircut";
-            }
-            else if (DinasourCutRB.Checked)
-            {
-                HairCut = "Dinasour Haircut";
-            }
-            else if (LionCutRB.Checked)
-            {
-                HairCut = "Lion Haircut";
-            }
-            else if (BellyCutRB.Checked)
-            {
-                HairCut = "Belly Haircut";
-            }
-
-            //get shampoo
-            if (comboBox1.SelectedItem != null)
-            {
-                Shampoo = comboBox1.SelectedItem.ToString();
-            }
-
-            //get nail trim
-            if (YesRB.Checked)
-            {
-                NailClip = "Nail Clipping";
-            }
-            else if(NoRB.Checked)
-            {
-                NailClip = "No";
-            }
-
-            if (Yes2RB.Checked)
-            {
-                TeethCleaning = "Teeth Cleaning";
-            }
-            else if (No2RB.Checked)
-            {
-                TeethCleaning = "No";
-            }
-
-            if (listBox1.SelectedItem != null)
-            {
-                FleaTreatment = listBox1.SelectedItem.ToString();
-            }
-
-            //check
-            if (HairCut == "")
-            {
-                MessageBox.Show("Please select haircut.");
-                return;
-            }
-
-            if (comboBox1.SelectedItem == null)
-            {
-                MessageBox.Show("Please select shampoo type.");
-                return;
-            }
-
-            if (listBox1.SelectedItem == null)
-            {
-                MessageBox.Show("Please select flea treatment.");
-                return;
-            }
-
-            if (!YesRB.Checked && !NoRB.Checked)
-            {
-                MessageBox.Show("Please select nail clipping.");
-                return;
-            }
-
-            if (!Yes2RB.Checked && !No2RB.Checked)
-            {
-                MessageBox.Show("Please select teeth cleaning.");
-                return;
-            }
-
-            Booking.HairCut = HairCut;
-            Booking.Shampoo = Shampoo;
-            Booking.NailClip = NailClip;
-            Booking.FleaTreatment = FleaTreatment;
-            Booking.TeethCleaning = TeethCleaning;
-
-            BookingForm book = new BookingForm();
-            book.Show();
-            this.Hide();
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -488,30 +510,6 @@ namespace PurrFect
         private void label2_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void AddOnForm_Load(object sender, EventArgs e)
-        {
-            if (Booking.HairCut == "Korean Haircut") KoreanCutRB.Checked = true;
-            else if (Booking.HairCut == "Dinasour Haircut") DinasourCutRB.Checked = true;
-            else if (Booking.HairCut == "Lion Haircut") LionCutRB.Checked = true;
-            else if (Booking.HairCut == "Belly Haircut") BellyCutRB.Checked = true;
-
-            if (!string.IsNullOrEmpty(Booking.Shampoo))
-            {
-                comboBox1.SelectedItem = Booking.Shampoo;
-            }
-
-            if (!string.IsNullOrEmpty(Booking.FleaTreatment))
-            {
-                listBox1.SelectedItem = Booking.FleaTreatment;
-            }
-
-            if (Booking.NailClip == "Nail Clipping") YesRB.Checked = true;
-            else if (Booking.NailClip == "No") NoRB.Checked = true;
-
-            if (Booking.TeethCleaning == "Teeth Cleaning") Yes2RB.Checked = true;
-            else if (Booking.TeethCleaning == "No") No2RB.Checked = true;
         }
     }
 }

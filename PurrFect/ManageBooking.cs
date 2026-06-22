@@ -11,13 +11,10 @@ using System.Windows.Forms;
 
 namespace PurrFect
 {
-    
-        public partial class ManageBooking : Form
+    public partial class ManageBooking : Form
     {
-        
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Nur Auyunn\OneDrive\Documents\PROJECT\PurrFect\PurrFect\PurrFect.mdf;Integrated Security=True");
 
-        
         public string CurrentUserRole { get; set; } = "Admin";
 
         public ManageBooking()
@@ -25,19 +22,34 @@ namespace PurrFect
             InitializeComponent();
         }
 
-        private void txtbxID_TextChanged(object sender, EventArgs e)
+        private void ManageBooking_Load(object sender, EventArgs e)
         {
+            // Sekat akses jika bukan Admin/Staff
+            switch (CurrentUserRole)
+            {
+                case "Admin":
+                case "Staff":
+                    break;
+                default:
+                    MessageBox.Show("Access Denied! Standard Users cannot access the Admin Module.", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    this.Close();
+                    return;
+            }
+
+            // SEKAT USER DARIPADA USIK BOOKING ID SECARA MANUAL
+            txtbxID.ReadOnly = true;
+            txtbxID.BackColor = SystemColors.InactiveCaption; // Tukar warna paparan supaya nampak 'disabled'
+
+            LoadBooking();
+            LoadComboBoxData();
         }
 
-        
         void LoadBooking()
         {
             try
             {
-                if (con.State == ConnectionState.Closed)
-                    con.Open();
+                if (con.State == ConnectionState.Closed) con.Open();
 
-                
                 SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Booking", con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -49,7 +61,6 @@ namespace PurrFect
                     dgvBooking.Columns["TotalPrice"].DefaultCellStyle.Format = "N2";
                 }
 
-                
                 CalculateSystemMetrics(dt);
             }
             catch (Exception ex)
@@ -62,65 +73,40 @@ namespace PurrFect
             }
         }
 
-        private void CalculateSystemMetrics(DataTable dt)
-        {
-            
-            string[] statusTypes = new string[] { "Pending", "Completed", "Cancelled" };
-
-           
-            List<decimal> priceList = new List<decimal>();
-
-            int rowCount = dt.Rows.Count;
-            decimal totalSum = 0;
-
-            for (int i = 0; i < rowCount; i++)
-            {
-                if (dt.Rows[i]["TotalPrice"] != DBNull.Value)
-                {
-                    priceList.Add(Convert.ToDecimal(dt.Rows[i]["TotalPrice"]));
-                }
-            }
-
-            foreach (decimal price in priceList)
-            {
-                totalSum += price;
-            }
-
-            int checkIndex = 0;
-            do
-            {
-                checkIndex++;
-            } while (checkIndex < rowCount && checkIndex < 0);
-
-            BookingReport currentReport = new BookingReport(rowCount, totalSum);
-
-            Console.WriteLine("Summary Created: " + currentReport.TotalAppointments + " items found.");
-        }
-
         void LoadComboBoxData()
         {
             try
             {
                 if (con.State == ConnectionState.Closed) con.Open();
 
+                // 1. Load Data Groomer
                 SqlDataAdapter daGroomer = new SqlDataAdapter("SELECT GroomerID, GroomerName FROM Groomer", con);
                 DataTable dtGroomer = new DataTable();
                 daGroomer.Fill(dtGroomer);
-
                 TBGroomerID.DataSource = dtGroomer;
                 TBGroomerID.DisplayMember = "GroomerName";
                 TBGroomerID.ValueMember = "GroomerID";
 
+                // 2. Load Data Service
                 SqlDataAdapter daService = new SqlDataAdapter("SELECT ServiceID, ServiceName FROM ServicePackage", con);
                 DataTable dtService = new DataTable();
                 daService.Fill(dtService);
-
                 TBServiceID.DataSource = dtService;
                 TBServiceID.DisplayMember = "ServiceName";
                 TBServiceID.ValueMember = "ServiceID";
 
+                // 3. FIX: Load Data Pet ke dalam ComboBox (Ganti TBPetID daripada TextBox ke ComboBox di Designer)
+                SqlDataAdapter daPet = new SqlDataAdapter("SELECT PetID, PetName FROM Pet", con);
+                DataTable dtPet = new DataTable();
+                daPet.Fill(dtPet);
+                TBPetID.DataSource = dtPet;
+                TBPetID.DisplayMember = "PetName";
+                TBPetID.ValueMember = "PetID";
+
+                // Set pilihan awal ke kosong
                 TBGroomerID.SelectedIndex = -1;
                 TBServiceID.SelectedIndex = -1;
+                TBPetID.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -132,37 +118,17 @@ namespace PurrFect
             }
         }
 
-        private void ManageBooking_Load(object sender, EventArgs e)
-        {
-           
-            switch (CurrentUserRole)
-            {
-                case "Admin":
-                case "Staff":
-                    
-                    break;
-                default:
-                    MessageBox.Show("Access Denied! Standard Users cannot access the Admin Module.", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    this.Close();
-                    return;
-            }
-
-            LoadBooking();
-            LoadComboBoxData();
-        }
-
-        
         private void bttnAdd_Click(object sender, EventArgs e)
         {
-            
-            if (string.IsNullOrWhiteSpace(TBPetID.Text) ||
+            // Validasi baris input menggunakan SelectedValue ComboBox
+            if (TBPetID.SelectedValue == null ||
                 TBGroomerID.SelectedValue == null ||
                 TBServiceID.SelectedValue == null ||
                 string.IsNullOrWhiteSpace(cbTime.Text) ||
                 string.IsNullOrWhiteSpace(TBStatus.Text) ||
                 string.IsNullOrWhiteSpace(TBTotPrice.Text))
             {
-                MessageBox.Show("Please fill in all the required fields before adding a booking!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please fill/select all the required fields before adding a booking!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -170,12 +136,12 @@ namespace PurrFect
             {
                 if (con.State == ConnectionState.Closed) con.Open();
 
-               
                 SqlCommand cmd = new SqlCommand(
                     "INSERT INTO Booking (PetID, GroomerID, ServiceID, BookingDate, BookingTime, Status, TotalPrice) " +
                     "VALUES (@p, @g, @s, @d, @t, @st, @pr)", con);
 
-                cmd.Parameters.AddWithValue("@p", TBPetID.Text);
+                // Mengambil ValueMember (ID integer) dari ComboBox
+                cmd.Parameters.AddWithValue("@p", TBPetID.SelectedValue);
                 cmd.Parameters.AddWithValue("@g", TBGroomerID.SelectedValue);
                 cmd.Parameters.AddWithValue("@s", TBServiceID.SelectedValue);
                 cmd.Parameters.AddWithValue("@d", dtpDate.Value);
@@ -186,14 +152,7 @@ namespace PurrFect
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Booking record successfully added!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                txtbxID.Clear();
-                TBPetID.Clear();
-                TBStatus.Clear();
-                TBTotPrice.Clear();
-                TBGroomerID.SelectedIndex = -1;
-                TBServiceID.SelectedIndex = -1;
-                cbTime.SelectedIndex = -1;
-
+                ClearFields();
                 LoadBooking();
             }
             catch (Exception ex)
@@ -206,37 +165,32 @@ namespace PurrFect
             }
         }
 
-        
         private void dgvBooking_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvBooking.Rows[e.RowIndex];
 
-                txtbxID.Text = row.Cells[0].Value.ToString();
-                TBPetID.Text = row.Cells[1].Value.ToString();
+                txtbxID.Text = row.Cells["BookingID"].Value.ToString(); // Menggunakan nama kolum database lebih selamat
 
-                TBGroomerID.SelectedValue = row.Cells[2].Value;
-                TBServiceID.SelectedValue = row.Cells[3].Value;
+                // Set SelectedValue ComboBox berdasarkan ID yang sepadan daripada grid
+                TBPetID.SelectedValue = row.Cells["PetID"].Value;
+                TBGroomerID.SelectedValue = row.Cells["GroomerID"].Value;
+                TBServiceID.SelectedValue = row.Cells["ServiceID"].Value;
 
-                cbTime.Text = row.Cells[5].Value.ToString();
-                TBStatus.Text = row.Cells[6].Value.ToString();
+                cbTime.Text = row.Cells["BookingTime"].Value.ToString();
+                TBStatus.Text = row.Cells["Status"].Value.ToString();
 
-                if (row.Cells[7].Value != DBNull.Value)
+                if (row.Cells["TotalPrice"].Value != DBNull.Value)
                 {
-                    TBTotPrice.Text = Convert.ToDecimal(row.Cells[7].Value).ToString("0.00");
+                    TBTotPrice.Text = Convert.ToDecimal(row.Cells["TotalPrice"].Value).ToString("0.00");
                 }
 
-                if (row.Cells[4].Value != DBNull.Value)
-                    dtpDate.Value = Convert.ToDateTime(row.Cells[4].Value);
-
-                
-                string activeID = txtbxID.Text;
-                this.Tag = activeID; 
+                if (row.Cells["BookingDate"].Value != DBNull.Value)
+                    dtpDate.Value = Convert.ToDateTime(row.Cells["BookingDate"].Value);
             }
         }
 
-        
         private void bttnEdit_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtbxID.Text))
@@ -245,28 +199,16 @@ namespace PurrFect
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(TBPetID.Text) ||
-                TBGroomerID.SelectedValue == null ||
-                TBServiceID.SelectedValue == null ||
-                string.IsNullOrWhiteSpace(cbTime.Text) ||
-                string.IsNullOrWhiteSpace(TBStatus.Text) ||
-                string.IsNullOrWhiteSpace(TBTotPrice.Text))
-            {
-                MessageBox.Show("Fields cannot be empty when updating a record!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             try
             {
                 if (con.State == ConnectionState.Closed) con.Open();
 
-                // SQL QUERIES (UPDATE)
                 SqlCommand cmd = new SqlCommand(
                     "UPDATE Booking SET PetID=@p, GroomerID=@g, ServiceID=@s, " +
                     "BookingDate=@d, BookingTime=@t, Status=@st, TotalPrice=@pr WHERE BookingID=@b", con);
 
                 cmd.Parameters.AddWithValue("@b", txtbxID.Text);
-                cmd.Parameters.AddWithValue("@p", TBPetID.Text);
+                cmd.Parameters.AddWithValue("@p", TBPetID.SelectedValue);
                 cmd.Parameters.AddWithValue("@g", TBGroomerID.SelectedValue);
                 cmd.Parameters.AddWithValue("@s", TBServiceID.SelectedValue);
                 cmd.Parameters.AddWithValue("@d", dtpDate.Value);
@@ -289,7 +231,6 @@ namespace PurrFect
             }
         }
 
-       
         private void bttnDelete_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtbxID.Text))
@@ -306,21 +247,13 @@ namespace PurrFect
                 {
                     if (con.State == ConnectionState.Closed) con.Open();
 
-                    // SQL QUERIES (DELETE)
                     SqlCommand cmd = new SqlCommand("DELETE FROM Booking WHERE BookingID=@id", con);
                     cmd.Parameters.AddWithValue("@id", txtbxID.Text);
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Booking record successfully deleted!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    txtbxID.Clear();
-                    TBPetID.Clear();
-                    TBStatus.Clear();
-                    TBTotPrice.Clear();
-                    TBGroomerID.SelectedIndex = -1;
-                    TBServiceID.SelectedIndex = -1;
-                    cbTime.SelectedIndex = -1;
-
+                    ClearFields();
                     LoadBooking();
                 }
                 catch (Exception ex)
@@ -334,31 +267,47 @@ namespace PurrFect
             }
         }
 
+        void ClearFields()
+        {
+            txtbxID.Clear();
+            TBStatus.Clear();
+            TBTotPrice.Clear();
+            TBPetID.SelectedIndex = -1;
+            TBGroomerID.SelectedIndex = -1;
+            TBServiceID.SelectedIndex = -1;
+            cbTime.SelectedIndex = -1;
+        }
+
+        private void CalculateSystemMetrics(DataTable dt)
+        {
+            int rowCount = dt.Rows.Count;
+            decimal totalSum = 0;
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                if (dt.Rows[i]["TotalPrice"] != DBNull.Value)
+                {
+                    totalSum += Convert.ToDecimal(dt.Rows[i]["TotalPrice"]);
+                }
+            }
+
+            BookingReport currentReport = new BookingReport(rowCount, totalSum);
+            Console.WriteLine("Summary Created: " + currentReport.TotalAppointments + " items found.");
+        }
+
         public class BookingReport
         {
-            private int totalAppointments;
-            private decimal totalRevenue;
-
-            public int TotalAppointments
-            {
-                get { return totalAppointments; }
-                set { totalAppointments = value; }
-            }
-            public decimal TotalRevenue
-            {
-                get { return totalRevenue; }
-                set { totalRevenue = value; }
-            }
+            public int TotalAppointments { get; set; }
+            public decimal TotalRevenue { get; set; }
 
             public BookingReport(int appointments, decimal revenue)
             {
-                this.totalAppointments = appointments;
-                this.totalRevenue = revenue;
+                this.TotalAppointments = appointments;
+                this.TotalRevenue = revenue;
             }
         }
 
-        private void cbTime_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
+        private void txtbxID_TextChanged(object sender, EventArgs e) { }
+        private void cbTime_SelectedIndexChanged(object sender, EventArgs e) { }
     }
 }

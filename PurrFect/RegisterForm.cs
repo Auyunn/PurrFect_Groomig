@@ -14,6 +14,7 @@ namespace PurrFect
     public partial class RegisterForm : Form
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Nur Auyunn\OneDrive\Documents\PROJECT\PurrFect\PurrFect\PurrFect.mdf;Integrated Security=True");
+
         public RegisterForm()
         {
             InitializeComponent();
@@ -23,16 +24,12 @@ namespace PurrFect
         {
             txtPassword.UseSystemPasswordChar = true;
             txtConfirmPassword.UseSystemPasswordChar = true;
-
         }
 
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
         {
-            txtPassword.UseSystemPasswordChar =
-                !chkShowPassword.Checked;
-
-            txtConfirmPassword.UseSystemPasswordChar =
-                !chkShowPassword.Checked;
+            txtPassword.UseSystemPasswordChar = !chkShowPassword.Checked;
+            txtConfirmPassword.UseSystemPasswordChar = !chkShowPassword.Checked;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -40,42 +37,20 @@ namespace PurrFect
             string role = "";
 
             if (radioButton1.Checked)
-            {
                 role = "User";
-            }
             else if (radioButton2.Checked)
-            {
                 role = "Admin";
-            }
 
-            // Validation
-            if (string.IsNullOrWhiteSpace(txtUsername.Text))
+            if (string.IsNullOrWhiteSpace(txtUsername.Text) || string.IsNullOrWhiteSpace(txtPassword.Text) ||
+                string.IsNullOrWhiteSpace(txtConfirmPassword.Text) || string.IsNullOrEmpty(role))
             {
-                MessageBox.Show("Please enter username.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtPassword.Text))
-            {
-                MessageBox.Show("Please enter password.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtConfirmPassword.Text))
-            {
-                MessageBox.Show("Please confirm password.");
+                MessageBox.Show("Please fill in all blanks.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (txtPassword.Text != txtConfirmPassword.Text)
             {
-                MessageBox.Show("Passwords do not match.");
-                return;
-            }
-
-            if (role == "")
-            {
-                MessageBox.Show("Please select role.");
+                MessageBox.Show("Passwords do not match.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -83,53 +58,44 @@ namespace PurrFect
             {
                 con.Open();
 
-                // Check username
-                SqlCommand checkCmd = new SqlCommand(
-                    "SELECT COUNT(*) FROM Users WHERE Username=@Username",
-                    con);
-
-                checkCmd.Parameters.AddWithValue(
-                    "@Username",
-                    txtUsername.Text.Trim());
-
-                int count = (int)checkCmd.ExecuteScalar();
-
-                if (count > 0)
+                string checkUser = "SELECT COUNT(1) FROM Users WHERE Username=@user";
+                SqlCommand checkCmd = new SqlCommand(checkUser, con);
+                checkCmd.Parameters.AddWithValue("@user", txtUsername.Text.Trim());
+                if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
                 {
-                    MessageBox.Show("Username already exists.");
+                    MessageBox.Show("Username already exists. Please choose another one.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Insert user/admin
-                SqlCommand cmd = new SqlCommand(
-                    "INSERT INTO Users (Username, Password, Role) " +
-                    "VALUES (@Username, @Password, @Role)",
-                    con);
+                string query = "INSERT INTO Users (Username, Password, Role) " +
+                               "OUTPUT INSERTED.UserID VALUES (@user, @pass, @role)";
 
-                cmd.Parameters.AddWithValue(
-                    "@Username",
-                    txtUsername.Text.Trim());
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@user", txtUsername.Text.Trim());
+                cmd.Parameters.AddWithValue("@pass", txtPassword.Text.Trim());
+                cmd.Parameters.AddWithValue("@role", role);
 
-                cmd.Parameters.AddWithValue(
-                    "@Password",
-                    txtPassword.Text);
+                int newUserID = Convert.ToInt32(cmd.ExecuteScalar());
+                Booking.UserID = newUserID;
 
-                cmd.Parameters.AddWithValue(
-                    "@Role",
-                    role);
+                MessageBox.Show("Registration Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Account Registered Successfully!");
-
-                RegisterPetForm login = new RegisterPetForm();
-                login.Show();
+                if (role == "User")
+                {
+                    RegisterPetForm petForm = new RegisterPetForm();
+                    petForm.Show();
+                }
+                else if (role == "Admin")
+                {
+                    AdminDashboard adminForm = new AdminDashboard();
+                    adminForm.Show();
+                }
 
                 this.Hide();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Registration error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -141,26 +107,12 @@ namespace PurrFect
         {
             LogInForm frm = new LogInForm();
             frm.Show();
-
             this.Hide();
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void chkFemale_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void checkBox2_CheckedChanged(object sender, EventArgs e) { }
+        private void chkFemale_CheckedChanged(object sender, EventArgs e) { }
+        private void radioButton2_CheckedChanged(object sender, EventArgs e) { }
+        private void radioButton1_CheckedChanged(object sender, EventArgs e) { }
     }
 }

@@ -5,6 +5,7 @@ namespace PurrFect
 {
     public static class Booking
     {
+        public static int UserID { get; set; }
         public static int PetID { get; set; }
         public static int GroomerID { get; set; }
         public static int ServiceID { get; set; }
@@ -57,5 +58,13 @@ namespace PurrFect
             }
             return total;
         }
+    }
+}
+namespace PurrFect
+{
+
+
+    public partial class PurrFect
+    {
     }
 }

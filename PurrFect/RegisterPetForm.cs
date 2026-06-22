@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace PurrFect
 {
     public partial class RegisterPetForm : Form
     {
+        private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Nur Auyunn\OneDrive\Documents\PROJECT\PurrFect\PurrFect\PurrFect.mdf;Integrated Security=True";
+
         public RegisterPetForm()
         {
             InitializeComponent();
@@ -24,47 +27,53 @@ namespace PurrFect
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
-            if (textBoxName.Text == "")
+            if (string.IsNullOrWhiteSpace(textBoxName.Text) || string.IsNullOrWhiteSpace(textBoxBreed.Text))
             {
-                MessageBox.Show("Please enter the pet's name.");
+                MessageBox.Show("Please fill in the pet's required details.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (textBoxBreed.Text == "")
+            if (!int.TryParse(textBoxAge.Text, out int age) || !decimal.TryParse(textBoxWeight.Text, out decimal weight))
             {
-                MessageBox.Show("Please enter the pet's breed.");
+                MessageBox.Show("Please enter valid age and weight.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-
-            if (textBoxAge.Text == "")
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                MessageBox.Show("Please enter the pet's age.");
-                return;
+                try
+                {
+                    con.Open();
+                    string query = "INSERT INTO Pet (UserID, PetName, Breed, Age, Weight, Allergies, Vaccinated) " +
+                                   "OUTPUT INSERTED.PetID VALUES (@userId, @name, @breed, @age, @weight, @allergies, @vaccinated)";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@userId", Booking.UserID); 
+                    cmd.Parameters.AddWithValue("@name", textBoxName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@breed", textBoxBreed.Text.Trim());
+                    cmd.Parameters.AddWithValue("@age", age);
+                    cmd.Parameters.AddWithValue("@weight", weight);
+                    cmd.Parameters.AddWithValue("@allergies", string.IsNullOrWhiteSpace(textBoxAllergies.Text) ? "None" : textBoxAllergies.Text.Trim());
+                    cmd.Parameters.AddWithValue("@vaccinated", textBoxVaccinated.Text.Trim());
+
+                    object newPetId = cmd.ExecuteScalar();
+
+                    if (newPetId != null)
+                    {
+                        Booking.PetID = Convert.ToInt32(newPetId);
+                        MessageBox.Show("Pet successfully registered!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                       
+                        BookingForm booking = new BookingForm();
+                        booking.Show();
+                        this.Hide();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error saving pet to database: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-
-            if (textBoxWeight.Text == "")
-            {
-                MessageBox.Show("Please enter the pet's weight.");
-                return;
-            }
-
-            if (textBoxAllergies.Text == "")
-            {
-                MessageBox.Show("Please enter the pet's allergies.");
-                return;
-            }
-
-            if (textBoxVaccinated.Text == "")
-            {
-                MessageBox.Show("Please enter the pet's vaccination status.");
-                return;
-            }
-
-
-        MessageBox.Show("Pet Registered!", "Success",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -75,25 +84,7 @@ namespace PurrFect
             textBoxWeight.Clear();
             textBoxVaccinated.Clear();
             textBoxAllergies.Clear();
-
             textBoxName.Focus();
-        }
-
-        private void textBoxName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonPrev_Click(object sender, EventArgs e)
-        {
-            RegisterForm rf = new RegisterForm();
-            this.Show();
-        }
-
-        private void buttonNext_Click(object sender, EventArgs e)
-        {
-            BookingForm bf = new BookingForm();
-            this.Show();
         }
     }
 }

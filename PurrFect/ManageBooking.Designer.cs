@@ -36,7 +36,6 @@ namespace PurrFect
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.TBPetID = new System.Windows.Forms.TextBox();
             this.TBStatus = new System.Windows.Forms.TextBox();
             this.TBGroomerID = new System.Windows.Forms.ComboBox();
             this.cbTime = new System.Windows.Forms.ComboBox();
@@ -48,6 +47,7 @@ namespace PurrFect
             this.TBServiceID = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.TBTotPrice = new System.Windows.Forms.TextBox();
+            this.TBPetID = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,13 +124,6 @@ namespace PurrFect
             this.label5.Size = new System.Drawing.Size(56, 20);
             this.label5.TabIndex = 10;
             this.label5.Text = "Status";
-            // 
-            // TBPetID
-            // 
-            this.TBPetID.Location = new System.Drawing.Point(187, 106);
-            this.TBPetID.Name = "TBPetID";
-            this.TBPetID.Size = new System.Drawing.Size(313, 26);
-            this.TBPetID.TabIndex = 12;
             // 
             // TBStatus
             // 
@@ -229,12 +222,21 @@ namespace PurrFect
             this.TBTotPrice.Size = new System.Drawing.Size(313, 26);
             this.TBTotPrice.TabIndex = 24;
             // 
+            // TBPetID
+            // 
+            this.TBPetID.FormattingEnabled = true;
+            this.TBPetID.Location = new System.Drawing.Point(187, 112);
+            this.TBPetID.Name = "TBPetID";
+            this.TBPetID.Size = new System.Drawing.Size(313, 28);
+            this.TBPetID.TabIndex = 25;
+            // 
             // ManageBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1142, 544);
+            this.Controls.Add(this.TBPetID);
             this.Controls.Add(this.TBTotPrice);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.TBServiceID);
@@ -246,7 +248,6 @@ namespace PurrFect
             this.Controls.Add(this.cbTime);
             this.Controls.Add(this.TBGroomerID);
             this.Controls.Add(this.TBStatus);
-            this.Controls.Add(this.TBPetID);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -274,7 +275,6 @@ namespace PurrFect
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox TBPetID;
         private System.Windows.Forms.TextBox TBStatus;
         private System.Windows.Forms.ComboBox TBGroomerID;
         private System.Windows.Forms.ComboBox cbTime;
@@ -286,5 +286,6 @@ namespace PurrFect
         private System.Windows.Forms.ComboBox TBServiceID;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox TBTotPrice;
+        private System.Windows.Forms.ComboBox TBPetID;
     }
 }

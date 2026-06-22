@@ -1,4 +1,4 @@
-﻿namespace PurrFect
+namespace PurrFect
 {
     partial class RegisterPetForm
     {
@@ -45,8 +45,6 @@
             this.textBoxAge = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialogUpload = new System.Windows.Forms.OpenFileDialog();
-            this.buttonNext = new System.Windows.Forms.Button();
-            this.buttonPrev = new System.Windows.Forms.Button();
             this.groupBoxDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -55,9 +53,10 @@
             // 
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName.Location = new System.Drawing.Point(46, 108);
+            this.labelName.Location = new System.Drawing.Point(34, 86);
+            this.labelName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(192, 45);
+            this.labelName.Size = new System.Drawing.Size(143, 32);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "Pet Name :";
             // 
@@ -65,9 +64,10 @@
             // 
             this.labelBreed.AutoSize = true;
             this.labelBreed.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBreed.Location = new System.Drawing.Point(115, 193);
+            this.labelBreed.Location = new System.Drawing.Point(86, 154);
+            this.labelBreed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBreed.Name = "labelBreed";
-            this.labelBreed.Size = new System.Drawing.Size(132, 45);
+            this.labelBreed.Size = new System.Drawing.Size(97, 32);
             this.labelBreed.TabIndex = 2;
             this.labelBreed.Text = "Breed :";
             // 
@@ -75,9 +75,10 @@
             // 
             this.labelWeight.AutoSize = true;
             this.labelWeight.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWeight.Location = new System.Drawing.Point(92, 350);
+            this.labelWeight.Location = new System.Drawing.Point(69, 280);
+            this.labelWeight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelWeight.Name = "labelWeight";
-            this.labelWeight.Size = new System.Drawing.Size(155, 45);
+            this.labelWeight.Size = new System.Drawing.Size(114, 32);
             this.labelWeight.TabIndex = 5;
             this.labelWeight.Text = "Weight :";
             // 
@@ -85,34 +86,37 @@
             // 
             this.labelAllergies.AutoSize = true;
             this.labelAllergies.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAllergies.Location = new System.Drawing.Point(68, 427);
+            this.labelAllergies.Location = new System.Drawing.Point(51, 342);
+            this.labelAllergies.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAllergies.Name = "labelAllergies";
-            this.labelAllergies.Size = new System.Drawing.Size(179, 45);
+            this.labelAllergies.Size = new System.Drawing.Size(131, 32);
             this.labelAllergies.TabIndex = 6;
             this.labelAllergies.Text = "Allergies :";
             // 
             // textBoxName
             // 
             this.textBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxName.Location = new System.Drawing.Point(268, 108);
+            this.textBoxName.Location = new System.Drawing.Point(201, 86);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxName.Multiline = true;
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(493, 53);
+            this.textBoxName.Size = new System.Drawing.Size(371, 43);
             this.textBoxName.TabIndex = 8;
-            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
             // textBoxBreed
             // 
-            this.textBoxBreed.Location = new System.Drawing.Point(268, 193);
+            this.textBoxBreed.Location = new System.Drawing.Point(201, 154);
+            this.textBoxBreed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxBreed.Name = "textBoxBreed";
-            this.textBoxBreed.Size = new System.Drawing.Size(277, 35);
+            this.textBoxBreed.Size = new System.Drawing.Size(209, 28);
             this.textBoxBreed.TabIndex = 9;
             // 
             // textBoxAllergies
             // 
-            this.textBoxAllergies.Location = new System.Drawing.Point(268, 437);
+            this.textBoxAllergies.Location = new System.Drawing.Point(201, 350);
+            this.textBoxAllergies.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxAllergies.Name = "textBoxAllergies";
-            this.textBoxAllergies.Size = new System.Drawing.Size(277, 35);
+            this.textBoxAllergies.Size = new System.Drawing.Size(209, 28);
             this.textBoxAllergies.TabIndex = 15;
             // 
             // groupBoxDetails
@@ -134,9 +138,11 @@
             this.groupBoxDetails.Controls.Add(this.labelBreed);
             this.groupBoxDetails.Controls.Add(this.labelName);
             this.groupBoxDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxDetails.Location = new System.Drawing.Point(53, 64);
+            this.groupBoxDetails.Location = new System.Drawing.Point(40, 51);
+            this.groupBoxDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBoxDetails.Name = "groupBoxDetails";
-            this.groupBoxDetails.Size = new System.Drawing.Size(1429, 669);
+            this.groupBoxDetails.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxDetails.Size = new System.Drawing.Size(1072, 535);
             this.groupBoxDetails.TabIndex = 16;
             this.groupBoxDetails.TabStop = false;
             this.groupBoxDetails.Text = "Pet Details";
@@ -144,27 +150,30 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::PurrFect.Properties.Resources.PurrfectLogo;
-            this.pictureBox1.Location = new System.Drawing.Point(866, 108);
+            this.pictureBox1.Location = new System.Drawing.Point(650, 86);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(501, 403);
+            this.pictureBox1.Size = new System.Drawing.Size(376, 322);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
             // 
             // textBoxVaccinated
             // 
-            this.textBoxVaccinated.Location = new System.Drawing.Point(268, 501);
+            this.textBoxVaccinated.Location = new System.Drawing.Point(201, 401);
+            this.textBoxVaccinated.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxVaccinated.Name = "textBoxVaccinated";
-            this.textBoxVaccinated.Size = new System.Drawing.Size(277, 35);
+            this.textBoxVaccinated.Size = new System.Drawing.Size(209, 28);
             this.textBoxVaccinated.TabIndex = 20;
             // 
             // labelVaccinated
             // 
             this.labelVaccinated.AutoSize = true;
             this.labelVaccinated.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVaccinated.Location = new System.Drawing.Point(36, 491);
+            this.labelVaccinated.Location = new System.Drawing.Point(27, 393);
+            this.labelVaccinated.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelVaccinated.Name = "labelVaccinated";
-            this.labelVaccinated.Size = new System.Drawing.Size(211, 45);
+            this.labelVaccinated.Size = new System.Drawing.Size(156, 32);
             this.labelVaccinated.TabIndex = 19;
             this.labelVaccinated.Text = "Vaccinated :";
             // 
@@ -172,9 +181,10 @@
             // 
             this.buttonCancel.BackColor = System.Drawing.Color.IndianRed;
             this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancel.Location = new System.Drawing.Point(801, 572);
+            this.buttonCancel.Location = new System.Drawing.Point(601, 458);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(242, 53);
+            this.buttonCancel.Size = new System.Drawing.Size(182, 42);
             this.buttonCancel.TabIndex = 20;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = false;
@@ -184,9 +194,10 @@
             // 
             this.buttonRegister.BackColor = System.Drawing.Color.LightGreen;
             this.buttonRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRegister.Location = new System.Drawing.Point(464, 572);
+            this.buttonRegister.Location = new System.Drawing.Point(348, 458);
+            this.buttonRegister.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonRegister.Name = "buttonRegister";
-            this.buttonRegister.Size = new System.Drawing.Size(242, 53);
+            this.buttonRegister.Size = new System.Drawing.Size(182, 42);
             this.buttonRegister.TabIndex = 19;
             this.buttonRegister.Text = "Register Pet";
             this.buttonRegister.UseVisualStyleBackColor = false;
@@ -194,25 +205,28 @@
             // 
             // textBoxWeight
             // 
-            this.textBoxWeight.Location = new System.Drawing.Point(268, 360);
+            this.textBoxWeight.Location = new System.Drawing.Point(201, 288);
+            this.textBoxWeight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxWeight.Name = "textBoxWeight";
-            this.textBoxWeight.Size = new System.Drawing.Size(277, 35);
+            this.textBoxWeight.Size = new System.Drawing.Size(209, 28);
             this.textBoxWeight.TabIndex = 18;
             // 
             // textBoxAge
             // 
-            this.textBoxAge.Location = new System.Drawing.Point(268, 281);
+            this.textBoxAge.Location = new System.Drawing.Point(201, 225);
+            this.textBoxAge.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxAge.Name = "textBoxAge";
-            this.textBoxAge.Size = new System.Drawing.Size(277, 35);
+            this.textBoxAge.Size = new System.Drawing.Size(209, 28);
             this.textBoxAge.TabIndex = 17;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(136, 271);
+            this.label1.Location = new System.Drawing.Point(102, 217);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 45);
+            this.label1.Size = new System.Drawing.Size(75, 32);
             this.label1.TabIndex = 16;
             this.label1.Text = "Age :";
             // 
@@ -220,38 +234,15 @@
             // 
             this.openFileDialogUpload.FileName = "openFileDialog1";
             // 
-            // buttonNext
-            // 
-            this.buttonNext.BackColor = System.Drawing.Color.Khaki;
-            this.buttonNext.Location = new System.Drawing.Point(1309, 776);
-            this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(224, 81);
-            this.buttonNext.TabIndex = 21;
-            this.buttonNext.Text = "Next";
-            this.buttonNext.UseVisualStyleBackColor = false;
-            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
-            // 
-            // buttonPrev
-            // 
-            this.buttonPrev.BackColor = System.Drawing.Color.Khaki;
-            this.buttonPrev.Location = new System.Drawing.Point(1064, 776);
-            this.buttonPrev.Name = "buttonPrev";
-            this.buttonPrev.Size = new System.Drawing.Size(224, 81);
-            this.buttonPrev.TabIndex = 22;
-            this.buttonPrev.Text = "Previous";
-            this.buttonPrev.UseVisualStyleBackColor = false;
-            this.buttonPrev.Click += new System.EventHandler(this.buttonPrev_Click);
-            // 
             // RegisterPetForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(1554, 869);
-            this.Controls.Add(this.buttonPrev);
-            this.Controls.Add(this.buttonNext);
+            this.ClientSize = new System.Drawing.Size(1160, 625);
             this.Controls.Add(this.groupBoxDetails);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "RegisterPetForm";
             this.Text = "RegisterPetForm";
             this.Load += new System.EventHandler(this.RegisterPetForm_Load);
@@ -275,8 +266,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialogUpload;
         private System.Windows.Forms.Button buttonRegister;
         private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.Button buttonNext;
-        private System.Windows.Forms.Button buttonPrev;
         private System.Windows.Forms.TextBox textBoxWeight;
         private System.Windows.Forms.TextBox textBoxAge;
         private System.Windows.Forms.Label label1;

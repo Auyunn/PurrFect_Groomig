@@ -13,6 +13,7 @@ namespace PurrFect
 {
     public partial class ManageGroomer : Form
     {
+        // db connect
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Nur Auyunn\OneDrive\Documents\PROJECT\PurrFect\PurrFect\PurrFect.mdf;Integrated Security=True");
 
         public ManageGroomer()
@@ -22,7 +23,11 @@ namespace PurrFect
 
         private void ManageGroomer_Load(object sender, EventArgs e)
         {
-            // Mengisi data Experience ComboBox (0 years - above 10)
+            //prevent from change ID
+            txtbxID.ReadOnly = true;
+            txtbxID.BackColor = SystemColors.ControlLight;
+
+            //Fill experience
             cbStatus.Items.Clear();
             for (int i = 0; i <= 10; i++)
             {
@@ -33,6 +38,7 @@ namespace PurrFect
             LoadGroomer();
         }
 
+        // list
         void LoadGroomer()
         {
             try
@@ -60,6 +66,7 @@ namespace PurrFect
             }
         }
 
+        // (CREATE)
         private void bttnAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtbxName.Text) ||
@@ -79,9 +86,10 @@ namespace PurrFect
 
             try
             {
+                
                 Groomer g = new Groomer();
-                g.Name = txtbxName.Text;
-                g.Phone = txtbxPhone.Text;
+                g.Name = txtbxName.Text.Trim();
+                g.Phone = txtbxPhone.Text.Trim();
                 g.Status = cbStatus.Text;
                 g.Salary = parsedSalary;
 
@@ -97,7 +105,6 @@ namespace PurrFect
 
                 if (con.State == ConnectionState.Closed) con.Open();
 
-                // GroomerID tidak dimasukkan di sini kerana ia AUTO-INCREMENT (IDENTITY) di database
                 SqlCommand cmd = new SqlCommand("INSERT INTO Groomer (GroomerName, Phone, Salary, Experience) VALUES (@n, @p, @sal, @exp)", con);
                 cmd.Parameters.AddWithValue("@n", g.Name);
                 cmd.Parameters.AddWithValue("@p", g.Phone);
@@ -120,17 +127,24 @@ namespace PurrFect
             }
         }
 
+        //  (UPDATE)
         private void bttnEdit_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtbxID.Text))
+            if (string.IsNullOrEmpty(txtbxID.Text) || !int.TryParse(txtbxID.Text, out int groomerID))
             {
-                MessageBox.Show("Please select a groomer from the table first to update!", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a valid groomer from the table first to update!", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!decimal.TryParse(txtbxSalary.Text, out decimal checkedSalary))
+            if (!decimal.TryParse(txtbxSalary.Text, out decimal checkedSalary) || checkedSalary <= 0)
             {
-                MessageBox.Show("Salary must be a numeric value!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Salary must be a positive numeric value!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtbxName.Text) || string.IsNullOrWhiteSpace(txtbxPhone.Text) || string.IsNullOrWhiteSpace(cbStatus.Text))
+            {
+                MessageBox.Show("Fields cannot be left blank during an update.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -139,15 +153,16 @@ namespace PurrFect
                 if (con.State == ConnectionState.Closed) con.Open();
 
                 SqlCommand cmd = new SqlCommand("UPDATE Groomer SET GroomerName=@n, Phone=@p, Salary=@sal, Experience=@exp WHERE GroomerID=@id", con);
-                cmd.Parameters.AddWithValue("@id", txtbxID.Text);
-                cmd.Parameters.AddWithValue("@n", txtbxName.Text);
-                cmd.Parameters.AddWithValue("@p", txtbxPhone.Text);
+                cmd.Parameters.AddWithValue("@id", groomerID);
+                cmd.Parameters.AddWithValue("@n", txtbxName.Text.Trim());
+                cmd.Parameters.AddWithValue("@p", txtbxPhone.Text.Trim());
                 cmd.Parameters.AddWithValue("@sal", checkedSalary);
                 cmd.Parameters.AddWithValue("@exp", cbStatus.Text);
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Groomer details successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                ClearFields();
                 LoadGroomer();
             }
             catch (Exception ex)
@@ -160,11 +175,12 @@ namespace PurrFect
             }
         }
 
+        //  (DELETE)
         private void bttnDelete_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtbxID.Text))
+            if (string.IsNullOrEmpty(txtbxID.Text) || !int.TryParse(txtbxID.Text, out int groomerID))
             {
-                MessageBox.Show("Please select a record from the table first to delete!", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a valid record from the table first to delete!", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -177,7 +193,7 @@ namespace PurrFect
                     if (con.State == ConnectionState.Closed) con.Open();
 
                     SqlCommand cmd = new SqlCommand("DELETE FROM Groomer WHERE GroomerID=@id", con);
-                    cmd.Parameters.AddWithValue("@id", txtbxID.Text);
+                    cmd.Parameters.AddWithValue("@id", groomerID);
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Groomer record deleted!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -196,30 +212,27 @@ namespace PurrFect
             }
         }
 
-        // PERBAIKAN UTAMA: Penambahan logik pembersihan sekiranya Empty Cell diklik
+        // if cell cicked, dia akan bring the data to text input
         private void dgvGroomer_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvGroomer.Rows[e.RowIndex];
 
-                // Semak jika baris yang diklik adalah baris kosong (New/Empty row)
                 if (row.Cells[0].Value == null || row.Cells[0].Value == DBNull.Value)
                 {
-                    ClearFields(); // Bersihkan semua kotak teks serta-merta
+                    ClearFields();
                     this.Tag = null;
                     return;
                 }
 
-                // 1. ISI INPUT FIELDS KELAS PERTAMA (Data wujud)
                 txtbxID.Text = row.Cells[0].Value?.ToString() ?? "";
                 txtbxName.Text = row.Cells[1].Value?.ToString() ?? "";
                 txtbxPhone.Text = row.Cells[2].Value?.ToString() ?? "";
 
-                decimal currentSalary = 0;
                 if (row.Cells[3].Value != null && row.Cells[3].Value != DBNull.Value)
                 {
-                    currentSalary = Convert.ToDecimal(row.Cells[3].Value);
+                    decimal currentSalary = Convert.ToDecimal(row.Cells[3].Value);
                     txtbxSalary.Text = currentSalary.ToString("0.00");
                 }
                 else
@@ -228,26 +241,11 @@ namespace PurrFect
                 }
 
                 cbStatus.Text = row.Cells[4].Value?.ToString() ?? "";
-
-                // 2. LIVE CALCULATION & DATA PASSING
-                Func<decimal, decimal> calculateBonus = s => s * 0.1m;
-                decimal liveAnnualSalary = (currentSalary + calculateBonus(currentSalary)) * 12;
-
                 this.Tag = txtbxID.Text;
-
-                List<string> info = new List<string>();
-                info.Add("ID: " + txtbxID.Text);
-                info.Add("Name: " + txtbxName.Text);
-                info.Add("Phone: " + txtbxPhone.Text);
-                info.Add("Experience: " + cbStatus.Text);
-                info.Add("Salary: RM " + txtbxSalary.Text);
-                info.Add("Est. Annual Salary: RM " + liveAnnualSalary.ToString("N2"));
-
-                string summary = string.Join(Environment.NewLine, info);
-                MessageBox.Show(summary, "Active Groomer Selected", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
 
+        // clear input
         private void ClearFields()
         {
             txtbxID.Clear();
