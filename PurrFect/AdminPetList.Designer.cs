@@ -60,6 +60,7 @@
             this.dataGridViewPetList.RowTemplate.Height = 33;
             this.dataGridViewPetList.Size = new System.Drawing.Size(733, 284);
             this.dataGridViewPetList.TabIndex = 0;
+            this.dataGridViewPetList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPetList_CellClick);
             // 
             // buttonDelete
             // 
@@ -69,6 +70,7 @@
             this.buttonDelete.TabIndex = 26;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonEdit
             // 
@@ -78,6 +80,7 @@
             this.buttonEdit.TabIndex = 25;
             this.buttonEdit.Text = "EDIT";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // buttonAdd
             // 
@@ -87,6 +90,7 @@
             this.buttonAdd.TabIndex = 24;
             this.buttonAdd.Text = "ADD";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // textBoxAge
             // 
@@ -244,6 +248,7 @@
             this.Controls.Add(this.dataGridViewPetList);
             this.Name = "AdminPetList";
             this.Text = "AdminPetList";
+            this.Load += new System.EventHandler(this.AdminPetList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPetList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

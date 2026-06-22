@@ -143,6 +143,7 @@
             this.buttonAdd.TabIndex = 11;
             this.buttonAdd.Text = "ADD";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // buttonEdit
             // 
@@ -152,6 +153,7 @@
             this.buttonEdit.TabIndex = 12;
             this.buttonEdit.Text = "EDIT";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // buttonDelete
             // 
@@ -161,6 +163,7 @@
             this.buttonDelete.TabIndex = 13;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // AdminPayment
             // 
@@ -184,6 +187,7 @@
             this.Controls.Add(this.dataGridViewPayment);
             this.Name = "AdminPayment";
             this.Text = "AdminPayment";
+            this.Load += new System.EventHandler(this.AdminPayment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPayment)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

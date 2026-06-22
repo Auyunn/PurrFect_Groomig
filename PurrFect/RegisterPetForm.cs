@@ -22,27 +22,11 @@ namespace PurrFect
             this.ActiveControl = textBoxName;
         }
 
-        private void buttonUpload_Click(object sender, EventArgs e)
-        {
-            openFileDialogUpload.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
-
-            if (openFileDialogUpload.ShowDialog() == DialogResult.OK)
-            {
-                pictureBoxPet.Image = Image.FromFile(openFileDialogUpload.FileName);
-            }
-        }
-
         private void buttonRegister_Click(object sender, EventArgs e)
         {
             if (textBoxName.Text == "")
             {
                 MessageBox.Show("Please enter the pet's name.");
-                return;
-            }
-
-            if (comboBoxType.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select the pet's type.");
                 return;
             }
 
@@ -52,32 +36,33 @@ namespace PurrFect
                 return;
             }
 
-            if (!radioButtonMale.Checked && !radioButtonFemale.Checked)
+
+            if (textBoxAge.Text == "")
             {
-                MessageBox.Show("Please select gender.");
+                MessageBox.Show("Please enter the pet's age.");
                 return;
             }
 
-            if (dateTimePicker1.Value.Date > DateTime.Today)
+            if (textBoxWeight.Text == "")
             {
-                MessageBox.Show("Please select a valid birth date.");
+                MessageBox.Show("Please enter the pet's weight.");
                 return;
             }
 
-            if (numericUpDown1.Value <= 0)
+            if (textBoxAllergies.Text == "")
             {
-                MessageBox.Show("Please enter a valid weight.");
-                numericUpDown1.Focus();
+                MessageBox.Show("Please enter the pet's allergies.");
                 return;
             }
 
-            if (textBoxColor.Text == "")
+            if (textBoxVaccinated.Text == "")
             {
-                MessageBox.Show("Please enter the pet's color.");
+                MessageBox.Show("Please enter the pet's vaccination status.");
                 return;
             }
 
-            MessageBox.Show("Pet Registered!", "Success",
+
+        MessageBox.Show("Pet Registered!", "Success",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information);
         }
@@ -86,20 +71,17 @@ namespace PurrFect
         {
             textBoxName.Clear();
             textBoxBreed.Clear();
-            textBoxColor.Clear();
-
-            comboBoxType.SelectedIndex = -1;
-
-            radioButtonFemale.Checked = false;
-            radioButtonMale.Checked = false;
-
-            dateTimePicker1.Value = DateTime.Today;
-
-            numericUpDown1.Value = 0;
-
-            pictureBoxPet.Image = null;
+            textBoxAge.Clear();
+            textBoxWeight.Clear();
+            textBoxVaccinated.Clear();
+            textBoxAllergies.Clear();
 
             textBoxName.Focus();
+        }
+
+        private void textBoxName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
