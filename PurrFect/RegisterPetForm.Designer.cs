@@ -36,17 +36,17 @@
             this.textBoxBreed = new System.Windows.Forms.TextBox();
             this.textBoxAllergies = new System.Windows.Forms.TextBox();
             this.groupBoxDetails = new System.Windows.Forms.GroupBox();
-            this.openFileDialogUpload = new System.Windows.Forms.OpenFileDialog();
-            this.buttonRegister = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.buttonNext = new System.Windows.Forms.Button();
-            this.buttonPrev = new System.Windows.Forms.Button();
-            this.textBoxAge = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxWeight = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBoxVaccinated = new System.Windows.Forms.TextBox();
             this.labelVaccinated = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonRegister = new System.Windows.Forms.Button();
+            this.textBoxWeight = new System.Windows.Forms.TextBox();
+            this.textBoxAge = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.openFileDialogUpload = new System.Windows.Forms.OpenFileDialog();
+            this.buttonNext = new System.Windows.Forms.Button();
+            this.buttonPrev = new System.Windows.Forms.Button();
             this.groupBoxDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -141,77 +141,15 @@
             this.groupBoxDetails.TabStop = false;
             this.groupBoxDetails.Text = "Pet Details";
             // 
-            // openFileDialogUpload
+            // pictureBox1
             // 
-            this.openFileDialogUpload.FileName = "openFileDialog1";
-            // 
-            // buttonRegister
-            // 
-            this.buttonRegister.BackColor = System.Drawing.Color.LightGreen;
-            this.buttonRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRegister.Location = new System.Drawing.Point(464, 572);
-            this.buttonRegister.Name = "buttonRegister";
-            this.buttonRegister.Size = new System.Drawing.Size(242, 53);
-            this.buttonRegister.TabIndex = 19;
-            this.buttonRegister.Text = "Register Pet";
-            this.buttonRegister.UseVisualStyleBackColor = false;
-            this.buttonRegister.Click += new System.EventHandler(this.buttonRegister_Click);
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.BackColor = System.Drawing.Color.IndianRed;
-            this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancel.Location = new System.Drawing.Point(801, 572);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(242, 53);
-            this.buttonCancel.TabIndex = 20;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = false;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
-            // buttonNext
-            // 
-            this.buttonNext.BackColor = System.Drawing.Color.Khaki;
-            this.buttonNext.Location = new System.Drawing.Point(1309, 776);
-            this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(224, 81);
-            this.buttonNext.TabIndex = 21;
-            this.buttonNext.Text = "Next";
-            this.buttonNext.UseVisualStyleBackColor = false;
-            // 
-            // buttonPrev
-            // 
-            this.buttonPrev.BackColor = System.Drawing.Color.Khaki;
-            this.buttonPrev.Location = new System.Drawing.Point(1064, 776);
-            this.buttonPrev.Name = "buttonPrev";
-            this.buttonPrev.Size = new System.Drawing.Size(224, 81);
-            this.buttonPrev.TabIndex = 22;
-            this.buttonPrev.Text = "Previous";
-            this.buttonPrev.UseVisualStyleBackColor = false;
-            // 
-            // textBoxAge
-            // 
-            this.textBoxAge.Location = new System.Drawing.Point(268, 281);
-            this.textBoxAge.Name = "textBoxAge";
-            this.textBoxAge.Size = new System.Drawing.Size(277, 35);
-            this.textBoxAge.TabIndex = 17;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(136, 271);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 45);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Age :";
-            // 
-            // textBoxWeight
-            // 
-            this.textBoxWeight.Location = new System.Drawing.Point(268, 360);
-            this.textBoxWeight.Name = "textBoxWeight";
-            this.textBoxWeight.Size = new System.Drawing.Size(277, 35);
-            this.textBoxWeight.TabIndex = 18;
+            this.pictureBox1.Image = global::PurrFect.Properties.Resources.PurrfectLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(866, 108);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(501, 403);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
             // 
             // textBoxVaccinated
             // 
@@ -230,15 +168,79 @@
             this.labelVaccinated.TabIndex = 19;
             this.labelVaccinated.Text = "Vaccinated :";
             // 
-            // pictureBox1
+            // buttonCancel
             // 
-            this.pictureBox1.Image = global::PurrFect.Properties.Resources.PurrfectLogo;
-            this.pictureBox1.Location = new System.Drawing.Point(866, 108);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(501, 403);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 21;
-            this.pictureBox1.TabStop = false;
+            this.buttonCancel.BackColor = System.Drawing.Color.IndianRed;
+            this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCancel.Location = new System.Drawing.Point(801, 572);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(242, 53);
+            this.buttonCancel.TabIndex = 20;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = false;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // buttonRegister
+            // 
+            this.buttonRegister.BackColor = System.Drawing.Color.LightGreen;
+            this.buttonRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRegister.Location = new System.Drawing.Point(464, 572);
+            this.buttonRegister.Name = "buttonRegister";
+            this.buttonRegister.Size = new System.Drawing.Size(242, 53);
+            this.buttonRegister.TabIndex = 19;
+            this.buttonRegister.Text = "Register Pet";
+            this.buttonRegister.UseVisualStyleBackColor = false;
+            this.buttonRegister.Click += new System.EventHandler(this.buttonRegister_Click);
+            // 
+            // textBoxWeight
+            // 
+            this.textBoxWeight.Location = new System.Drawing.Point(268, 360);
+            this.textBoxWeight.Name = "textBoxWeight";
+            this.textBoxWeight.Size = new System.Drawing.Size(277, 35);
+            this.textBoxWeight.TabIndex = 18;
+            // 
+            // textBoxAge
+            // 
+            this.textBoxAge.Location = new System.Drawing.Point(268, 281);
+            this.textBoxAge.Name = "textBoxAge";
+            this.textBoxAge.Size = new System.Drawing.Size(277, 35);
+            this.textBoxAge.TabIndex = 17;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(136, 271);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 45);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Age :";
+            // 
+            // openFileDialogUpload
+            // 
+            this.openFileDialogUpload.FileName = "openFileDialog1";
+            // 
+            // buttonNext
+            // 
+            this.buttonNext.BackColor = System.Drawing.Color.Khaki;
+            this.buttonNext.Location = new System.Drawing.Point(1309, 776);
+            this.buttonNext.Name = "buttonNext";
+            this.buttonNext.Size = new System.Drawing.Size(224, 81);
+            this.buttonNext.TabIndex = 21;
+            this.buttonNext.Text = "Next";
+            this.buttonNext.UseVisualStyleBackColor = false;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
+            // 
+            // buttonPrev
+            // 
+            this.buttonPrev.BackColor = System.Drawing.Color.Khaki;
+            this.buttonPrev.Location = new System.Drawing.Point(1064, 776);
+            this.buttonPrev.Name = "buttonPrev";
+            this.buttonPrev.Size = new System.Drawing.Size(224, 81);
+            this.buttonPrev.TabIndex = 22;
+            this.buttonPrev.Text = "Previous";
+            this.buttonPrev.UseVisualStyleBackColor = false;
+            this.buttonPrev.Click += new System.EventHandler(this.buttonPrev_Click);
             // 
             // RegisterPetForm
             // 

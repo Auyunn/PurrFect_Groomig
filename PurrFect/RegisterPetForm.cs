@@ -83,5 +83,17 @@ namespace PurrFect
         {
 
         }
+
+        private void buttonPrev_Click(object sender, EventArgs e)
+        {
+            RegisterForm rf = new RegisterForm();
+            this.Show();
+        }
+
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+            BookingForm bf = new BookingForm();
+            this.Show();
+        }
     }
 }
