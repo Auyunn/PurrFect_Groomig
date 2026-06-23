@@ -118,7 +118,7 @@ namespace PurrFect
             {
                 con.Open();
 
-                // Semak kewujudan BookingID
+                
                 string checkQuery = "SELECT COUNT(1) FROM Booking WHERE BookingID = @id";
                 SqlCommand checkCmd = new SqlCommand(checkQuery, con);
                 checkCmd.Parameters.AddWithValue("@id", Booking.BookingID);
@@ -131,7 +131,6 @@ namespace PurrFect
                     return;
                 }
 
-                // Simpan transaksi bayaran
                 string insertQuery = "INSERT INTO Payment (BookingID, PaymentMethod, PaymentDate, Amount) " +
                                      "VALUES (@bookingid, @method, @date, @amount)";
 

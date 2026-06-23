@@ -32,9 +32,9 @@ namespace PurrFect
                     "SELECT Price FROM AddOn WHERE AddOnName=@name",
                     con);
 
-                cmd.Parameters.AddWithValue("@name", addOnName);
+                cmd.Parameters.AddWithValue("@name", addOnName);//find price
 
-                object result = cmd.ExecuteScalar();
+                object result = cmd.ExecuteScalar();//justt take value
 
                 if (result != null)
                 {

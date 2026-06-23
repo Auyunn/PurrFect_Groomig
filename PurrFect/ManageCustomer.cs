@@ -15,7 +15,7 @@ namespace PurrFect
     public partial class ManageCustomer : Form
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Nur Auyunn\OneDrive\Documents\PROJECT\PurrFect\PurrFect\PurrFect.mdf;Integrated Security=True");
-        int selectID = 0;
+        int selectID = 0; //global variable to store id chosen
 
         public ManageCustomer()
         {
@@ -26,10 +26,10 @@ namespace PurrFect
         {
             try
             {
-                DataTable dt = new DataTable();
+                DataTable dt = new DataTable();//build ttable
                 SqlDataAdapter da = new SqlDataAdapter("SELECT UserID, Username, Password, Role FROM Users", con);
-                da.Fill(dt);
-                CustomerDGV.DataSource = dt;
+                da.Fill(dt);//execute and store in table data 
+                CustomerDGV.DataSource = dt;//table data to chart
             }
             catch (Exception ex)
             {
@@ -41,6 +41,7 @@ namespace PurrFect
         {
             try
             {
+                //similiar to above
                 DataTable dt = new DataTable();
                 if (con.State == ConnectionState.Closed) con.Open();
 
@@ -48,28 +49,31 @@ namespace PurrFect
                 adt.Fill(dt);
                 con.Close();
 
-                CustomerChart.Series.Clear();
+                CustomerChart.Series.Clear(); //clear chart before add new data
 
-                Series s = new Series("Users")
+
+                Series s = new Series("Users") //set series to user 
                 {
-                    ChartType = SeriesChartType.Pie
+                    ChartType = SeriesChartType.Pie// set type to pie
                 };
-                CustomerChart.Series.Add(s);
+                CustomerChart.Series.Add(s);//ad new serirs
 
+                //change data dari datable to dict format 
                 var roleData = dt.AsEnumerable()
                     .ToDictionary(
-                        row => row["Role"].ToString().Trim(),
-                        row => Convert.ToInt32(row["Total"])
+                        row => row["Role"].ToString().Trim(),//make role as key
+                        row => Convert.ToInt32(row["Total"])//kira jumlah
                     );
 
-                roleData.ToList().ForEach(x =>
+                //masuk kan data 
+                roleData.ToList().ForEach(x => //x role, xvalue jumlah
                 {
                     s.Points.AddXY(x.Key, x.Value);
                 });
 
-                s.IsValueShownAsLabel = true;
+                s.IsValueShownAsLabel = true;//display untuk display total
 
-                
+                //count admin n user
                 AdminCountLabel.Text = "Total Admin: " + (roleData.ContainsKey("Admin") ? roleData["Admin"] : 0);
                 CustomerCountLabel.Text = "Total Customers: " + (roleData.ContainsKey("User") ? roleData["User"] : 0);
             }
@@ -202,21 +206,21 @@ namespace PurrFect
 
         private void CustomerDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0) return; //ignore if admin click header
 
-            var row = CustomerDGV.Rows[e.RowIndex];
-            if (row.IsNewRow) return;
+            var row = CustomerDGV.Rows[e.RowIndex]; //take data clicked
+            if (row.IsNewRow) return;//ignore if admin click empty roler
 
-            object idObj = row.Cells["UserID"].Value;
-            if (idObj == null || idObj == DBNull.Value)
+            object idObj = row.Cells["UserID"].Value; //take value from row user id
+            if (idObj == null || idObj == DBNull.Value)//if id is empty 
             {
-                selectID = 0;
-                ClearFields();
+                selectID = 0;//set global id to 0
+                ClearFields();//clear the field
             }
             else
-            {
+            {   //if valid
                 selectID = Convert.ToInt32(idObj);
-                UsernameTB.Text = row.Cells["Username"].Value?.ToString() ?? string.Empty;
+                UsernameTB.Text = row.Cells["Username"].Value?.ToString() ?? string.Empty;//fill text with value from table
                 PasswordTB.Text = row.Cells["Password"].Value?.ToString() ?? string.Empty;
                 RoleCB.Text = row.Cells["Role"].Value?.ToString() ?? string.Empty;
             }

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace PurrFect
 {
+    // INHERITENCE
     public partial class RegisterPetForm : Form
     {
         private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Nur Auyunn\OneDrive\Documents\PROJECT\PurrFect\PurrFect\PurrFect.mdf;Integrated Security=True";
@@ -39,16 +40,19 @@ namespace PurrFect
                 return;
             }
 
+            //INTERFACE
             using (SqlConnection con = new SqlConnection(connectionString))
             {
+                //EXCEPTION HANDLING
                 try
                 {
                     con.Open();
                     string query = "INSERT INTO Pet (UserID, PetName, Breed, Age, Weight, Allergies, Vaccinated) " +
                                    "OUTPUT INSERTED.PetID VALUES (@userId, @name, @breed, @age, @weight, @allergies, @vaccinated)";
 
+                    //COLLECTIONS
                     SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@userId", Booking.UserID); 
+                    cmd.Parameters.AddWithValue("@userId", Booking.UserID);
                     cmd.Parameters.AddWithValue("@name", textBoxName.Text.Trim());
                     cmd.Parameters.AddWithValue("@breed", textBoxBreed.Text.Trim());
                     cmd.Parameters.AddWithValue("@age", age);
@@ -63,7 +67,7 @@ namespace PurrFect
                         Booking.PetID = Convert.ToInt32(newPetId);
                         MessageBox.Show("Pet successfully registered!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                       
+
                         BookingForm booking = new BookingForm();
                         booking.Show();
                         this.Hide();

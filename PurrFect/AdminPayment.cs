@@ -21,7 +21,6 @@ namespace PurrFect
         public AdminPayment()
         {
             InitializeComponent();
-
             this.dataGridViewPayment.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPayment_CellClick);
         }
 
@@ -30,6 +29,7 @@ namespace PurrFect
             try
             {
                 DataTable dt = new DataTable();
+                
                 SqlDataAdapter da = new SqlDataAdapter(
                     "SELECT PaymentID, BookingID, PaymentMethod, PaymentDate, Amount FROM Payment", con);
 
@@ -38,7 +38,7 @@ namespace PurrFect
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading payments: " + ex.Message);
+                MessageBox.Show("Error loading payments: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -46,56 +46,45 @@ namespace PurrFect
         {
             LoadPayments();
 
+            // lock all input
             textBoxPaymentID.ReadOnly = true;
             textBoxPaymentID.BackColor = SystemColors.InactiveCaption;
 
             textBoxBookingID.ReadOnly = true;
             textBoxBookingID.BackColor = SystemColors.InactiveCaption;
+
+            textBoxAmount.ReadOnly = true; // Amaun tidak boleh diedit sesuka hati selepas bayar
+            textBoxAmount.BackColor = SystemColors.InactiveCaption;
+
+            textBoxDate.ReadOnly = true; // Tarikh asal transaksi tidak boleh diubah suai
+            textBoxDate.BackColor = SystemColors.InactiveCaption;
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            
             if (selectID == 0)
             {
                 MessageBox.Show("Please select a payment record from the table first before editing!", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            
-            int inputBookingID;
-            if (!int.TryParse(textBoxBookingID.Text.Trim(), out inputBookingID) || inputBookingID != currentBookingID)
-            {
-                MessageBox.Show("CRITICAL LOGIC ERROR: You are NOT allowed to change or re-assign the Booking ID of an existing invoice/receipt!", "Action Denied", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                textBoxBookingID.Text = currentBookingID.ToString(); 
-                return;
-            }
-
-            double targetAmount;
-            if (!double.TryParse(textBoxAmount.Text.Trim(), out targetAmount))
-            {
-                MessageBox.Show("Amount must be a valid numeric price value!", "Invalid Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
+           
             try
             {
                 con.Open();
-                string query = "UPDATE Payment SET PaymentMethod=@PM, PaymentDate=@PD, Amount=@A WHERE PaymentID=@PI";
+                string query = "UPDATE Payment SET PaymentMethod=@PM WHERE PaymentID=@PI";
                 SqlCommand com = new SqlCommand(query, con);
 
                 com.Parameters.AddWithValue("@PM", textBoxMethod.Text.Trim());
-                com.Parameters.AddWithValue("@PD", textBoxDate.Text.Trim());
-                com.Parameters.AddWithValue("@A", targetAmount);
                 com.Parameters.AddWithValue("@PI", selectID);
 
                 com.ExecuteNonQuery();
-                MessageBox.Show("Payment invoice updated successfully. (Booking association remained locked)", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Payment method updated successfully. Financial audit trail remains secured.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearInputs();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error updating payment record: " + ex.Message);
+                MessageBox.Show("Error updating payment record: " + ex.Message, "Execution Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -108,28 +97,58 @@ namespace PurrFect
         {
             if (selectID == 0)
             {
-                MessageBox.Show("Please select a payment record from the table first to delete!", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a payment record from the table first to process a refund!", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string warningMessage = $"Are you sure you want to permanently DELETE Payment ID: {selectID}?\n\n" +
-                                    "WARNING: Deleting this payment receipt will leave the associated Booking ID without a paid transaction statement! This action cannot be undone.";
+            double currentAmount;
+            if (!double.TryParse(textBoxAmount.Text.Trim(), out currentAmount))
+            {
+                MessageBox.Show("Invalid amount detected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            if (MessageBox.Show(warningMessage, "Critical Delete Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (currentAmount <= 0)
+            {
+                MessageBox.Show("This transaction has already been refunded or voided!", "Action Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            
+            double refundValue = currentAmount * -1;
+            string paymentMethodUsed = textBoxMethod.Text.Trim();
+
+            string confirmMessage = $"ARE YOU SURE YOU WANT TO REFUND THIS TRANSACTION?\n\n" +
+                                    $"Payment ID: {selectID}\n" +
+                                    $"Booking ID: {currentBookingID}\n" +
+                                    $"Original Amount: RM {currentAmount:0.00}\n" +
+                                    $"Payment Method: {paymentMethodUsed}\n\n" +
+                                    $"This will update the account balance by setting the amount to RM {refundValue:0.00}.";
+
+            if (MessageBox.Show(confirmMessage, "Confirm System Refund", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM Payment WHERE PaymentID=@id", con);
+
+                    string query = "UPDATE Payment SET Amount = @RefundAmount WHERE PaymentID = @id";
+                    SqlCommand cmd = new SqlCommand(query, con);
+
+                    cmd.Parameters.AddWithValue("@RefundAmount", refundValue);
                     cmd.Parameters.AddWithValue("@id", selectID);
 
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Payment record has been successfully wiped out from database.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    string finalNotice = $"Refund record has been processed successfully in the system database!\n\n" +
+                                         $"ACTION REQUIRED FOR ADMIN:\n" +
+                                         $"Please manually return/refund exactly RM {currentAmount:0.00} to the customer via {paymentMethodUsed}.";
+
+                    MessageBox.Show(finalNotice, "Refund Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearInputs();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error executing delete command: " + ex.Message);
+                    MessageBox.Show("Error executing refund command: " + ex.Message, "Database System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
@@ -138,7 +157,6 @@ namespace PurrFect
                 }
             }
         }
-
         private void dataGridViewPayment_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -170,7 +188,7 @@ namespace PurrFect
 
             textBoxMethod.Text = row.Cells[2].Value?.ToString() ?? string.Empty;
             textBoxDate.Text = row.Cells[3].Value?.ToString() ?? string.Empty;
-            textBoxAmount.Text = row.Cells[4].Value?.ToString() ?? string.Empty;
+            textBoxAmount.Text = row.Cells[4].Value != DBNull.Value ? Convert.ToDecimal(row.Cells[4].Value).ToString("0.00") : "0.00";
         }
 
         private void ClearInputs()

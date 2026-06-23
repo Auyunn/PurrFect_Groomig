@@ -48,7 +48,7 @@ namespace PurrFect
             // 
             this.dataGridViewPayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPayment.Location = new System.Drawing.Point(296, 35);
-            this.dataGridViewPayment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewPayment.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewPayment.Name = "dataGridViewPayment";
             this.dataGridViewPayment.RowHeadersWidth = 82;
             this.dataGridViewPayment.RowTemplate.Height = 33;
@@ -109,7 +109,7 @@ namespace PurrFect
             // textBoxPaymentID
             // 
             this.textBoxPaymentID.Location = new System.Drawing.Point(402, 308);
-            this.textBoxPaymentID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPaymentID.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPaymentID.Name = "textBoxPaymentID";
             this.textBoxPaymentID.Size = new System.Drawing.Size(445, 26);
             this.textBoxPaymentID.TabIndex = 6;
@@ -117,7 +117,7 @@ namespace PurrFect
             // textBoxBookingID
             // 
             this.textBoxBookingID.Location = new System.Drawing.Point(402, 364);
-            this.textBoxBookingID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxBookingID.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxBookingID.Name = "textBoxBookingID";
             this.textBoxBookingID.Size = new System.Drawing.Size(445, 26);
             this.textBoxBookingID.TabIndex = 7;
@@ -125,7 +125,7 @@ namespace PurrFect
             // textBoxMethod
             // 
             this.textBoxMethod.Location = new System.Drawing.Point(402, 416);
-            this.textBoxMethod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxMethod.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxMethod.Name = "textBoxMethod";
             this.textBoxMethod.Size = new System.Drawing.Size(445, 26);
             this.textBoxMethod.TabIndex = 8;
@@ -133,7 +133,7 @@ namespace PurrFect
             // textBoxDate
             // 
             this.textBoxDate.Location = new System.Drawing.Point(402, 478);
-            this.textBoxDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxDate.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxDate.Name = "textBoxDate";
             this.textBoxDate.Size = new System.Drawing.Size(445, 26);
             this.textBoxDate.TabIndex = 9;
@@ -141,7 +141,7 @@ namespace PurrFect
             // textBoxAmount
             // 
             this.textBoxAmount.Location = new System.Drawing.Point(402, 539);
-            this.textBoxAmount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxAmount.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxAmount.Name = "textBoxAmount";
             this.textBoxAmount.Size = new System.Drawing.Size(445, 26);
             this.textBoxAmount.TabIndex = 10;
@@ -149,7 +149,7 @@ namespace PurrFect
             // buttonEdit
             // 
             this.buttonEdit.Location = new System.Drawing.Point(419, 596);
-            this.buttonEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonEdit.Margin = new System.Windows.Forms.Padding(2);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(168, 57);
             this.buttonEdit.TabIndex = 12;
@@ -160,11 +160,11 @@ namespace PurrFect
             // buttonDelete
             // 
             this.buttonDelete.Location = new System.Drawing.Point(646, 596);
-            this.buttonDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(2);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(168, 57);
             this.buttonDelete.TabIndex = 13;
-            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.Text = "REFUND";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
@@ -187,7 +187,7 @@ namespace PurrFect
             this.Controls.Add(this.labelBookingID);
             this.Controls.Add(this.labelPaymentID);
             this.Controls.Add(this.dataGridViewPayment);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AdminPayment";
             this.Text = "AdminPayment";
             this.Load += new System.EventHandler(this.AdminPayment_Load);

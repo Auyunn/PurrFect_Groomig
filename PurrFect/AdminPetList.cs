@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace PurrFect
 {
+    // INHERITENCE
     public partial class AdminPetList : Form
     {
         private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Nur Auyunn\OneDrive\Documents\PROJECT\PurrFect\PurrFect\PurrFect.mdf;Integrated Security=True";
@@ -21,13 +22,16 @@ namespace PurrFect
         public AdminPetList()
         {
             InitializeComponent();
+            //DELEGATES
             this.Load += new System.EventHandler(this.AdminPetList_Load);
         }
 
         void FillUserComboBox()
         {
+            // EXCEPTION HANDLING
             try
             {
+                // INTERFACE
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
@@ -36,6 +40,7 @@ namespace PurrFect
                     {
                         using (SqlDataReader dr = cmd.ExecuteReader())
                         {
+                            // COLLECTIONS
                             comboBoxUserID.Items.Clear();
                             while (dr.Read())
                             {
@@ -110,6 +115,7 @@ namespace PurrFect
 
                     using (SqlCommand com = new SqlCommand(query, con))
                     {
+                        // COLLECTIONS
                         com.Parameters.AddWithValue("@UID", targetUserID);
                         com.Parameters.AddWithValue("@N", textBoxPetName.Text.Trim());
                         com.Parameters.AddWithValue("@B", textBoxBreed.Text.Trim());

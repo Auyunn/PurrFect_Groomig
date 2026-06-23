@@ -190,20 +190,52 @@ namespace PurrFect
             {
                 try
                 {
-                    if (con.State == ConnectionState.Closed) con.Open();
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
 
-                    SqlCommand cmd = new SqlCommand("DELETE FROM Groomer WHERE GroomerID=@id", con);
+                    // Check booking yang guna groomer ni
+                    SqlCommand checkCmd = new SqlCommand(
+                        "SELECT COUNT(*) FROM Booking WHERE GroomerID = @id", con);
+
+                    checkCmd.Parameters.AddWithValue("@id", groomerID);
+
+                    int bookingCount = (int)checkCmd.ExecuteScalar();
+
+                    if (bookingCount > 0)
+                    {
+                        MessageBox.Show(
+                            "Unable to delete this groomer because there are existing booking records associated with them.",
+                            "Delete Not Allowed",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+
+                        return;
+                    }
+
+                    // Delete groomer kalau tiada booking
+                    SqlCommand cmd = new SqlCommand(
+                        "DELETE FROM Groomer WHERE GroomerID=@id", con);
+
                     cmd.Parameters.AddWithValue("@id", groomerID);
 
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Groomer record deleted!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    MessageBox.Show(
+                        "Groomer record deleted successfully!",
+                        "Deleted",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
 
                     ClearFields();
                     LoadGroomer();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Deletion failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        "Deletion failed: " + ex.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
                 finally
                 {

@@ -24,7 +24,7 @@ namespace PurrFect
 
         private void ManageBooking_Load(object sender, EventArgs e)
         {
-            // Sekat akses jika bukan Admin/Staff
+            // stop acces for role other than admin
             switch (CurrentUserRole)
             {
                 case "Admin":
@@ -79,7 +79,7 @@ namespace PurrFect
             {
                 if (con.State == ConnectionState.Closed) con.Open();
 
-                // 1. Load Data Groomer
+                // load Data Groomer
                 SqlDataAdapter daGroomer = new SqlDataAdapter("SELECT GroomerID, GroomerName FROM Groomer", con);
                 DataTable dtGroomer = new DataTable();
                 daGroomer.Fill(dtGroomer);
@@ -87,7 +87,7 @@ namespace PurrFect
                 TBGroomerID.DisplayMember = "GroomerName";
                 TBGroomerID.ValueMember = "GroomerID";
 
-                // 2. Load Data Service
+                // Load Data Service
                 SqlDataAdapter daService = new SqlDataAdapter("SELECT ServiceID, ServiceName FROM ServicePackage", con);
                 DataTable dtService = new DataTable();
                 daService.Fill(dtService);
@@ -95,7 +95,7 @@ namespace PurrFect
                 TBServiceID.DisplayMember = "ServiceName";
                 TBServiceID.ValueMember = "ServiceID";
 
-                // 3. FIX: Load Data Pet ke dalam ComboBox (Ganti TBPetID daripada TextBox ke ComboBox di Designer)
+                // Load Data Pet ke dalam ComboBox 
                 SqlDataAdapter daPet = new SqlDataAdapter("SELECT PetID, PetName FROM Pet", con);
                 DataTable dtPet = new DataTable();
                 daPet.Fill(dtPet);
@@ -140,7 +140,7 @@ namespace PurrFect
                     "INSERT INTO Booking (PetID, GroomerID, ServiceID, BookingDate, BookingTime, Status, TotalPrice) " +
                     "VALUES (@p, @g, @s, @d, @t, @st, @pr)", con);
 
-                // Mengambil ValueMember (ID integer) dari ComboBox
+                //ambil ValueMember (ID integer) dari ComboBox
                 cmd.Parameters.AddWithValue("@p", TBPetID.SelectedValue);
                 cmd.Parameters.AddWithValue("@g", TBGroomerID.SelectedValue);
                 cmd.Parameters.AddWithValue("@s", TBServiceID.SelectedValue);
@@ -171,9 +171,9 @@ namespace PurrFect
             {
                 DataGridViewRow row = dgvBooking.Rows[e.RowIndex];
 
-                txtbxID.Text = row.Cells["BookingID"].Value.ToString(); // Menggunakan nama kolum database lebih selamat
+                txtbxID.Text = row.Cells["BookingID"].Value.ToString(); 
 
-                // Set SelectedValue ComboBox berdasarkan ID yang sepadan daripada grid
+                
                 TBPetID.SelectedValue = row.Cells["PetID"].Value;
                 TBGroomerID.SelectedValue = row.Cells["GroomerID"].Value;
                 TBServiceID.SelectedValue = row.Cells["ServiceID"].Value;
@@ -239,7 +239,7 @@ namespace PurrFect
                 return;
             }
 
-            DialogResult confirm = MessageBox.Show("Are you sure you want to delete Booking ID: " + txtbxID.Text + "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult confirm = MessageBox.Show("Are you sure you want to delete Booking ID: " + txtbxID.Text + "? This will also delete its payment history.", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (confirm == DialogResult.Yes)
             {
@@ -247,11 +247,17 @@ namespace PurrFect
                 {
                     if (con.State == ConnectionState.Closed) con.Open();
 
-                    SqlCommand cmd = new SqlCommand("DELETE FROM Booking WHERE BookingID=@id", con);
-                    cmd.Parameters.AddWithValue("@id", txtbxID.Text);
+                    //  PADAM REKOD ANAK DI JADUAL PAYMENT DULU
+                    SqlCommand cmdChild = new SqlCommand("DELETE FROM Payment WHERE BookingID=@id", con);
+                    cmdChild.Parameters.AddWithValue("@id", txtbxID.Text);
+                    cmdChild.ExecuteNonQuery();
 
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Booking record successfully deleted!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // PADAM REKOD INDUK DI JADUAL BOOKING
+                    SqlCommand cmdParent = new SqlCommand("DELETE FROM Booking WHERE BookingID=@id", con);
+                    cmdParent.Parameters.AddWithValue("@id", txtbxID.Text);
+                    cmdParent.ExecuteNonQuery();
+
+                    MessageBox.Show("Booking and associated payment records successfully deleted!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     ClearFields();
                     LoadBooking();
